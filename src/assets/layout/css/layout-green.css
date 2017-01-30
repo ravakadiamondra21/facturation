@@ -665,10 +665,10 @@ body {
   height: 100%;
   background-color: #D9E0E7; }
   body a {
-    color: #57c279;
+    color: #00acac;
     text-decoration: none; }
     body a:hover {
-      color: #6ac988; }
+      color: #00c6c6; }
 
 .layout-mask {
   position: fixed;
@@ -799,7 +799,7 @@ body {
         color: #a8acb1; }
       .layout-wrapper .layout-menu-container .search-input input:focus {
         outline: 0 none;
-        border: 1px solid #57c279;
+        border: 1px solid #00acac;
         -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2); }
@@ -833,7 +833,7 @@ body {
   z-index: 999999999;
   margin-left: 0px; }
 .layout-wrapper.menu-layout-overlay.layout-menu-overlay-active .topbar .topbar-left {
-  background-color: #57c279; }
+  background-color: #00acac; }
   .layout-wrapper.menu-layout-overlay.layout-menu-overlay-active .topbar .topbar-left .logo {
     background-image: url("../images/logo-white.png"); }
 .layout-wrapper.menu-layout-overlay .topbar {
@@ -905,9 +905,9 @@ body {
     .layout-wrapper .layout-menu li a:hover {
       background-color: #444d56; }
   .layout-wrapper .layout-menu li.active-menuitem > a {
-    color: #57c279; }
+    color: #00acac; }
     .layout-wrapper .layout-menu li.active-menuitem > a i {
-      color: #57c279; }
+      color: #00acac; }
       .layout-wrapper .layout-menu li.active-menuitem > a i:last-child {
         -webkit-transform: rotate(-180deg);
         -moz-transform: rotate(-180deg);
@@ -921,7 +921,7 @@ body {
     list-style: none;
     overflow: hidden; }
   .layout-wrapper .layout-menu > li.active-menuitem > a {
-    background-color: #57c279;
+    background-color: #00acac;
     color: #ffffff; }
     .layout-wrapper .layout-menu > li.active-menuitem > a i {
       color: #ffffff; }
@@ -1078,7 +1078,7 @@ body {
 
 .ajax-loader {
   font-size: 32px;
-  color: #57c279; }
+  color: #00acac; }
 
 @media (min-width: 1025px) {
   .layout-wrapper .topbar-items {
@@ -1100,7 +1100,7 @@ body {
           position: absolute;
           right: -5px;
           top: -5px;
-          background-color: #57c279;
+          background-color: #00acac;
           color: #ffffff;
           -moz-border-radius: 50%;
           -webkit-border-radius: 50%;
@@ -1116,7 +1116,7 @@ body {
         -webkit-transition: color 0.3s;
         transition: color 0.3s; }
         .layout-wrapper .topbar-items > li .topbar-icon:hover {
-          color: #57c279; }
+          color: #00acac; }
       .layout-wrapper .topbar-items > li.profile-item .profile-image {
         width: 36px;
         height: 36px; }
@@ -1249,10 +1249,10 @@ body {
           position: static;
           background-color: #f0f3f5; }
         .layout-wrapper.menu-layout-horizontal .layout-menu-container .layout-menu > li > ul li.active-menuitem > a {
-          color: #57c279;
+          color: #00acac;
           background-color: #e8e8e8; }
       .layout-wrapper.menu-layout-horizontal .layout-menu-container .layout-menu > li.active-menuitem > a {
-        background-color: #57c279;
+        background-color: #00acac;
         color: #ffffff; }
         .layout-wrapper.menu-layout-horizontal .layout-menu-container .layout-menu > li.active-menuitem > a i {
           color: #ffffff; }
@@ -1367,7 +1367,7 @@ body {
           -webkit-transition: background-color 0.3s;
           transition: background-color 0.3s; }
     .layout-wrapper .topbar .topbar-right .topbar-items > li.active-top-menu > a {
-      background-color: #57c279;
+      background-color: #00acac;
       color: #ffffff; }
     .layout-wrapper .topbar .topbar-right .topbar-items > li.active-top-menu > ul {
       display: block; }

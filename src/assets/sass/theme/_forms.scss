@@ -7,13 +7,11 @@ body {
         @include border-radius($borderRadius);
         font-size: $fontSize;
         
-        &:enabled:hover,
-        &:not(.ui-state-disabled):hover {
+        &:enabled:hover {
             border: 1px solid $inputHoverBorderColor;
         }
         
-        &:enabled:focus,
-        &:not(.ui-state-disabled).ui-state-focus {
+        &:enabled:focus {
             border: 1px solid $primaryColor;
             @include border-shadow();
         }
@@ -30,7 +28,7 @@ body {
             background-color: darken($primaryColor,5%);
         }
         
-        &:focus {
+        &:enabled:focus {
             outline: 0 none;
             background-color: darken($primaryColor,5%);
         }
@@ -324,7 +322,7 @@ body {
     
     .ui-autocomplete {
         .ui-autocomplete-dropdown {
-            .ui-icon-triangle-1-s {
+            .fa {
                 margin-top: -8px;
                 @include icon_override("\f078");
             }
@@ -334,11 +332,29 @@ body {
             .ui-autocomplete-multiple-container {
                 padding: $inputPadding;
                 
+                &:not(.ui-state-disabled):hover {
+                    border: 1px solid $inputHoverBorderColor;
+                }
+                
+                &:not(.ui-state-disabled).ui-state-focus {
+                    border: 1px solid $primaryColor;
+                    @include border-shadow();
+                }
+                
                 .ui-autocomplete-input-token {
                     input {
                         font-size: $fontSize;
                         padding: 0;
                         margin: 0;
+                        
+                        &:hover {
+                            border: 0 none;
+                        }
+                        
+                        &:focus {
+                            border: 0 none;
+                            @include no-shadow();
+                        }
                     }
                 }    
                 
@@ -434,20 +450,20 @@ body {
         }
     }
     
-    .ui-selectcheckboxmenu {
+    .ui-multiselect {
         background: #ffffff;
         border: 1px solid $inputBorderColor;
         
-        .ui-selectcheckboxmenu-label {
+        .ui-multiselect-label {
             padding: $inputPadding;
             padding-right: 30px;
         }
         
-        .ui-selectcheckboxmenu-trigger {  
+        .ui-multiselect-trigger {  
             width: 32px;
             box-sizing: border-box;
                       
-            .ui-icon-triangle-1-s {
+            .fa {
                 position: relative;
                 left: 3px;
                 margin-top: 6px;
@@ -471,15 +487,15 @@ body {
         }
     }
     
-    .ui-selectcheckboxmenu-panel {
+    .ui-multiselect-panel {
         padding: 0;
         @include overlay-shadow();
         
-        .ui-selectcheckboxmenu-header {
+        .ui-multiselect-header {
             padding: $headerPadding;
             background-color: $dividerColor;
             
-            .ui-selectcheckboxmenu-filter-container {
+            .ui-multiselect-filter-container {
                 width: 50%;
                 
                 .ui-inputfield {
@@ -509,7 +525,7 @@ body {
                 }
             }
             
-            .ui-selectcheckboxmenu-close {
+            .ui-multiselect-close {
                 color: $headerTextColor;
                 font-size: $fontSize + 4;
                 margin: 0;
@@ -525,8 +541,8 @@ body {
             }
         }
         
-        .ui-selectcheckboxmenu-items {
-            .ui-selectcheckboxmenu-item {
+        .ui-multiselect-items {
+            .ui-multiselect-item {
                 padding: $listItemPadding;
                 
                 .ui-chkbox {
@@ -545,69 +561,16 @@ body {
             }
         }
     }
-    
-    .ui-selectmanymenu {
+        
+    .ui-listbox {
         padding: 0;
         
-        .ui-selectlistbox-item {
+        .ui-listbox-item {
             margin: 0;
             padding: $listItemPadding;
             @include border-radius(0);
             
-            .ui-chkbox {
-                margin-right: 8px;
-                vertical-align: top;
-            }
-            
-            &:hover {
-                @include list-item-hover();
-            }
-            
-            &.ui-state-highlight {
-                @include list-item-highlight();
-            }
-            
-            > td {
-                padding: $listItemPadding;
-            }
-        }
-    }
-    
-    .ui-selectonelistbox {
-        padding: 0;
-        
-        .ui-selectlistbox-item {
-            margin: 0;
-            padding: $listItemPadding;
-            @include border-radius(0);
-            
-            &:hover {
-                @include list-item-hover();
-            }
-            
-            &.ui-state-highlight {
-                @include list-item-highlight();
-            }
-            
-            > td {
-                padding: $listItemPadding;
-            }
-        }
-    }
-    
-    .ui-multiselectlistbox {
-        padding: 0;
-        
-        .ui-multiselectlistbox-header {
-            padding: $headerPadding;
-        }
-        
-        .ui-multiselectlistbox-item {
-            margin: 0;
-            padding: $listItemPadding;
-            @include border-radius(0);
-            
-            &:hover {
+            &:not(.ui-state-highlight):hover {
                 @include list-item-hover();
             }
             
