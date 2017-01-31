@@ -15,7 +15,7 @@ body {
                 margin: 0 0 0 4px;
                 @include transition(color .3s);
                 
-                &.ui-state-hover {
+                &:hover {
                     color: $primaryColor;
                 }
             }
@@ -57,12 +57,8 @@ body {
                 margin-right: 8px;
             }
             
-            &.ui-state-hover {
+            &:hover {
                 background-color: $primaryColor;
-            }
-            
-            &.ui-state-focus {
-                background-color: $headerHoverBgColor;
             }
         }
         
@@ -85,7 +81,7 @@ body {
             font-size: $fontSize;
             @include transition(background-color .3s);
             
-            &.ui-state-hover {
+            &:not(.ui-state-active):not(.ui-state-disabled):hover {
                 background-color: $headerHoverBgColor;
             }
             
@@ -102,15 +98,6 @@ body {
             .ui-icon-triangle-1-s {
                 @include icon_override("\f078");
             }
-            
-            &.ui-tabs-outline {
-                border: 0 none;
-                background-color: $headerHoverBgColor;
-                
-                &.ui-state-active {
-                    background-color: lighten($primaryColor, 5%);
-                }
-            }
         }
         
         .ui-accordion-content {
@@ -118,11 +105,11 @@ body {
         }
     }
     
-    .ui-tabs {
+    .ui-tabview {
         padding: 0;
         
-        &.ui-tabs-top,&.ui-tabs-bottom,&.ui-tabs-left,&.ui-tabs-right {
-            .ui-tabs-nav {
+        &.ui-tabview-top,&.ui-tabview-bottom,&.ui-tabview-left,&.ui-tabview-right {
+            .ui-tabview-nav {
                 padding: 0;
                 
                 li {
@@ -141,11 +128,11 @@ body {
                         }
                     }
                     
-                    &.ui-state-hover {
+                    &:not(.ui-state-active):not(.ui-state-disabled):hover {
                         background-color: $headerHoverBgColor;
                     }
                     
-                    &.ui-tabs-outline {
+                    &.ui-tabview-outline {
                         outline: 0 none;
                         background-color: $headerHoverBgColor;
                     }
@@ -153,7 +140,7 @@ body {
                     &.ui-state-active {
                         background-color: $primaryColor;
                         
-                        &.ui-tabs-outline {
+                        &.ui-tabview-outline {
                             background-color: lighten($primaryColor,5%);
                         }
                     }
@@ -163,39 +150,17 @@ body {
                     }
                 }
             }
-            
-            .ui-tabs-navscroller-btn {
-                background-color: #ffffff;
-                
-                &.ui-state-hover {
-                    background-color: $listItemHoverBgColor;
-                }
-                
-                &.ui-tabs-navscroller-btn-left {
-                    left: 0;
-                    height: 33px;
-                }
-                
-                &.ui-tabs-navscroller-btn-right {
-                    right: 0;
-                    height: 34px;
-                }
-                
-                .ui-icon {
-                    margin-top: 8px;
-                }
-            }
         }
         
-        &.ui-tabs-left,&.ui-tabs-right {
-            .ui-tabs-nav {
+        &.ui-tabview-left,&.ui-tabview-right {
+            .ui-tabview-nav {
                 li {
                     width: 100%;
                 }
             }    
         }
         
-        .ui-tabs-panel {
+        .ui-tabview-panel {
             padding: $contentPadding;
         }
     }

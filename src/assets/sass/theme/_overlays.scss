@@ -8,7 +8,7 @@ body {
             padding: 2px;
             @include transition(color .3s);
             
-            &.ui-state-hover {
+            &:hover {
                 color: $primaryColor;
             }
 
@@ -36,14 +36,8 @@ body {
                 padding: 0;
                 margin-left: 4px;
                 
-                &.ui-state-hover {
+                &:hover {
                     color: $primaryColor;
-                }
-                
-                &.ui-dialog-titlebar-maximize  {
-                    position: relative;
-                    top: 1px;
-                    left: 1px;
                 }
             }
         }
@@ -107,7 +101,7 @@ body {
                 color: $headerTextColor;
                 @include transition(color .3s);
                 
-                &.ui-state-hover {
+                &:hover {
                     color: $primaryColor;
                 }
             }

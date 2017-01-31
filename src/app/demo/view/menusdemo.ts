@@ -38,20 +38,20 @@ export class MenusDemo implements OnInit {
         this.breadcrumbItems.push({label:'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi'});
         
         this.tabMenuItems = [
-            {label: 'Stats', icon: 'ui-icon-insert-chart'},
-            {label: 'Calendar', icon: 'ui-icon-date-range'},
-            {label: 'Documentation', icon: 'ui-icon-book'},
-            {label: 'Support', icon: 'ui-icon-help-outline'},
-            {label: 'Social', icon: 'ui-icon-public'}
+            {label: 'Stats', icon: 'fa-bar-chart'},
+            {label: 'Calendar', icon: 'fa-calendar'},
+            {label: 'Documentation', icon: 'fa-book'},
+            {label: 'Support', icon: 'fa-support'},
+            {label: 'Social', icon: 'fa-twitter'}
         ];
         
         this.tieredItems = [
             {
                 label: 'File',
-                icon: 'ui-icon-folder',
+                icon: 'fa-file-o',
                 items: [{
                         label: 'New', 
-                        icon: 'ui-icon-plus',
+                        icon: 'fa-plus',
                         items: [
                             {label: 'Project'},
                             {label: 'Other'},
@@ -63,22 +63,22 @@ export class MenusDemo implements OnInit {
             },
             {
                 label: 'Edit',
-                icon: 'ui-icon-edit',
+                icon: 'fa-edit',
                 items: [
-                    {label: 'Undo', icon: 'ui-icon-undo'},
-                    {label: 'Redo', icon: 'ui-icon-redo'}
+                    {label: 'Undo', icon: 'fa-mail-forward'},
+                    {label: 'Redo', icon: 'fa-mail-reply'}
                 ]
             },
             {
                 label: 'Help',
-                icon: 'ui-icon-help-outline',
+                icon: 'fa-question',
                 items: [
                     {
                         label: 'Contents'
                     },
                     {
                         label: 'Search', 
-                        icon: 'ui-icon-search', 
+                        icon: 'fa-search', 
                         items: [
                             {
                                 label: 'Text', 
@@ -96,48 +96,48 @@ export class MenusDemo implements OnInit {
             },
             {
                 label: 'Actions',
-                icon: 'ui-icon-settings',
+                icon: 'fa-gear',
                 items: [
                     {
                         label: 'Edit',
-                        icon: 'ui-icon-refresh',
+                        icon: 'fa-refresh',
                         items: [
-                            {label: 'Save', icon: 'ui-icon-save'},
-                            {label: 'Update', icon: 'ui-icon-update'},
+                            {label: 'Save', icon: 'fa-save'},
+                            {label: 'Update', icon: 'fa-save'},
                         ]
                     },
                     {
                         label: 'Other',
                         icon: 'fa-phone',
                         items: [
-                            {label: 'Delete', icon: 'ui-icon-delete'}
+                            {label: 'Delete', icon: 'fa-minus'}
                         ]
                     }
                 ]
             },
             {
-                label: 'Quit', icon: 'ui-icon-power-settings-new'
+                label: 'Quit', icon: 'fa-minus'
             }
         ];
         
         this.items = [{
             label: 'File',
             items: [
-                {label: 'New', icon: 'ui-icon-plus'},
-                {label: 'Open', icon: 'ui-icon-open-in-browser'}
+                {label: 'New', icon: 'fa-plus'},
+                {label: 'Open', icon: 'fa-download'}
             ]
         },
         {
             label: 'Edit',
             items: [
-                {label: 'Undo', icon: 'ui-icon-undo'},
-                {label: 'Redo', icon: 'ui-icon-redo'}
+                {label: 'Undo', icon: 'fa-refresh'},
+                {label: 'Redo', icon: 'fa-repeat'}
             ]
         }];
         
         this.megaMenuItems = [
             {
-                label: 'TV', icon: 'ui-icon-tv',
+                label: 'TV', icon: 'fa-check',
                 items: [
                     [
                         {
@@ -162,7 +162,7 @@ export class MenusDemo implements OnInit {
                 ]
             },
             {
-                label: 'Sports', icon: 'ui-icon-alarm',
+                label: 'Sports', icon: 'fa-soccer-ball-o',
                 items: [
                     [
                         {
@@ -198,7 +198,7 @@ export class MenusDemo implements OnInit {
                 ]
             },
             {
-                label: 'Entertainment', icon: 'ui-icon-stars',
+                label: 'Entertainment', icon: 'fa-child',
                 items: [
                     [
                         {
@@ -223,7 +223,7 @@ export class MenusDemo implements OnInit {
                 ]
             },
             {
-                label: 'Technology', icon: 'ui-icon-phone-android',
+                label: 'Technology', icon: 'fa-gears',
                 items: [
                     [
                         {
@@ -234,11 +234,15 @@ export class MenusDemo implements OnInit {
                             label: 'Technology 2',
                             items: [{label: 'Technology 2.1'},{label: 'Technology 2.2'}]
                         },
+                        {
+                            label: 'Technology 3',
+                            items: [{label: 'Technology 3.1'},{label: 'Technology 3.2'}]
+                        }
                     ],
                     [
                         {
                             label: 'Technology 4',
-                            items: [{label: 'Technology 3.1'},{label: 'Technology 3.2'}]
+                            items: [{label: 'Technology 4.1'},{label: 'Technology 4.2'}]
                         }  
                     ]
                 ]
@@ -248,10 +252,10 @@ export class MenusDemo implements OnInit {
         this.panelMenuItems = [
             {
                 label: 'File',
-                icon: 'ui-icon-insert-drive-file',
+                icon: 'fa-file-o',
                 items: [{
                         label: 'New', 
-                        icon: 'ui-icon-add',
+                        icon: 'fa-plus',
                         items: [
                             {label: 'Project'},
                             {label: 'Other'},
@@ -263,22 +267,22 @@ export class MenusDemo implements OnInit {
             },
             {
                 label: 'Edit',
-                icon: 'ui-icon-edit',
+                icon: 'fa-edit',
                 items: [
-                    {label: 'Undo', icon: 'ui-icon-undo'},
-                    {label: 'Redo', icon: 'ui-icon-redo'}
+                    {label: 'Undo', icon: 'fa-mail-forward'},
+                    {label: 'Redo', icon: 'fa-mail-reply'}
                 ]
             },
             {
                 label: 'Help',
-                icon: 'ui-icon-help-outline',
+                icon: 'fa-question',
                 items: [
                     {
                         label: 'Contents'
                     },
                     {
                         label: 'Search', 
-                        icon: 'ui-icon-search', 
+                        icon: 'fa-search', 
                         items: [
                             {
                                 label: 'Text', 
@@ -296,21 +300,21 @@ export class MenusDemo implements OnInit {
             },
             {
                 label: 'Actions',
-                icon: 'ui-icon-settings',
+                icon: 'fa-gear',
                 items: [
                     {
                         label: 'Edit',
-                        icon: 'ui-icon-edit',
+                        icon: 'fa-refresh',
                         items: [
-                            {label: 'Save', icon: 'ui-icon-save'},
-                            {label: 'Update', icon: 'ui-icon-update'},
+                            {label: 'Save', icon: 'fa-save'},
+                            {label: 'Update', icon: 'fa-save'},
                         ]
                     },
                     {
                         label: 'Other',
-                        icon: 'ui-icon-list',
+                        icon: 'fa-phone',
                         items: [
-                            {label: 'Delete', icon: 'ui-icon-delete'}
+                            {label: 'Delete', icon: 'fa-minus'}
                         ]
                     }
                 ]

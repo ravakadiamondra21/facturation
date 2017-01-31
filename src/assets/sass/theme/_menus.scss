@@ -45,6 +45,7 @@ body {
                 display: inline-block;
                 padding: 2px 8px;
                 margin-right: 4px;
+                color: $textColor;
             }
             
             .ui-steps-title {
@@ -96,18 +97,8 @@ body {
             
             .ui-menuitem {
                 margin: 0;
-                width: 100%;
-                box-sizing: border-box;
                 @include border-radius(0);
-                
-                &.ui-state-hover {
-                    @include menu-item-hover();
-                    
-                    .ui-menuitem-link {
-                        color: #ffffff;
-                    }
-                }
-                
+                                
                 .ui-menuitem-link {
                     padding: $listItemPadding;
                     width: 100%;
@@ -116,7 +107,7 @@ body {
                     @include transition(background-color .3s);
                     color: $textColor;
                     
-                    &.ui-state-hover {
+                    &:hover {
                         @include menu-item-hover();
                     }
                     
@@ -216,7 +207,7 @@ body {
                     }
                 }
                 
-                &.ui-state-hover {
+                &:not(.ui-state-active):not(.ui-state-disabled):hover {
                     background-color: $headerHoverBgColor;
                 }
             }
@@ -235,18 +226,14 @@ body {
             color: #ffffff;
             margin-bottom: 1px;
             @include transition(background-color .3s);
-            
-            .ui-icon-triangle-1-s {
-                margin-top: -10px;
-            }
-            
+                        
             a {
                 padding: $headerPadding;
                 padding-left: 28px;
                 color: #ffffff;
             }
             
-            &.ui-state-hover {
+            &:not(.ui-state-active):hover {
                 background-color: $headerHoverBgColor;
             }
             
@@ -261,7 +248,7 @@ body {
                 color: $textColor;
                 @include transition(background-color .3s);
                 
-                &.ui-state-hover {
+                &:hover {
                     @include list-item-hover();
                 }
                                 

@@ -732,7 +732,7 @@ body .ui-panel {
       -o-transition: color 0.3s;
       -webkit-transition: color 0.3s;
       transition: color 0.3s; }
-      body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon.ui-state-hover {
+      body .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon:hover {
         color: #00acac; }
   body .ui-panel .ui-panel-content {
     height: 100%;
@@ -760,10 +760,8 @@ body .ui-fieldset {
       display: inline-block;
       vertical-align: middle;
       margin-right: 8px; }
-    body .ui-fieldset .ui-fieldset-legend.ui-state-hover {
+    body .ui-fieldset .ui-fieldset-legend:hover {
       background-color: #00acac; }
-    body .ui-fieldset .ui-fieldset-legend.ui-state-focus {
-      background-color: #444d56; }
   body .ui-fieldset .ui-fieldset-content {
     padding: 0.5em 1em; }
 body .ui-notificationbar {
@@ -779,7 +777,7 @@ body .ui-accordion .ui-accordion-header {
   -o-transition: background-color 0.3s;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s; }
-  body .ui-accordion .ui-accordion-header.ui-state-hover {
+  body .ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
     background-color: #444d56; }
   body .ui-accordion .ui-accordion-header.ui-state-active {
     background-color: #00acac;
@@ -809,18 +807,13 @@ body .ui-accordion .ui-accordion-header {
     text-align: center; }
     body .ui-accordion .ui-accordion-header .ui-icon-triangle-1-s:before {
       content: ""; }
-  body .ui-accordion .ui-accordion-header.ui-tabs-outline {
-    border: 0 none;
-    background-color: #444d56; }
-    body .ui-accordion .ui-accordion-header.ui-tabs-outline.ui-state-active {
-      background-color: #00c6c6; }
 body .ui-accordion .ui-accordion-content {
   padding: 0.5em 1em; }
-body .ui-tabs {
+body .ui-tabview {
   padding: 0; }
-  body .ui-tabs.ui-tabs-top .ui-tabs-nav, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav, body .ui-tabs.ui-tabs-left .ui-tabs-nav, body .ui-tabs.ui-tabs-right .ui-tabs-nav {
+  body .ui-tabview.ui-tabview-top .ui-tabview-nav, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav, body .ui-tabview.ui-tabview-left .ui-tabview-nav, body .ui-tabview.ui-tabview-right .ui-tabview-nav {
     padding: 0; }
-    body .ui-tabs.ui-tabs-top .ui-tabs-nav li, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li, body .ui-tabs.ui-tabs-left .ui-tabs-nav li, body .ui-tabs.ui-tabs-right .ui-tabs-nav li {
+    body .ui-tabview.ui-tabview-top .ui-tabview-nav li, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li, body .ui-tabview.ui-tabview-left .ui-tabview-nav li, body .ui-tabview.ui-tabview-right .ui-tabview-nav li {
       position: static;
       -moz-transition: background-color 0.3s;
       -o-transition: background-color 0.3s;
@@ -831,37 +824,25 @@ body .ui-tabs {
       border-radius: 0;
       margin: 0;
       box-sizing: border-box; }
-      body .ui-tabs.ui-tabs-top .ui-tabs-nav li a, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li a, body .ui-tabs.ui-tabs-left .ui-tabs-nav li a, body .ui-tabs.ui-tabs-right .ui-tabs-nav li a {
+      body .ui-tabview.ui-tabview-top .ui-tabview-nav li a, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li a, body .ui-tabview.ui-tabview-left .ui-tabview-nav li a, body .ui-tabview.ui-tabview-right .ui-tabview-nav li a {
         padding: 0.5em 1em;
         color: #ffffff; }
-        body .ui-tabs.ui-tabs-top .ui-tabs-nav li a:focus, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li a:focus, body .ui-tabs.ui-tabs-left .ui-tabs-nav li a:focus, body .ui-tabs.ui-tabs-right .ui-tabs-nav li a:focus {
+        body .ui-tabview.ui-tabview-top .ui-tabview-nav li a:focus, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li a:focus, body .ui-tabview.ui-tabview-left .ui-tabview-nav li a:focus, body .ui-tabview.ui-tabview-right .ui-tabview-nav li a:focus {
           outline: 0 none; }
-      body .ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-state-hover, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li.ui-state-hover, body .ui-tabs.ui-tabs-left .ui-tabs-nav li.ui-state-hover, body .ui-tabs.ui-tabs-right .ui-tabs-nav li.ui-state-hover {
+      body .ui-tabview.ui-tabview-top .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover, body .ui-tabview.ui-tabview-left .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover, body .ui-tabview.ui-tabview-right .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover {
         background-color: #444d56; }
-      body .ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-tabs-outline, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li.ui-tabs-outline, body .ui-tabs.ui-tabs-left .ui-tabs-nav li.ui-tabs-outline, body .ui-tabs.ui-tabs-right .ui-tabs-nav li.ui-tabs-outline {
+      body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-tabview-outline, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-tabview-outline, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-tabview-outline, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-tabview-outline {
         outline: 0 none;
         background-color: #444d56; }
-      body .ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-state-active, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li.ui-state-active, body .ui-tabs.ui-tabs-left .ui-tabs-nav li.ui-state-active, body .ui-tabs.ui-tabs-right .ui-tabs-nav li.ui-state-active {
+      body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active {
         background-color: #00acac; }
-        body .ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-state-active.ui-tabs-outline, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li.ui-state-active.ui-tabs-outline, body .ui-tabs.ui-tabs-left .ui-tabs-nav li.ui-state-active.ui-tabs-outline, body .ui-tabs.ui-tabs-right .ui-tabs-nav li.ui-state-active.ui-tabs-outline {
+        body .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active.ui-tabview-outline, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li.ui-state-active.ui-tabview-outline, body .ui-tabview.ui-tabview-left .ui-tabview-nav li.ui-state-active.ui-tabview-outline, body .ui-tabview.ui-tabview-right .ui-tabview-nav li.ui-state-active.ui-tabview-outline {
           background-color: #00c6c6; }
-      body .ui-tabs.ui-tabs-top .ui-tabs-nav li .ui-icon-close, body .ui-tabs.ui-tabs-bottom .ui-tabs-nav li .ui-icon-close, body .ui-tabs.ui-tabs-left .ui-tabs-nav li .ui-icon-close, body .ui-tabs.ui-tabs-right .ui-tabs-nav li .ui-icon-close {
+      body .ui-tabview.ui-tabview-top .ui-tabview-nav li .ui-icon-close, body .ui-tabview.ui-tabview-bottom .ui-tabview-nav li .ui-icon-close, body .ui-tabview.ui-tabview-left .ui-tabview-nav li .ui-icon-close, body .ui-tabview.ui-tabview-right .ui-tabview-nav li .ui-icon-close {
         margin-top: 8px; }
-  body .ui-tabs.ui-tabs-top .ui-tabs-navscroller-btn, body .ui-tabs.ui-tabs-bottom .ui-tabs-navscroller-btn, body .ui-tabs.ui-tabs-left .ui-tabs-navscroller-btn, body .ui-tabs.ui-tabs-right .ui-tabs-navscroller-btn {
-    background-color: #ffffff; }
-    body .ui-tabs.ui-tabs-top .ui-tabs-navscroller-btn.ui-state-hover, body .ui-tabs.ui-tabs-bottom .ui-tabs-navscroller-btn.ui-state-hover, body .ui-tabs.ui-tabs-left .ui-tabs-navscroller-btn.ui-state-hover, body .ui-tabs.ui-tabs-right .ui-tabs-navscroller-btn.ui-state-hover {
-      background-color: #f0f3f5; }
-    body .ui-tabs.ui-tabs-top .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-left, body .ui-tabs.ui-tabs-bottom .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-left, body .ui-tabs.ui-tabs-left .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-left, body .ui-tabs.ui-tabs-right .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-left {
-      left: 0;
-      height: 33px; }
-    body .ui-tabs.ui-tabs-top .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-right, body .ui-tabs.ui-tabs-bottom .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-right, body .ui-tabs.ui-tabs-left .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-right, body .ui-tabs.ui-tabs-right .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-right {
-      right: 0;
-      height: 34px; }
-    body .ui-tabs.ui-tabs-top .ui-tabs-navscroller-btn .ui-icon, body .ui-tabs.ui-tabs-bottom .ui-tabs-navscroller-btn .ui-icon, body .ui-tabs.ui-tabs-left .ui-tabs-navscroller-btn .ui-icon, body .ui-tabs.ui-tabs-right .ui-tabs-navscroller-btn .ui-icon {
-      margin-top: 8px; }
-  body .ui-tabs.ui-tabs-left .ui-tabs-nav li, body .ui-tabs.ui-tabs-right .ui-tabs-nav li {
+  body .ui-tabview.ui-tabview-left .ui-tabview-nav li, body .ui-tabview.ui-tabview-right .ui-tabview-nav li {
     width: 100%; }
-  body .ui-tabs .ui-tabs-panel {
+  body .ui-tabview .ui-tabview-panel {
     padding: 0.5em 1em; }
 body .ui-scrollpanel .ui-scrollpanel-drag {
   background-color: #a8acb1; }
@@ -1434,7 +1415,7 @@ body .ui-overlaypanel {
     -o-transition: color 0.3s;
     -webkit-transition: color 0.3s;
     transition: color 0.3s; }
-    body .ui-overlaypanel .ui-overlaypanel-close.ui-state-hover {
+    body .ui-overlaypanel .ui-overlaypanel-close:hover {
       color: #00acac; }
     body .ui-overlaypanel .ui-overlaypanel-close span {
       margin-left: 1px; }
@@ -1456,12 +1437,8 @@ body .ui-dialog {
       transition: color 0.3s;
       padding: 0;
       margin-left: 4px; }
-      body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon.ui-state-hover {
+      body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon:hover {
         color: #00acac; }
-      body .ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-icon.ui-dialog-titlebar-maximize {
-        position: relative;
-        top: 1px;
-        left: 1px; }
   body .ui-dialog .ui-dialog-content {
     padding: 0.5em 1em; }
   body .ui-dialog .ui-dialog-buttonpane {
@@ -1502,7 +1479,7 @@ body .ui-lightbox {
       -o-transition: color 0.3s;
       -webkit-transition: color 0.3s;
       transition: color 0.3s; }
-      body .ui-lightbox .ui-lightbox-caption .ui-lightbox-close.ui-state-hover {
+      body .ui-lightbox .ui-lightbox-caption .ui-lightbox-close:hover {
         color: #00acac; }
   body .ui-lightbox .ui-lightbox-content-wrapper {
     overflow: hidden; }
@@ -1600,7 +1577,8 @@ body .ui-steps {
     width: auto;
     display: inline-block;
     padding: 2px 8px;
-    margin-right: 4px; }
+    margin-right: 4px;
+    color: #5f666c; }
   body .ui-steps .ui-steps-item .ui-steps-title {
     display: inline-block;
     font-weight: bold;
@@ -1635,16 +1613,9 @@ body .ui-menu {
       background-color: #444d56; }
   body .ui-menu .ui-menu-list .ui-menuitem {
     margin: 0;
-    width: 100%;
-    box-sizing: border-box;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0; }
-    body .ui-menu .ui-menu-list .ui-menuitem.ui-state-hover {
-      background-color: #00acac;
-      color: #ffffff; }
-      body .ui-menu .ui-menu-list .ui-menuitem.ui-state-hover .ui-menuitem-link {
-        color: #ffffff; }
     body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link {
       padding: 0.5em 1em;
       width: 100%;
@@ -1657,7 +1628,7 @@ body .ui-menu {
       -webkit-transition: background-color 0.3s;
       transition: background-color 0.3s;
       color: #5f666c; }
-      body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link.ui-state-hover {
+      body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link:hover {
         background-color: #00acac;
         color: #ffffff; }
       body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
@@ -1750,7 +1721,7 @@ body .ui-tabmenu {
           vertical-align: middle;
           display: inline-block;
           float: none; }
-      body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover {
+      body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem:not(.ui-state-active):not(.ui-state-disabled):hover {
         background-color: #444d56; }
 body .ui-panelmenu .ui-icon {
   position: static; }
@@ -1764,13 +1735,11 @@ body .ui-panelmenu .ui-panelmenu-header {
   -o-transition: background-color 0.3s;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s; }
-  body .ui-panelmenu .ui-panelmenu-header .ui-icon-triangle-1-s {
-    margin-top: -10px; }
   body .ui-panelmenu .ui-panelmenu-header a {
     padding: 0.5em 1em;
     padding-left: 28px;
     color: #ffffff; }
-  body .ui-panelmenu .ui-panelmenu-header.ui-state-hover {
+  body .ui-panelmenu .ui-panelmenu-header:not(.ui-state-active):hover {
     background-color: #444d56; }
   body .ui-panelmenu .ui-panelmenu-header.ui-state-active {
     background-color: #00acac; }
@@ -1781,7 +1750,7 @@ body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link {
   -o-transition: background-color 0.3s;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s; }
-  body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link.ui-state-hover {
+  body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link:hover {
     background-color: #f0f3f5;
     color: #5f666c; }
   body .ui-panelmenu .ui-panelmenu-content .ui-menuitem-link > span.ui-icon {
@@ -1829,22 +1798,3 @@ body .ui-galleria .ui-galleria-nav-next {
   font-size: 18px; }
   body .ui-galleria .ui-galleria-nav-next:before {
     content: ""; }
-body .ui-log {
-  -webkit-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15); }
-  body .ui-log .ui-log-header {
-    padding: 0.5em 1em; }
-    body .ui-log .ui-log-header .ui-log-button {
-      display: inline-block;
-      position: static;
-      margin-right: 4px;
-      color: #ffffff;
-      padding: 0; }
-      body .ui-log .ui-log-header .ui-log-button.ui-state-hover {
-        color: #00acac; }
-      body .ui-log .ui-log-header .ui-log-button.ui-log-clear, body .ui-log .ui-log-header .ui-log-button.ui-log-all, body .ui-log .ui-log-header .ui-log-button.ui-log-info, body .ui-log .ui-log-header .ui-log-button.ui-log-warn, body .ui-log .ui-log-header .ui-log-button.ui-log-debug, body .ui-log .ui-log-header .ui-log-button.ui-log-error {
-        top: auto;
-        left: auto; }
-  body .ui-log .ui-log-content {
-    padding: 0.5em 1em; }

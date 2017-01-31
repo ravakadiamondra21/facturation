@@ -22,38 +22,4 @@ body {
             font-size: 18px;   
         }
     }
-    
-    .ui-log {
-        @include overlay-shadow();
-        
-        .ui-log-header {
-            padding: $headerPadding;
-            
-            .ui-log-button {
-                display: inline-block;
-                position: static;
-                margin-right: 4px;
-                color: #ffffff;
-                padding: 0;
-                
-                &.ui-state-hover {
-                    color: $primaryColor;
-                }
-                
-                &.ui-log-clear,
-                &.ui-log-all,
-                &.ui-log-info,
-                &.ui-log-warn,
-                &.ui-log-debug,
-                &.ui-log-error {
-                    top: auto;
-                    left: auto;
-                }
-            }
-        }
-        
-        .ui-log-content {
-            padding: $contentPadding;
-        }
-    }
 }
