@@ -471,11 +471,11 @@ body {
             }
         }
         
-        &.ui-state-hover {
+        &:not(.ui-state-disabled):hover {
             border: 1px solid $inputHoverBorderColor;
         }
         
-        &.ui-state-focus {
+        &:not(.ui-state-disabled).ui-state-focus {
             border: 1px solid $primaryColor;
             @include border-shadow();
             
@@ -534,7 +534,7 @@ body {
                 padding: 0;
                 @include transition(color .3s);
                 
-                &.ui-state-hover {
+                &:hover{
                     padding: 0;
                     color: $primaryColor;
                 }
@@ -557,7 +557,11 @@ body {
                     margin: 0 0 0 8px;
                     display: inline-block;
                     vertical-align: middle;
-                } 
+                }
+                
+                &:not(.ui-state-highlight):hover {
+                    @include list-item-hover();
+                }
             }
         }
     }
@@ -581,46 +585,17 @@ body {
     }
     
     .ui-rating {
-        .ui-rating-cancel {
-            float: none;
-            display: inline-block;
+        .fa {
+            font-size: 20px;
+            height: 20px;
+            width: 20px;
             
-            a {
-                @include icon_override("\f05e");
-                display: block;
-                @include transition(color .3s);
-                font-size: 20px;
-                height: 20px;
-                width: 20px;
+            &.fa-ban {
                 color: $pink;
                 
                 &:hover {
                     color: lighten($pink,5%);
                 }
-            }
-        }
-        
-        .ui-rating-star {
-            float: none;
-            display: inline-block;
-            
-            a {
-                @include icon_override("\f006");
-                display: block;
-                font-size: 20px;
-                height: 20px;
-                width: 20px;
-            }
-        }
-        
-        .ui-rating-star-on {
-            a {
-                color: $primaryColor;
-                @include icon_override("\f005");
-                display: block;
-                font-size: 20px;
-                height: 20px;
-                width: 20px;
             }
         }
     }
@@ -675,26 +650,28 @@ body {
         .ui-slider-handle {
             background-color: $primaryColor;
             @include transition(background-color .3s);
-            
-            &:hover {
-                background-color: darken($primaryColor,5%);
-            }
         }
         
         .ui-slider-range {
             background-color: lighten($primaryColor,5%);   
         }
+        
+        &:not(.ui-state-disabled) {
+            .ui-slider-handle:hover {
+                background-color: darken($primaryColor,5%);
+            }
+        }
     }
     
-    .ui-selectbooleanbutton {
+    .ui-togglebutton {
         background-color: $dividerColor;
         color: $textColor;
         
-        &.ui-state-hover {
+        &:not(.ui-state-disabled):not(.ui-state-active):hover {
             background-color: #a8acb1;
         }
         
-        &.ui-state-focus {
+        &:not(.ui-state-disabled):not(.ui-state-active).ui-state-focus {
             background-color: $dividerColor;
             color: $textColor;
             @include border-shadow();
@@ -713,18 +690,18 @@ body {
         }
     }
     
-    .ui-buttonset {
+    .ui-selectbutton {
         .ui-button {
             background-color: $dividerColor;
             color: $textColor;
             border: 1px solid transparent;
             @include border-radius(0px);
             
-            &.ui-state-hover {
+            &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 background-color: #a8acb1;
             }
             
-            &.ui-state-focus {
+            &:not(.ui-state-disabled):not(.ui-state-active).ui-state-focus {
                 background-color: $dividerColor;
                 color: $textColor;
                 @include border-shadow();
@@ -764,34 +741,34 @@ body {
     
     .ui-splitbutton.ui-buttonset {
         .ui-button {
-            color: #ffffff;
-            background-color: $primaryColor;
             border: 1px solid transparent;
             
             .ui-icon-triangle-1-s {
                 margin-top: -8px;
                 @include icon_override("\f078");
             }
-            
-            &.ui-state-hover {
-                background-color: darken($primaryColor,5%);
-                color: #ffffff;
-            }
-                        
-            &.ui-state-focus {
-                background-color: darken($primaryColor,5%);
-                color: #ffffff;
-            }
-            
-            &.ui-state-active {
-                background-color: darken($primaryColor,10%);
-                color: #ffffff;
-            }
         }
     }
     
     .ui-datepicker {
         padding: 0;
+        
+        &:not(.ui-state-disabled) {
+            .ui-datepicker-header {
+                .ui-datepicker-prev:hover,
+                .ui-datepicker-next:hover {
+                    color: $primaryColor;
+                }
+            }
+            
+            table {
+                td:not(.ui-state-disabled) {
+                    a:not(.ui-state-active):hover {
+                        background-color: $listItemHoverBgColor;
+                    }
+                }
+            }
+        }
         
         .ui-datepicker-header {
             padding: $headerPadding;
@@ -806,11 +783,6 @@ body {
                 span {
                     display: none;
                 }
-                
-                &.ui-datepicker-prev-hover {
-                    color: $primaryColor;
-                    left: 2px;
-                }
             }
             
             .ui-datepicker-next {
@@ -821,11 +793,6 @@ body {
                 @include transition(color .3s);
                 span {
                     display: none;
-                }
-                
-                &.ui-datepicker-next-hover {
-                    color: $primaryColor;
-                    right: 2px;
                 }
             }
         }
@@ -839,16 +806,7 @@ body {
                     color: $textColor;
                     padding: 5px;
                     @include border-radius($borderRadius);
-                    
-                    &.ui-state-hover {
-                        background-color: $listItemHoverBgColor;
-                    }
-                    
-                    &.ui-state-highlight {
-                        color: $textColor;
-                        background-color: $dividerColor;
-                    }
-                    
+                                                            
                     &.ui-state-active {
                         color: #ffffff;
                         background-color: $primaryColor;
@@ -899,49 +857,6 @@ body {
                     .ui-icon {
                         @include icon_override("\f093");
                     }
-                }
-            }
-        }
-    }
-    
-    #keypad-div {
-        button {
-            border: 0 none;
-            padding: 5px;
-            
-            &:hover {
-                background-color: $dividerColor;
-            }
-            
-            &.keypad-shift {
-                background-color: $green;
-                
-                &:hover {
-                    background-color: lighten($green, 5%);
-                }
-            }
-            
-            &.keypad-back {
-                background-color: $blue;
-                
-                &:hover {
-                    background-color: lighten($blue, 5%);
-                }
-            }
-            
-            &.keypad-clear {
-                background-color: $pink;
-                
-                &:hover {
-                    background-color: lighten($pink, 5%);
-                }
-            }
-            
-            &.keypad-close {
-                background-color: $purple;
-                
-                &:hover {
-                    background-color: lighten($purple, 5%);
                 }
             }
         }
