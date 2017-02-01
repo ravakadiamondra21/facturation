@@ -2,7 +2,7 @@
     #header {
         width: 100%;
         min-height: 500px;
-        background:  url("\#{resource['poseidon-layout:images/landing/landing-bg.png']}") top left no-repeat #f7f7f7;
+        background:  url("../images/landing/landing-bg.png") top left no-repeat #f7f7f7;
         background-size: cover;
         
         .header-top {
@@ -15,7 +15,7 @@
                 vertical-align: middle;
                 width: 175px;
                 height: 49px;
-                background: url("\#{resource['poseidon-layout:images/logo-white.png']}") top left no-repeat;
+                background: url("../images/logo-white.png") top left no-repeat;
                 background-size: 175px 49px;
             }
             
@@ -115,7 +115,7 @@
     
     #promotion {
         width: 100%;
-        background:  url("\#{resource['poseidon-layout:images/landing/landing-overlay-1.png']}") 775px 370px no-repeat #2d353c;
+        background:  url("../images/landing/landing-overlay-1.png") 775px 370px no-repeat #2d353c;
         background-size: 400px auto;
         min-height: 500px;
         
@@ -147,7 +147,7 @@
     
     #pricing {
         width: 100%;
-        background:  url("\#{resource['poseidon-layout:images/landing/landing-overlay-2.png']}") 0px 300px no-repeat #ffffff;
+        background:  url("../images/landing/landing-overlay-2.png") 0px 300px no-repeat #ffffff;
         background-size: 600px auto;
         min-height: 400px;
         
@@ -281,7 +281,8 @@
            
            .footer-right {
                text-align: right;
-               font-size: 24px;
+               font-size: 16px;
+               padding-top: 24px;
                
                i {
                    margin-right: 14px;

@@ -43,7 +43,7 @@
 }
 @media (min-width: 641px) {
     .login-body {
-        background: url("\#{resource['poseidon-layout:images/login/login-background.png']}") top left no-repeat;
+        background: url("../images/login/login-background.png") top left no-repeat;
         background-size: cover;
     }
 }

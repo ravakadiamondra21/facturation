@@ -329,7 +329,7 @@
 
 @media (min-width: 641px) {
   .login-body {
-    background: url("#{resource['poseidon-layout:images/login/login-background.png']}") top left no-repeat;
+    background: url("../images/login/login-background.png") top left no-repeat;
     background-size: cover; } }
 @media (max-width: 640px) {
   .login-body {
@@ -393,7 +393,7 @@ body.exception-body.notfound-page {
 .landing-wrapper #header {
   width: 100%;
   min-height: 500px;
-  background: url("#{resource['poseidon-layout:images/landing/landing-bg.png']}") top left no-repeat #f7f7f7;
+  background: url("../images/landing/landing-bg.png") top left no-repeat #f7f7f7;
   background-size: cover; }
   .landing-wrapper #header .header-top {
     width: 960px;
@@ -404,7 +404,7 @@ body.exception-body.notfound-page {
       vertical-align: middle;
       width: 175px;
       height: 49px;
-      background: url("#{resource['poseidon-layout:images/logo-white.png']}") top left no-repeat;
+      background: url("../images/logo-white.png") top left no-repeat;
       background-size: 175px 49px; }
     .landing-wrapper #header .header-top #menu {
       float: right;
@@ -470,7 +470,7 @@ body.exception-body.notfound-page {
       width: 100px; }
 .landing-wrapper #promotion {
   width: 100%;
-  background: url("#{resource['poseidon-layout:images/landing/landing-overlay-1.png']}") 775px 370px no-repeat #2d353c;
+  background: url("../images/landing/landing-overlay-1.png") 775px 370px no-repeat #2d353c;
   background-size: 400px auto;
   min-height: 500px; }
   .landing-wrapper #promotion .promotion-content {
@@ -492,7 +492,7 @@ body.exception-body.notfound-page {
       top: 25px; }
 .landing-wrapper #pricing {
   width: 100%;
-  background: url("#{resource['poseidon-layout:images/landing/landing-overlay-2.png']}") 0px 300px no-repeat #ffffff;
+  background: url("../images/landing/landing-overlay-2.png") 0px 300px no-repeat #ffffff;
   background-size: 600px auto;
   min-height: 400px; }
   .landing-wrapper #pricing .pricing-content {
@@ -576,7 +576,8 @@ body.exception-body.notfound-page {
       font-weight: 400; }
     .landing-wrapper #footer .footer-content .footer-right {
       text-align: right;
-      font-size: 24px; }
+      font-size: 16px;
+      padding-top: 24px; }
       .landing-wrapper #footer .footer-content .footer-right i {
         margin-right: 14px;
         -moz-transition: color 0.3s;
