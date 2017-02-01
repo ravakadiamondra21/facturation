@@ -24,7 +24,14 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Themes', icon: 'fa fa-fw fa-paint-brush',
                 items: [
-                    {label: 'Indigo - Pink', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('indigo')}}
+                    {label: 'Turquoise', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('turquoise')}},
+                    {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('blue')}},
+                    {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('purple')}},
+                    {label: 'Orange', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('orange')}},
+                    {label: 'Pink', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('pink')}},
+                    {label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('light-blue')}},
+                    {label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('green')}},
+                    {label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('deep-purple')}}
                 ]
             },
             {
