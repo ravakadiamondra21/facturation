@@ -1,9 +1,9 @@
 body {
     .ui-inputtext {
-        background: #ffffff;
+        background: $inputBgColor;
         padding: $inputPadding;
         border: 1px solid $inputBorderColor;
-        @include transition(border-color .3s);
+        @include transition(border-color $transitionDuration);
         @include border-radius($borderRadius);
         font-size: $fontSize;
         
@@ -18,11 +18,11 @@ body {
     }
     
     .ui-button {
-        color: #ffffff;
+        color: $buttonTextColor;
         background-color: $primaryColor;
         border: 1px solid transparent;
         font-size: $fontSize;
-        @include transition(background-color .3s);
+        @include transition(background-color $transitionDuration);
         
         &:enabled:hover {
             background-color: darken($primaryColor,5%);
@@ -39,37 +39,27 @@ body {
                 
         &.ui-button-text-only {
             .ui-button-text {
-                padding: 5px 10px;
+                padding: .35em .7em;
             }
         }
         
         &.ui-button-text-icon-left {
             .ui-button-text {
-                padding: 5px 10px 5px 25px;
-            }
-            
-            .ui-icon.fa {
-                margin-top: -8px;
+                padding: .35em .7em .35em 1.8em;
             }
         }
         
         &.ui-button-text-icon-right {
             .ui-button-text {
-                padding: 5px 25px 5px 10px;
-            }
-            
-            .ui-icon.fa {
-                margin-top: -8px;
+                padding: .35em 1.8em .35em .7em;
             }
         }
         
         &.ui-button-icon-only {
-            .ui-button-text {
-                padding: 5px;
-            }
+            width: auto;
             
-            .ui-icon.fa {
-                margin-top: -8px;
+            .ui-button-text {
+                padding: .35em 0;
             }
         }
         
@@ -206,25 +196,19 @@ body {
             -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
             box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
         }
-        
-        .ui-icon-triangle-1-s {
-            margin-top: -10px;
-        }
     }
         
     .ui-chkbox {
         display: inline-block;
         vertical-align: middle;
-        margin: 0;
-        width: 20px;
-        height: 20px;
+        margin: 0 .25em 0 0;
         
         .ui-chkbox-box {
             border: 1px solid $inputBorderColor;
-            background-color: #ffffff;
-            width: 20px;
-            height: 20px;
-            @include transition(background-color .3s);
+            background-color: $inputBgColor;
+            width: 1.429em;
+            height: 1.429em;
+            @include transition(background-color $transitionDuration);
             
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 border: 1px solid $inputHoverBorderColor;
@@ -244,9 +228,8 @@ body {
             .ui-chkbox-icon {
                 overflow: hidden;
                 font-size: $fontSize + 2px;
+                line-height: $fontSize + 4px;
                 position: relative;
-                top: 2px;
-                left: 2px;
             }
         }
     }
@@ -255,14 +238,12 @@ body {
         display: inline-block;
         vertical-align: middle;
         margin: 0;
-        width: 20px;
-        height: 20px;
         
         .ui-radiobutton-box {
             border: 1px solid $inputBorderColor;
-            background-color: #ffffff;
-            width: 20px;
-            height: 20px;
+            background-color: $inputBgColor;
+            width: 1.429em;
+            height: 1.429em;
             @include border-radius(50%);
             
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
@@ -285,11 +266,10 @@ body {
             }
             
             .ui-radiobutton-icon {
-                @include transition(color .3s);
+                @include transition(color $transitionDuration);
                 overflow: hidden;
                 position: relative;
-                top: 2px;
-                left: 1.4px;
+                font-size: inherit;
             }
         }
     }
@@ -323,14 +303,14 @@ body {
     .ui-autocomplete {
         .ui-autocomplete-dropdown {
             .fa {
-                margin-top: -8px;
                 @include icon_override("\f078");
             }
         }
         
         &.ui-autocomplete-multiple {
             .ui-autocomplete-multiple-container {
-                padding: $inputPadding;
+                padding: .25em;
+                display: inline-block;
                 
                 &:not(.ui-state-disabled):hover {
                     border: 1px solid $inputHoverBorderColor;
@@ -359,8 +339,45 @@ body {
                 }    
                 
                 .ui-autocomplete-token {
-                    margin: 0 2px; 
+                    font-size: 1em;
                 }
+            }
+        }
+    }
+    
+    .ui-chips {
+        > ul.ui-inputtext {
+            padding: .25em;
+            display: inline-block;
+            
+            &:not(.ui-state-disabled):hover {
+                border: 1px solid $inputHoverBorderColor;
+            }
+            
+            &:not(.ui-state-disabled).ui-state-focus {
+                border: 1px solid $primaryColor;
+                @include border-shadow();
+            }
+            
+            .ui-chips-input-token {
+                input {
+                    font-size: $fontSize;
+                    padding: 0;
+                    margin: 0;
+                    
+                    &:hover {
+                        border: 0 none;
+                    }
+                    
+                    &:focus {
+                        border: 0 none;
+                        @include no-shadow();
+                    }
+                }
+            }    
+            
+            .ui-chips-token {
+                font-size: 1em;
             }
         }
     }
@@ -371,7 +388,7 @@ body {
         .ui-autocomplete-items {
             padding: 0;
             
-            .ui-autocomplete-item {
+            .ui-autocomplete-list-item {
                 margin: 0;
                 padding: $listItemPadding;
                 @include border-radius(0);
@@ -381,6 +398,14 @@ body {
                 padding: $listItemPadding;
                 background-color: $dividerColor;
                 color: $textColor;
+            }
+        }
+    }
+    
+    .ui-fluid {
+        .ui-autocomplete-multiple.ui-autocomplete-dd {
+            .ui-autocomplete-multiple-container {
+                width: calc(100% - 2em);
             }
         }
     }
@@ -532,7 +557,7 @@ body {
                 position: relative;
                 top: 3px;
                 padding: 0;
-                @include transition(color .3s);
+                @include transition(color $transitionDuration);
                 
                 &:hover{
                     padding: 0;
@@ -569,6 +594,14 @@ body {
     .ui-listbox {
         padding: 0;
         
+        .ui-listbox-header {
+            padding: $headerPadding;
+            
+            .ui-listbox-filter-container {
+                color: $textColor;
+            }
+        }
+        
         .ui-listbox-item {
             margin: 0;
             padding: $listItemPadding;
@@ -580,6 +613,28 @@ body {
             
             &.ui-state-highlight {
                 @include list-item-highlight();
+            }
+        }
+    }
+    
+    .ui-fluid {
+        .ui-listbox {
+            .ui-listbox-header {
+                .ui-listbox-filter-container {
+                    width: calc(100% - 2em);
+                }
+            }
+        }
+    }
+    
+    .ui-editor-container {
+        .ui-editor-toolbar {
+            background-color: #f0f3f5;
+        }
+        
+        .ql-picker.ql-expanded {
+            .ql-picker-label {
+                color: #444444;
             }
         }
     }
@@ -649,7 +704,7 @@ body {
         
         .ui-slider-handle {
             background-color: $primaryColor;
-            @include transition(background-color .3s);
+            @include transition(background-color $transitionDuration);
         }
         
         .ui-slider-range {
@@ -763,7 +818,7 @@ body {
             
             table {
                 td:not(.ui-state-disabled) {
-                    a:not(.ui-state-active):hover {
+                    a:not(.ui-state-active):not(.ui-state-highlight):hover {
                         background-color: $listItemHoverBgColor;
                     }
                 }
@@ -776,10 +831,10 @@ body {
             
             .ui-datepicker-prev {
                 cursor: pointer;
-                top:14px;
+                top:1em;
                 color: #ffffff;
                 @include icon_override("\f053");
-                @include transition(color .3s);
+                @include transition(color $transitionDuration);
                 span {
                     display: none;
                 }
@@ -787,10 +842,10 @@ body {
             
             .ui-datepicker-next {
                 cursor: pointer;
-                top:14px;
+                top:1em;
                 color: #ffffff;
                 @include icon_override("\f054");
-                @include transition(color .3s);
+                @include transition(color $transitionDuration);
                 span {
                     display: none;
                 }
@@ -804,12 +859,16 @@ body {
                 a {
                     text-align: center;
                     color: $textColor;
-                    padding: 5px;
+                    padding: .35em;
                     @include border-radius($borderRadius);
                                                             
                     &.ui-state-active {
                         color: #ffffff;
                         background-color: $primaryColor;
+                    }
+                    
+                    &.ui-state-highlight {
+                        background-color: darken($listItemHoverBgColor,5%);
                     }
                 }
             }
@@ -829,16 +888,7 @@ body {
             @include border-radius-left(0);
         }
     }
-    
-    .ui-fluid {
-        .ui-trigger-calendar {
-            .ui-datepicker-trigger.ui-button {
-                right: -2px;
-                height: 31px;
-            }
-        }
-    }
-    
+        
     .ui-inplace {
         .ui-inplace-display {
             padding: $inputPadding;

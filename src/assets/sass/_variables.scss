@@ -6,6 +6,7 @@ $borderRadius:2px;
 $dividerColor:#c9cdd2;
 $iconWidth:16px;
 $iconHeight:16px;
+$transitionDuration:.3s;
 
 /* Headers */
 $headerPadding:.5em 1em;
@@ -18,10 +19,13 @@ $contentPadding:.5em 1em;
 $contentBorderColor:#c9cdd2;
 
 /* Forms */
-$inputPadding:.357em;
+$inputPadding:.35em;
+$inputBgColor:#ffffff;
 $inputBorderColor:#a8acb1;
 $inputHoverBorderColor:#5f666c;
 $inputInvalidBorderColor:#f06364;
+
+$buttonTextColor: #ffffff;
 
 /* List Items */
 $listItemPadding:.5em 1em;
