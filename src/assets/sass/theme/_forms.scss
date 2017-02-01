@@ -596,6 +596,7 @@ body {
         
         .ui-listbox-header {
             padding: $headerPadding;
+            @include border-radius(0);
             
             .ui-listbox-filter-container {
                 color: $textColor;

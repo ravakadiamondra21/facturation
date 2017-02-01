@@ -10,9 +10,7 @@ body {
             
             .ui-panel-titlebar-icon {
                 position: relative;
-                top: 2px;
                 color: #ffffff;
-                margin: 0 0 0 4px;
                 @include transition(color .3s);
                 
                 &:hover {
@@ -42,19 +40,19 @@ body {
     }
     
     .ui-fieldset {         
-        padding: 0 0 8px 0;
+        padding: 0 0 .5em 0;
                
         .ui-fieldset-legend {
-            color: #ffffff;
+            color: $headerTextColor;
             background-color: $headerBgColor;
-            margin-left: 10px;
+            margin-left: .75em;
+            padding: $headerPadding;
             @include transition(background-color .3s);
             
             .ui-fieldset-toggler {
                 float: none;
                 display: inline-block;
                 vertical-align: middle;
-                margin-right: 8px;
             }
             
             &:hover {
@@ -75,8 +73,7 @@ body {
     .ui-accordion {
         .ui-accordion-header {
             background-color: $headerBgColor;
-            padding: $headerPadding;
-            padding-left: 30px;
+            padding: 0;
             color:#ffffff;
             font-size: $fontSize;
             @include transition(background-color .3s);
@@ -88,15 +85,23 @@ body {
             &.ui-state-active {
                 background-color: $primaryColor;
                 color: #ffffff;
+                
+                a {
+                    color: #ffffff;
+                }
             }
             
-            .ui-icon-triangle-1-e {
-                margin-top: -7px;
+            .fa-caret-right {
                 @include icon_override("\f054");
             }
             
-            .ui-icon-triangle-1-s {
+            .fa-caret-down {
                 @include icon_override("\f078");
+            }
+            
+            > a {
+                padding: .5em 1em .5em 2em;
+                color: #ffffff;
             }
         }
         
@@ -182,44 +187,6 @@ body {
     .ui-toolbar {
         padding: $headerPadding;
     }
-    
-    .ui-tooltip {
-        .ui-tooltip-arrow {
-            color: #2d353c;
-        }
-        
-        .ui-tooltip-text {
-            background-color: #2d353c;
-        }
-    }
-    
-    .ui-wizard {
-        .ui-wizard-step-titles {
-            .ui-wizard-step-title {
-                background-color: #ffffff;
-                border-left: 1px solid $contentBorderColor;
-                margin: 0;
-                padding: $headerPadding;
-                @include border-radius(0);
-                                
-                &:first-child {
-                    @include border-radius-left($borderRadius);
-                    border-right: 1px solid $contentBorderColor;
-                }
-                
-                &:last-child {
-                    @include border-radius-right($borderRadius);
-                    border-right: 1px solid $contentBorderColor;
-                }
-                
-                &.ui-state-highlight {
-                    border-color: $primaryColor;
-                    background-color: $primaryColor;
-                    color: #ffffff;
-                }
-            }
-        }
-    }    
 }
 
 @media (max-width: 640px) {

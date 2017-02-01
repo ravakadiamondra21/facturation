@@ -10,7 +10,7 @@ body {
                 display: none;
             }
             
-            &:not(.ui-state-disabled):hover {
+            &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 color: $primaryColor;
             }
         }
@@ -123,6 +123,7 @@ body {
             
             &.ui-datatable-hoverable-rows {
                 > tr.ui-widget-content:not(.ui-state-highlight):hover {
+                    cursor: pointer;
                     background-color: $contentBorderColor;
                     border-color: darken($contentBorderColor,5%);
                 }
@@ -424,6 +425,30 @@ body {
                 &.ui-treenode-selectable:not(.ui-state-highlight):hover {
                     @include list-item-hover();
                 }
+            }
+        }
+    }
+    
+    .fc {
+        .fc-toolbar {
+            .ui-icon-circle-triangle-e {
+                @include icon_override("\f054");
+                height: auto;
+                width: auto;
+                overflow: visible;
+            }
+            
+            .ui-icon-circle-triangle-w {
+                @include icon_override("\f053");
+                height: auto;
+                width: auto;
+                overflow: visible;
+            }
+        }
+        .fc-event-container {
+            .fc-event {
+                border-color: $primaryColor;
+                background-color: darken($primaryColor,5%);
             }
         }
     }

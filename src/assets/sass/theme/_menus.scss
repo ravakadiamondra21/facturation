@@ -80,7 +80,7 @@ body {
                 width: 100%;
                 box-sizing: border-box;
                 @include border-radius(0);
-                @include transition(background-color .3s);
+                @include transition(background-color $transitionDuration);
                 
                 h3 {
                     padding: $headerPadding;
@@ -104,7 +104,7 @@ body {
                     width: 100%;
                     box-sizing: border-box;
                     @include border-radius(0);
-                    @include transition(background-color .3s);
+                    @include transition(background-color $transitionDuration);
                     color: $textColor;
                     
                     &:hover {
@@ -193,7 +193,7 @@ body {
             .ui-tabmenuitem {
                 margin: 0;
                 position: static;
-                @include transition(background-color .3s);
+                @include transition(background-color $transitionDuration);
                 @include border-radius(0);
                 
                 .ui-menuitem-link {
@@ -225,11 +225,10 @@ body {
             font-size: $fontSize;
             color: #ffffff;
             margin-bottom: 1px;
-            @include transition(background-color .3s);
+            @include transition(background-color $transitionDuration);
                         
             a {
                 padding: $headerPadding;
-                padding-left: 28px;
                 color: #ffffff;
             }
             
@@ -246,7 +245,7 @@ body {
             .ui-menuitem-link {
                 padding: $listItemPadding;
                 color: $textColor;
-                @include transition(background-color .3s);
+                @include transition(background-color );
                 
                 &:hover {
                     @include list-item-hover();
