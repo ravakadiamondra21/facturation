@@ -286,7 +286,24 @@ body {
     }
             
     .ui-inputswitch {
-        .ui-inputswitch-handle {
+        @include transition(border-color $transitionDuration);
+        .ui-inputswitch-on {
+            background-color: $primaryColor;
+            color: $primaryTextColor;
+        }
+        
+        &:not(.ui-state-disabled):hover {
+            border-color: $inputHoverBorderColor;    
+        }
+        
+        .ui-inputswitch-handle {            
+            &.ui-state-focus {
+                background-color: lighten($primaryColor,5%);
+                @include border-shadow();
+            }
+        }
+        
+        /*.ui-inputswitch-handle {
             background-color: #ffffff;
             border: 1px solid transparent;
             box-sizing: border-box;
@@ -308,7 +325,7 @@ body {
                 top: -2px;
                 font-weight: 400;
             }
-        }
+        }*/
     }
     
     .ui-autocomplete {
