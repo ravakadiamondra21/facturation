@@ -6,6 +6,7 @@ body {
         @include transition(border-color $transitionDuration);
         @include border-radius($borderRadius);
         font-size: $fontSize;
+        color: $textColor;
         
         &:enabled:hover {
             border: 1px solid $inputHoverBorderColor;
@@ -47,16 +48,26 @@ body {
             .ui-button-text {
                 padding: .35em .7em .35em 1.8em;
             }
+            
+            .fa {
+                margin-top: -.45em;
+            }
         }
         
         &.ui-button-text-icon-right {
             .ui-button-text {
                 padding: .35em 1.8em .35em .7em;
             }
+            
+            .fa {
+                margin-top: -.45em;
+            }
         }
         
         &.ui-button-icon-only {
-            width: auto;
+            .fa {
+                margin-left: -.643em;
+            }
             
             .ui-button-text {
                 padding: .35em 0;
@@ -208,6 +219,9 @@ body {
             background-color: $inputBgColor;
             width: 22px;
             height: 22px;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             @include transition(background-color $transitionDuration);
             
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
@@ -306,6 +320,8 @@ body {
     
     .ui-autocomplete {
         .ui-autocomplete-dropdown {
+            width: 2em;
+            
             .fa {
                 @include icon_override("\f078");
             }
@@ -416,18 +432,21 @@ body {
     
     .ui-dropdown {
         background: #ffffff;
+        color: $textColor;
         border: 1px solid $inputBorderColor;
                         
         &:not(.ui-state-disabled):hover {
             border: 1px solid $inputHoverBorderColor;
         }
         
+        .ui-dropdown-label:focus,
         .ui-dropdown-label:hover {
             border:0 none;
         }
         
         .ui-dropdown-trigger {
             width: 2em;
+            text-align: center;
             
             .fa-caret-down {
                 @include icon_override("\f078");
@@ -481,21 +500,22 @@ body {
     
     .ui-multiselect {
         background: #ffffff;
+        color: $textColor;
         border: 1px solid $inputBorderColor;
         
         .ui-multiselect-label {
             padding: $inputPadding;
-            padding-right: 30px;
+            padding-right: 2em;
         }
         
         .ui-multiselect-trigger {  
-            width: 32px;
+            width: 2em;
             box-sizing: border-box;
+            padding-right: 0;
+            text-align: center;
                       
             .fa {
-                position: relative;
-                left: 3px;
-                margin-top: 6px;
+                margin-top: .425em;
                 @include icon_override("\f078");
             }
         }
@@ -522,23 +542,23 @@ body {
         
         .ui-multiselect-header {
             padding: $headerPadding;
-            background-color: $dividerColor;
+            background-color: $headerBgColor;
             
             .ui-multiselect-filter-container {
-                width: 50%;
+                width: calc(100% - 3em);
                 
                 .ui-inputfield {
                     padding: 1px;
                     width: 100%;
                     box-sizing: border-box;
                 }
+                
+                .fa {
+                    color: $textColor;
+                }
             }
             
-            .ui-chkbox {
-                position: relative;
-                top: 0;
-                margin-right: 20px;
-                
+            .ui-chkbox {                
                 .ui-chkbox-box {
                     &.ui-state-focus {                        
                         .ui-icon {
@@ -558,8 +578,6 @@ body {
                 color: $headerTextColor;
                 font-size: $fontSize + 4;
                 margin: 0;
-                position: relative;
-                top: 3px;
                 padding: 0;
                 @include transition(color $transitionDuration);
                 
@@ -583,7 +601,6 @@ body {
                 
                 label {
                     padding: 0;
-                    margin: 0 0 0 8px;
                     display: inline-block;
                     vertical-align: middle;
                 }
@@ -604,6 +621,11 @@ body {
             
             .ui-listbox-filter-container {
                 color: $textColor;
+                width: calc(100% - 2.1em);
+                
+                input {
+                    width: 100%;
+                }
             }
         }
         
@@ -621,17 +643,7 @@ body {
             }
         }
     }
-    
-    .ui-fluid {
-        .ui-listbox {
-            .ui-listbox-header {
-                .ui-listbox-filter-container {
-                    width: calc(100% - 2em);
-                }
-            }
-        }
-    }
-    
+        
     .ui-editor-container {
         .ui-editor-toolbar {
             background-color: #f0f3f5;
@@ -645,6 +657,10 @@ body {
     }
     
     .ui-rating {
+        a {
+            color: $primaryColor;
+        }
+        
         .fa {
             font-size: 20px;
             height: 20px;
@@ -729,6 +745,7 @@ body {
         
         &:not(.ui-state-disabled):not(.ui-state-active):hover {
             background-color: #a8acb1;
+            color: #ffffff;
         }
         
         &:not(.ui-state-disabled):not(.ui-state-active).ui-state-focus {
@@ -759,6 +776,7 @@ body {
             
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 background-color: #a8acb1;
+                color: #ffffff;
             }
             
             &:not(.ui-state-disabled):not(.ui-state-active).ui-state-focus {
@@ -802,11 +820,6 @@ body {
     .ui-splitbutton.ui-buttonset {
         .ui-button {
             border: 1px solid transparent;
-            
-            .ui-icon-triangle-1-s {
-                margin-top: -8px;
-                @include icon_override("\f078");
-            }
         }
     }
     
@@ -882,22 +895,37 @@ body {
         &#ui-datepicker-div {
             @include overlay-shadow();
         }
+        
+        .ui-timepicker {
+            a {
+                color: $headerTextColor;
+                
+                &:hover {
+                    color: $primaryColor;
+                }
+            }    
+        }
     }
     
-    .ui-trigger-calendar {
-        .ui-inputfield {
+    .ui-calendar.ui-calendar-w-btn {
+        .ui-inputtext {
             @include border-radius-right(0);
             border-right: 0 none;
         }
         .ui-datepicker-trigger.ui-button {
+            width: 2em;
             @include border-radius-left(0);
         }
     }
-        
+    
     .ui-inplace {
         .ui-inplace-display {
             padding: $inputPadding;
             @include border-radius($borderRadius);
+            
+            &:not(.ui-state-disabled):hover {
+                @include list-item-hover();
+            }
         }
     }
     
@@ -915,5 +943,27 @@ body {
                 }
             }
         }
+    }
+    
+    .ui-password-panel {
+        @include overlay-shadow();
+    }
+    
+    /* Validation */
+    .ui-inputtext.ng-dirty.ng-invalid,
+    p-dropdown.ng-dirty.ng-invalid > .ui-dropdown,
+    p-autocomplete.ng-dirty.ng-invalid > .ui-autocomplete > .ui-inputtext,
+    p-calendar.ng-dirty.ng-invalid > .ui-inputtext,
+    p-chips.ng-dirty.ng-invalid > .ui-inputtext,
+    p-inputmask.ng-dirty.ng-invalid > .ui-inputtext,
+    p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box,
+    p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box,
+    p-inputswitch.ng-dirty.ng-invalid .ui-inputswitch,
+    p-listbox.ng-dirty.ng-invalid .ui-inputtext,
+    p-multiselect.ng-dirty.ng-invalid > .ui-multiselect,
+    p-spinner.ng-dirty.ng-invalid > .ui-inputtext,
+    p-selectbutton.ng-dirty.ng-invalid .ui-button,
+    p-togglebutton.ng-dirty.ng-invalid .ui-button {
+        border-color: $inputInvalidBorderColor;
     }
 }

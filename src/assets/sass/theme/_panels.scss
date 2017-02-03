@@ -131,27 +131,30 @@ body {
                         &:focus {
                             outline: 0 none;
                         }
+                        
+                        .ui-tabview-left-icon {
+                            margin-right: .25em;
+                        }
+                        
+                        .ui-tabview-right-icon {
+                            margin-left: .25em;
+                        }
+                    }
+                    
+                    .ui-tabview-close {
+                        margin-top: .65em;
                     }
                     
                     &:not(.ui-state-active):not(.ui-state-disabled):hover {
                         background-color: $headerHoverBgColor;
                     }
-                    
-                    &.ui-tabview-outline {
-                        outline: 0 none;
-                        background-color: $headerHoverBgColor;
-                    }
-                    
+                                        
                     &.ui-state-active {
                         background-color: $primaryColor;
                         
                         &.ui-tabview-outline {
                             background-color: lighten($primaryColor,5%);
                         }
-                    }
-                    
-                    .ui-icon-close {
-                        margin-top: 8px;
                     }
                 }
             }

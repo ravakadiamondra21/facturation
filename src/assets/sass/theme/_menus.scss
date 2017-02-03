@@ -13,13 +13,13 @@ body {
                     color: #ffffff;
                     margin: 0;
                     position: relative;
-                    top: -2px;
+                    top: -.143em;
                 }
                 
                 &.ui-breadcrumb-chevron {
-                    @include icon_override("\f054");
                     font-size: $fontSize + 2;
-                    margin: 0 6px;
+                    margin: 0 .45em;
+                    line-height: inherit;
                 }
                 
                 &:first-child {
@@ -45,7 +45,7 @@ body {
                 display: inline-block;
                 padding: 2px 8px;
                 margin-right: 4px;
-                color: $textColor;
+                color: #ffffff;
             }
             
             .ui-steps-title {
@@ -140,10 +140,6 @@ body {
             > .ui-menu-list {
                 > .ui-menuitem {
                     width: auto;
-                    
-                    &.ui-menubar-options {
-                        margin-right: 8px;
-                    }
                 }
             }
         }
@@ -204,6 +200,10 @@ body {
                         vertical-align: middle;
                         display: inline-block;
                         float: none;
+                    }
+                    
+                    .ui-menuitem-icon {
+                        margin-right: .25em;
                     }
                 }
                 
