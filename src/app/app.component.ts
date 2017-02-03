@@ -66,7 +66,7 @@ export class AppComponent implements AfterViewInit {
                 this.topbarMenuActive = false;
             }
 
-            if(!this.menuClick) {
+            if(!this.menuClick && this.isHorizontal()) {
                 this.resetMenu = true;
             }
 

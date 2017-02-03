@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
 @Component({
     selector: 'app-menu',
     template: `
-        <ul app-submenu [item]="model" root="true" class="layout-menu clearfix" [reset]="reset"></ul>
+        <ul app-submenu [item]="model" root="true" class="layout-menu clearfix" [reset]="reset" visible="true"></ul>
     `
 })
 export class AppMenuComponent implements OnInit {
@@ -130,8 +130,8 @@ export class AppMenuComponent implements OnInit {
     selector: '[app-submenu]',
     template: `
         <template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
-            <li [ngClass]="{'active-menuitem': isActive(i)}">
-                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" *ngIf="!child.routerLink">
+            <li [ngClass]="{'active-menuitem': isActive(i)}" *ngIf="child.visible === false ? false : true">
+                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" *ngIf="!child.routerLink" [attr.tabindex]="!visible ? '-1' : null">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>
                     <i class="fa fa-fw fa-angle-down" *ngIf="child.items"></i>
@@ -143,7 +143,7 @@ export class AppMenuComponent implements OnInit {
                     <span>{{child.label}}</span>
                     <i class="fa fa-fw fa-angle-down" *ngIf="child.items"></i>
                 </a>
-                <ul app-submenu [item]="child" *ngIf="child.items" [@children]="isActive(i) ? 'visible' : 'hidden'"></ul>
+                <ul app-submenu [item]="child" *ngIf="child.items" [@children]="isActive(i) ? 'visible' : 'hidden'" [visible]="isActive(i)"></ul>
             </li>
         </template>
     `,
@@ -165,6 +165,8 @@ export class AppSubMenu {
     @Input() item: MenuItem;
     
     @Input() root: boolean;
+    
+    @Input() visible: boolean;
 
     _reset: boolean;
         
@@ -173,13 +175,16 @@ export class AppSubMenu {
     constructor(@Inject(forwardRef(() => AppComponent)) public app:AppComponent, public router: Router, public location: Location) {}
         
     itemClick(event: Event, item: MenuItem, index: number) {
+        //avoid processing disabled items
         if(item.disabled) {
             event.preventDefault();
             return true;
         }
         
+        //activate current item and deactivate active sibling if any
         this.activeIndex = (this.activeIndex === index) ? null : index;
                 
+        //execute command
         if(item.command) {
             if(!item.eventEmitter) {
                 item.eventEmitter = new EventEmitter();
@@ -192,9 +197,16 @@ export class AppSubMenu {
             });
         }
 
+        //prevent hash change
         if(item.items || !item.url) {
             event.preventDefault();
         }
+        
+        //hide overlay submenus in horizontal layout
+        if(this.app.isHorizontal() && !item.items)
+            this.app.resetMenu = true;
+        else
+            this.app.resetMenu = false;
     }
     
     isActive(index: number): boolean {

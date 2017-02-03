@@ -6,7 +6,7 @@ body {
     }
 
     .ui-widget-content {
-        background-color: #ffffff;
+        background-color: $contentBgColor;
         border: 1px solid $contentBorderColor;
     }
     
@@ -15,21 +15,9 @@ body {
         color: $headerTextColor;
     }
 
-    .ui-state-default {
-
-    }
-
-    .ui-state-hover {
-
-    }
-
-    .ui-state-focus {
-
-    }
-
     .ui-state-active, .ui-state-highlight {
         background-color: $primaryColor;
-        color: #ffffff;
+        color: $primaryTextColor;
     }
     
     .ui-state-error, .ui-state-default.ui-state-error {
@@ -75,11 +63,7 @@ body {
     }
 
     .ui-widget-overlay {
-        background-color: #424242;
+        background-color: $maskBgColor;
         @include opacity(.7);
-    }
-    
-    .ui-shadow {
-        //@include shadow();
     }
 }

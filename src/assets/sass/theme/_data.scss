@@ -6,30 +6,10 @@ body {
         .ui-paginator-first,.ui-paginator-prev,.ui-paginator-next,.ui-paginator-last {
             color: #ffffff;
             @include transition(color .3s);
-            span {
-                display: none;
-            }
             
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 color: $primaryColor;
             }
-        }
-        
-        .ui-paginator-first {
-            @include icon-override("\f048");
-        }
-        
-        .ui-paginator-prev {
-            @include icon-override("\f04b");
-            @include rotate(180deg);
-        }
-        
-        .ui-paginator-next {
-            @include icon-override("\f04b");
-        }
-        
-        .ui-paginator-last {
-            @include icon-override("\f051");
         }
                 
         .ui-paginator-pages {
@@ -42,11 +22,14 @@ body {
                 }
             }
         }
-        
     }
     
     .ui-datatable {
         .ui-datatable-header, .ui-datatable-footer {
+            padding: $headerPadding;
+        }
+        
+        .ui-paginator {
             padding: $headerPadding;
         }
                 
@@ -108,7 +91,7 @@ body {
                 }
                                 
                 td {
-                    padding: 6px 12px;
+                    padding: .42em .85em;
                     
                     &.ui-editable-column {
                         input {
@@ -334,7 +317,7 @@ body {
                 }
                 
                 td {
-                    padding: 6px 12px;
+                    padding: .42em .85em;
                     
                     .ui-treetable-toggler {
                         font-size: $fontSize + 2;
@@ -355,7 +338,7 @@ body {
         padding: $contentPadding;
         
         .ui-treenode {
-            padding: 2px 0;
+            padding: .15em 0;
             
             .ui-treenode-content {            
                 .ui-tree-toggler {
@@ -405,10 +388,10 @@ body {
         }
                 
         &.ui-tree-horizontal {
-            padding: 12px 0;
+            padding: .85em 0;
             
             .ui-treenode-content {
-                padding: 6px 12px;
+                padding: .42em .85em;
                 background-color: #ffffff;
                 border: 1px solid $contentBorderColor;
                 
