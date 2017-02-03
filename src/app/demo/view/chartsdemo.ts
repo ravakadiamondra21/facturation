@@ -23,13 +23,13 @@ export class ChartsDemo implements OnInit {
                     label: 'First Dataset',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
-                    borderColor: '#607D8B'
+                    borderColor: '#00acac'
                 },
                 {
                     label: 'Second Dataset',
                     data: [28, 48, 40, 19, 86, 27, 90],
                     fill: false,
-                    borderColor: '#8BC34A'
+                    borderColor: '#2f8ee5'
                 }
             ]
         };
@@ -39,14 +39,14 @@ export class ChartsDemo implements OnInit {
             datasets: [
                 {
                     label: 'My First dataset',
-                    backgroundColor: '#03A9F4',
-                    borderColor: '#03A9F4',
+                    backgroundColor: '#00acac',
+                    borderColor: '#00acac',
                     data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: '#FFC107',
-                    borderColor: '#FFC107',
+                    backgroundColor: '#2f8ee5',
+                    borderColor: '#2f8ee5',
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
@@ -58,14 +58,9 @@ export class ChartsDemo implements OnInit {
                 {
                     data: [300, 50, 100],
                     backgroundColor: [
-                        "#FFC107",
-                        "#03A9F4",
-                        "#4CAF50"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FFE082",
-                        "#81D4FA",
-                        "#A5D6A7"
+                        "#00acac",
+                        "#2f8ee5",
+                        "#6c76af"
                     ]
                 }]    
             };
@@ -80,11 +75,11 @@ export class ChartsDemo implements OnInit {
                     14
                 ],
                 backgroundColor: [
-                    "#FFC107",
-                    "#03A9F4",
-                    "#4CAF50",
-                    "#E91E63",
-                    "#9C27B0"
+                    "#00acac",
+                    "#2f8ee5",
+                    "#efa64c",
+                    "#6c76af",
+                    "#57c279"
                 ],
                 label: 'My dataset'
             }],
