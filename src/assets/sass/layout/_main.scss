@@ -3,7 +3,7 @@ html {
 }
  
 body {
-    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-family: $fontFamily;
     font-size: $fontSize;
     color: $textColor;
     -webkit-font-smoothing: antialiased;
