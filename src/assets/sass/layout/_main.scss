@@ -44,12 +44,12 @@ body {
         box-shadow: 0 0 4px rgba(0,0,0,.3);
         
         .logo {
-            display: inline-block;
-            vertical-align: middle;
-            width: 175px;
-            height: 49px;
-            background: url("../images/logo-black.png") top left no-repeat;
-            background-size: 175px 49px;
+            img {
+                display: inline-block;
+                vertical-align: middle;
+                width: 175px;
+                height: 49px;
+            }
         }
         
         .topbar-left {
@@ -211,10 +211,6 @@ body {
             .topbar {
                 .topbar-left {
                     background-color: $primaryColor;
-                    
-                    .logo {
-                        background-image: url("../images/logo-white.png");
-                    }
                 }
             }
         }  
@@ -224,10 +220,6 @@ body {
             
             .topbar-left {
                 background-color: #f0f3f5;
-                
-                .logo {
-                    background-image: url("../images/logo-black.png");
-                }
             }
             
             .topbar-right {                
@@ -689,10 +681,6 @@ body {
                 .topbar-left {
                     @include no-shadow();
                     background-color: #ffffff;
-                    
-                    .logo {
-                        background-image: url("\#{resource['poseidon-layout:images/logo-black.png']}");
-                    }
                 }
                 
                 .topbar-right {
@@ -770,7 +758,6 @@ body {
                             position: absolute;
                             top: 56px;
                             left: 0px;
-                            display: none;
                             width: 250px;
                             padding: 0;
                             background-color: $hmenuBGColor;
@@ -848,10 +835,6 @@ body {
             .topbar {
                 .topbar-left {
                     background-color: #f0f3f5;
-                    
-                    .logo {
-                        background-image: url("\#{resource['poseidon-layout:images/logo-black.png']}");
-                    }
                 }
                 .topbar-right {
                     #menu-button {
@@ -1035,10 +1018,6 @@ body {
                 float: none;
                 margin: 0 auto;
                 background-color: #ffffff;
-                
-                .logo {
-                    background-image: url("\#{resource['poseidon-layout:images/logo-black.png']}");
-                }
             }
             
             .topbar-right {

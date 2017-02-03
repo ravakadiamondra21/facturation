@@ -7,7 +7,7 @@ body {
         }
         
         .ui-progressbar-label {
-            color: $textSecondaryColor;
+            color: lighten($primaryColor, 20%);
             margin-top: -2px;
         }
     }
