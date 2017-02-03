@@ -207,12 +207,6 @@ body {
                 z-index: 999999999;
                 margin-left: 0px;
             }
-            
-            .topbar {
-                .topbar-left {
-                    background-color: $primaryColor;
-                }
-            }
         }  
         
         .topbar {
@@ -298,6 +292,14 @@ body {
                 
                 &:hover {
                     background-color: #444d56;
+                }
+                
+                &.active-menuitem-routerlink {
+                    color: #ffffff;
+                    
+                    i {
+                        color: #ffffff;
+                    }
                 }
             }
             
@@ -750,6 +752,14 @@ body {
                             
                             &:hover {
                                 background-color: #c9cdd2;
+                            }
+                        }
+                        
+                        a.active-menuitem-routerlink {
+                            color: darken($primaryColor, 10%);
+                            
+                            i {
+                                color: darken($primaryColor, 10%);
                             }
                         }
                         
