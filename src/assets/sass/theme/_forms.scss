@@ -302,30 +302,6 @@ body {
                 @include border-shadow();
             }
         }
-        
-        /*.ui-inputswitch-handle {
-            background-color: #ffffff;
-            border: 1px solid transparent;
-            box-sizing: border-box;
-            
-            &.ui-state-focus {
-                border: 1px solid $primaryColor;
-                @include border-shadow();
-            }
-        }
-        
-        .ui-inputswitch-off {
-            background-color: #a8acb1;
-            color: #ffffff;
-        }
-        
-        .ui-inputswitch-on,.ui-inputswitch-off {
-            span {
-                position: relative;
-                top: -2px;
-                font-weight: 400;
-            }
-        }*/
     }
     
     .ui-autocomplete {
