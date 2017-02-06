@@ -454,6 +454,7 @@ body {
         .ui-dropdown-trigger {
             width: 2em;
             text-align: center;
+            padding-right: 0;
             
             .fa-caret-down {
                 @include icon_override("\f078");
