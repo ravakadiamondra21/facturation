@@ -107,6 +107,12 @@
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
+@mixin link-focus-shadow() {
+    -webkit-box-shadow: 0 0 4px 0 $primaryColor;
+    -moz-box-shadow: 0 0 4px 0 $primaryColor;
+    box-shadow: 0 0 4px 0 $primaryColor;
+}
+
 @mixin overlay-shadow {
     -webkit-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.15);

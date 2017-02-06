@@ -5,20 +5,34 @@ body {
         
         .ui-paginator-first,.ui-paginator-prev,.ui-paginator-next,.ui-paginator-last {
             color: #ffffff;
+            border: 1px solid transparent;
             @include transition(color .3s);
             
             &:not(.ui-state-disabled):not(.ui-state-active):hover {
                 color: $primaryColor;
+            }
+            
+            &:focus {
+                outline: 0 none;
+                border: 1px solid $primaryColor;
+                @include link-focus-shadow();
             }
         }
                 
         .ui-paginator-pages {
             .ui-paginator-page {
                 color: #ffffff;
+                border: 1px solid transparent;
                 @include transition(color .3s);
                 
                 &:not(.ui-state-active):hover {
                     color: $primaryColor;
+                }
+                
+                &:focus {
+                    outline: 0 none;
+                    border: 1px solid $primaryColor;
+                    @include link-focus-shadow();
                 }
             }
         }

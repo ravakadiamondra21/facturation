@@ -301,11 +301,18 @@ body {
             
     .ui-inputswitch {
         @include transition(border-color $transitionDuration);
+        
         .ui-inputswitch-on {
             background-color: $primaryColor;
             color: $primaryTextColor;
         }
         
+        .ui-inputswitch-off {
+            .ui-inputswitch-offlabel {
+                border-left: 1px solid $contentBorderColor;
+            }
+        }
+
         &:not(.ui-state-disabled):hover {
             border-color: $inputHoverBorderColor;    
         }
@@ -329,7 +336,7 @@ body {
         
         &.ui-autocomplete-multiple {
             .ui-autocomplete-multiple-container {
-                padding: .25em;
+                padding: .12em;
                 display: inline-block;
                 
                 &:not(.ui-state-disabled):hover {
@@ -559,18 +566,8 @@ body {
             }
             
             .ui-chkbox {                
-                .ui-chkbox-box {
-                    &.ui-state-focus {                        
-                        .ui-icon {
-                            color: $textColor;
-                        }
-                    }
-                    
-                    &.ui-state-active {
-                        .ui-icon {
-                            color: #ffffff;
-                        }
-                    }
+                .ui-chkbox-box {                    
+                    color: $primaryColor;
                 }
             }
             
@@ -581,9 +578,14 @@ body {
                 padding: 0;
                 @include transition(color $transitionDuration);
                 
-                &:hover{
+                &:hover {
                     padding: 0;
                     color: $primaryColor;
+                }
+                
+                &:focus {
+                    outline: 0 none;
+                    color: lighten($primaryColor,10%);
                 }
             }
         }
@@ -659,6 +661,14 @@ body {
     .ui-rating {
         a {
             color: $primaryColor;
+            text-align: center;
+            display: inline-block;
+            border-bottom: 1px solid transparent;
+            
+            &:focus {
+                outline: 0 none;
+                border-bottom: 1px solid $primaryColor;
+            }
         }
         
         .fa {
@@ -828,9 +838,16 @@ body {
         
         &:not(.ui-state-disabled) {
             .ui-datepicker-header {
-                .ui-datepicker-prev:hover,
-                .ui-datepicker-next:hover {
-                    color: $primaryColor;
+                .ui-datepicker-prev,
+                .ui-datepicker-next {
+                    &:hover {
+                        color: $primaryColor;
+                    }
+                    
+                    &:focus {
+                        outline: 0 none;
+                        color: lighten($primaryColor,10%);
+                    }
                 }
             }
             

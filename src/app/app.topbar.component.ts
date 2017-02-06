@@ -12,7 +12,7 @@ import {AppComponent} from './app.component';
             </div>
             
             <div class="topbar-right">
-                <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)" [ngClass]="{'menu-button-rotate': app.rotateMenuButton}">
+                <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 

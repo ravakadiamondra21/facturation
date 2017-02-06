@@ -97,6 +97,10 @@ body {
                 i {
                     font-size: 36px;
                 }
+                
+                &:hover {
+                    color: $primaryColor;
+                }
             }
         }
     }
@@ -211,6 +215,16 @@ body {
             .layout-mask {
                 display: block;
             }
+            
+            .topbar {                
+                .topbar-right {                
+                    #menu-button {
+                        i {
+                            @include rotate(0deg);
+                        }
+                    }
+                }
+            }   
         }  
         
         .topbar {
@@ -224,12 +238,6 @@ body {
                 #menu-button {
                     i {
                         @include rotate(180deg);
-                    }
-                    
-                    &.menu-button-rotate {
-                        i {
-                            @include rotate(0deg);
-                        }
                     }
                 }
             }
@@ -572,7 +580,7 @@ body {
                     
                     .topbar-badge {
                         position: absolute;
-                        right: -5px;
+                        right: -1px;
                         top: -5px;
                         background-color: $primaryColor;
                         color: #ffffff;
@@ -662,10 +670,8 @@ body {
                 .topbar {
                     .topbar-right {                
                         #menu-button {                            
-                            &.menu-button-rotate {
-                                i {
-                                    @include rotate(180deg);
-                                }
+                            i {
+                                @include rotate(180deg);
                             }
                         }
                     }

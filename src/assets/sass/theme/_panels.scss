@@ -11,10 +11,17 @@ body {
             .ui-panel-titlebar-icon {
                 position: relative;
                 color: #ffffff;
+                border:1px solid transparent;
                 @include transition(color .3s);
                 
                 &:hover {
                     color: $primaryColor;
+                }
+                
+                &:focus {
+                    outline: 0 none;
+                    border:1px solid $primaryColor;
+                    @include link-focus-shadow();
                 }
             }
         }
