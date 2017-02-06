@@ -85,11 +85,6 @@ export class AppComponent implements AfterViewInit {
 
         if(this.layoutMode === MenuOrientation.OVERLAY) {
             this.overlayMenuActive = !this.overlayMenuActive;
-
-            if(this.overlayMenuActive)
-                this.enableModal();
-            else
-                this.disableModal();
         }
         else {
             if(this.isDesktop()) {
@@ -98,11 +93,9 @@ export class AppComponent implements AfterViewInit {
             else {
                 if(this.staticMenuMobileActive) {
                     this.staticMenuMobileActive = false;
-                    this.disableModal();
                 }
                 else {
                     this.staticMenuMobileActive = true;
-                    this.enableModal();
                 }
             }
         }
@@ -129,7 +122,6 @@ export class AppComponent implements AfterViewInit {
             this.rotateMenuButton = false;
             this.overlayMenuActive = false;
             this.staticMenuMobileActive = false;
-            this.disableModal();
         }
     }
 
@@ -142,18 +134,6 @@ export class AppComponent implements AfterViewInit {
             this.activeTopbarItem = item;
 
         event.preventDefault();
-    }
-
-    enableModal() {
-        this.modal = document.createElement("div");
-        this.modal.className = 'layout-mask';
-        this.layoutContainer.appendChild(this.modal);
-    }
-    
-    disableModal() {
-        if(this.modal) {
-            this.layoutContainer.removeChild(this.modal);
-        }
     }
 
     isTablet() {
@@ -190,8 +170,6 @@ export class AppComponent implements AfterViewInit {
     }
 
     ngOnDestroy() {
-        this.disableModal();
-
         if(this.documentClickListener) {
             this.documentClickListener();
         }  
