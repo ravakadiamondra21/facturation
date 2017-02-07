@@ -112,7 +112,7 @@ body {
                     }
                     
                     .ui-menuitem-icon {
-                        margin-right: 4px;
+                        margin-right: .3em;
                     }
                     
                     .ui-icon-triangle-1-e {
@@ -134,12 +134,25 @@ body {
                     @include overlay-shadow();
                 }
             }
+            
         }
         
         &.ui-menubar {
-            > .ui-menu-list {
-                > .ui-menuitem {
-                    width: auto;
+            .ui-menubar-root-list {
+                > .ui-menuitem {                    
+                    > .ui-menuitem-link {
+                        display: inline-block;
+                        
+                        .ui-menuitem-text {
+                            margin-right: .3em;
+                        }
+                    }
+                    
+                    > .ui-submenu {
+                        > ul {
+                            margin-top: -1px;
+                        }
+                    }
                 }
             }
         }
