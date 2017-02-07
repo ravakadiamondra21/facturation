@@ -123,6 +123,8 @@ export class AppComponent implements AfterViewInit {
             this.overlayMenuActive = false;
             this.staticMenuMobileActive = false;
         }
+        
+        event.preventDefault();
     }
 
     onTopbarItemClick(event, item) {

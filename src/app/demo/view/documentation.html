@@ -411,6 +411,14 @@ $black:#2d353c;
             <h1>Grid CSS</h1>
             <p>Poseidon uses PrimeNG Grid CSS (ui-g-*) throughout the samples, we strongly suggest using Grid CSS as your layout framework as it is well tested and supported by PrimeNG. Grid CSS is
             available inside primeng.css.</p> 
+            
+            <h1>Migration Guide</h1> 
+            <p>1.0.0 to 1.0.1</p>
+            <ul>
+                <li>Update AppSubmenu component in app.menu.component.ts by replacing the itemClick method implementation.</li>
+                <li>Update layout css files, there are no changes on themes.</li>
+                <li>Update app.component.ts by changing onTopbarMenuButtonClick method implementation to add <i>event.preventDefault()</i> at the end.</li>
+            </ul> 
         </div>
     </div>
 </div>

@@ -202,15 +202,15 @@ export class AppSubMenu {
             event.preventDefault();
         }
         
-        //hide overlay submenus in horizontal layout
-        if(this.app.isHorizontal() && !item.items)
-            this.app.resetMenu = true;
-        else
-            this.app.resetMenu = false;
-            
-        //hide menu in overlay mode
-        if(this.app.isOverlay() && !item.items) {
+        //hide menu
+        if(!item.items) {
+            if(this.app.isHorizontal())
+                this.app.resetMenu = true;
+            else
+                this.app.resetMenu = false;
+                
             this.app.overlayMenuActive = false;
+            this.app.staticMenuMobileActive = false;
         }
     }
     
