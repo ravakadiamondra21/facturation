@@ -557,6 +557,7 @@ body {
         .ui-multiselect-header {
             padding: $headerPadding;
             background-color: $headerBgColor;
+            margin-bottom: 0;
             
             .ui-multiselect-filter-container {
                 width: calc(100% - 3em);
