@@ -1,14 +1,9 @@
-import { UltimaCliPage } from './app.po';
+import { PoseidonPage } from './app.po';
 
-describe('ultima-cli App', function() {
-  let page: UltimaCliPage;
+describe('poseidon App', function() {
+  let page: PoseidonPage;
 
   beforeEach(() => {
-    page = new UltimaCliPage();
-  });
-
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    page = new PoseidonPage();
   });
 });
