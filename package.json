@@ -1,6 +1,6 @@
 {
-  "name": "ultima",
-  "version": "1.0.0-SNAPSHOT",
+  "name": "poseidon",
+  "version": "1.0.0",
   "license": "COMMERCIAL",
   "angular-cli": {},
   "scripts": {
