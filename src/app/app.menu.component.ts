@@ -198,7 +198,7 @@ export class AppSubMenu {
         }
 
         //prevent hash change
-        if(item.items || !item.url) {
+        if(item.items || (!item.url && !item.routerLink)) {
             event.preventDefault();
         }
         
@@ -207,6 +207,11 @@ export class AppSubMenu {
             this.app.resetMenu = true;
         else
             this.app.resetMenu = false;
+            
+        //hide menu in overlay mode
+        if(this.app.isOverlay() && !item.items) {
+            this.app.overlayMenuActive = false;
+        }
     }
     
     isActive(index: number): boolean {
