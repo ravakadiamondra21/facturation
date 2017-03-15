@@ -652,6 +652,14 @@ body {
                 @include list-item-highlight();
             }
         }
+        
+        &:not(.ui-state-disabled) {
+            .ui-listbox-item {
+                &:not(.ui-state-highlight):hover {
+                    @include hover-element();
+                }                
+            }
+        }
     }
         
     .ui-editor-container {

@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule}    from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {LocationStrategy,HashLocationStrategy} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutes} from './app.routes';
 import 'rxjs/add/operator/toPromise';
 
@@ -163,7 +164,8 @@ import {NodeService} from './demo/service/nodeservice';
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,

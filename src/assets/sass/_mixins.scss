@@ -75,6 +75,11 @@
     -moz-box-shadow: none;
 }
 
+@mixin hover-element {
+    background-color: $listItemHoverBgColor;
+    color: $listItemHoverTextColor;
+}
+
 @mixin list-item-hover {
     background-color: $listItemHoverBgColor;
     color: $listItemHoverTextColor;

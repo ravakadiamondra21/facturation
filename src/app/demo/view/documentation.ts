@@ -17,6 +17,14 @@ import {Component} from '@angular/core';
             overflow: auto;
         }
         
+        .inline-code {
+            background-color: #0C2238;
+            color: #dddddd;
+            font-style: normal;
+            font-size: 13px;
+            padding: 0 .5em;
+        }
+        
         .video-container {
             position: relative;
             width: 100%;

@@ -1,4 +1,5 @@
-import {Component,Input,OnInit,EventEmitter,ViewChild,trigger,state,transition,style,animate,Inject,forwardRef} from '@angular/core';
+import {Component,Input,OnInit,EventEmitter,ViewChild,Inject,forwardRef} from '@angular/core';
+import {trigger,state,style,transition,animate} from '@angular/animations'; 
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/primeng';
@@ -61,11 +62,11 @@ export class AppMenuComponent implements OnInit {
                 label: 'Template Pages', icon: 'fa fa-fw fa-life-saver',
                 items: [
                     {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/empty']},
-                    {label: 'Landing Page', icon: 'fa fa-fw fa-certificate', url: 'landing.html'},
-                    {label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'login.html'},
-                    {label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'error.html'},
-                    {label: '404 Page', icon: 'fa fa-fw fa-times', url: '404.html'},
-                    {label: 'Access Denied Page', icon: 'fa fa-fw fa-exclamation-triangle', url: 'access.html'}
+                    {label: 'Landing Page', icon: 'fa fa-fw fa-certificate', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank'},
+                    {label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank'},
+                    {label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank'},
+                    {label: 'Access Denied Page', icon: 'fa fa-fw fa-exclamation-triangle', url: 'assets/pages/access.html', target: '_blank'}
                 ]
             },
             {
@@ -129,7 +130,7 @@ export class AppMenuComponent implements OnInit {
 @Component({
     selector: '[app-submenu]',
     template: `
-        <template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
+        <ng-template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
             <li [ngClass]="{'active-menuitem': isActive(i)}" *ngIf="child.visible === false ? false : true">
                 <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" *ngIf="!child.routerLink" [attr.tabindex]="!visible ? '-1' : null">
                     <i [ngClass]="child.icon"></i>
@@ -145,7 +146,7 @@ export class AppMenuComponent implements OnInit {
                 </a>
                 <ul app-submenu [item]="child" *ngIf="child.items" [@children]="isActive(i) ? 'visible' : 'hidden'" [visible]="isActive(i)" [reset]="reset"></ul>
             </li>
-        </template>
+        </ng-template>
     `,
     animations: [
         trigger('children', [
