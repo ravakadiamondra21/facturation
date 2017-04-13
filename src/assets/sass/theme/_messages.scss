@@ -58,7 +58,7 @@ body {
             @include opacity(.95);
             @include overlay-shadow();
             
-            &.ui-growl-info {
+            &.ui-growl-message-info {
                 background-color: $infoMessageBgColor;
                 border-color: $infoMessageBgColor;
                 color: $infoMessageTextColor;
@@ -68,7 +68,7 @@ body {
                 }
             }  
             
-            &.ui-growl-warn {
+            &.ui-growl-message-warn {
                 background-color: $warnMessageBgColor;
                 border-color: $warnMessageBgColor;
                 color: $warnMessageTextColor;
@@ -78,7 +78,7 @@ body {
                 }
             }
             
-            &.ui-growl-error {
+            &.ui-growl-message-error {
                 background-color: $errorMessageBgColor;
                 border-color: $errorMessageBgColor;
                 color: $errorMessageTextColor;
@@ -88,7 +88,7 @@ body {
                 }
             }
             
-            &.ui-growl-success {
+            &.ui-growl-message-success {
                 background-color: $successMessageBgColor;
                 border-color: $successMessageBgColor;
                 color: $successMessageTextColor;
