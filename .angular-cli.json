@@ -1,28 +1,30 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "version": "1.0.0-beta.30",
-    "name": "poseidon-cli"
+    "name": "ultima-cli"
   },
   "apps": [
     {
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets"
+        "assets",
+        "upload.php"
       ],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
+      "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../node_modules/primeng/resources/primeng.min.css",
-        "../node_modules/fullcalendar/dist/fullcalendar.min.css",
-        "../node_modules/quill/dist/quill.snow.css",
-          "../node_modules/nanoscroller/bin/css/nanoscroller.css",
-        "styles.scss"
+          "../node_modules/font-awesome/css/font-awesome.min.css",
+          "../node_modules/primeng/resources/primeng.min.css",
+          "../node_modules/fullcalendar/dist/fullcalendar.min.css",
+          "../node_modules/quill/dist/quill.snow.css",
+            "../node_modules/nanoscroller/bin/css/nanoscroller.css",
+          "styles.scss"
       ],
       "scripts": [
           "../node_modules/jquery/dist/jquery.js",
@@ -33,10 +35,10 @@
           "../node_modules/quill/dist/quill.js"
       ],
       "environmentSource": "environments/environment.ts",
-        "environments": {
-          "dev": "environments/environment.ts",
-          "prod": "environments/environment.prod.ts"
-        }
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
   ],
   "e2e": {
@@ -46,12 +48,13 @@
   },
   "lint": [
     {
-      "files": "src/**/*.ts",
-      "project": "src/tsconfig.json"
+      "project": "src/tsconfig.app.json"
     },
     {
-      "files": "e2e/**/*.ts",
-      "project": "e2e/tsconfig.json"
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
     }
   ],
   "test": {
@@ -60,19 +63,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
-    "prefixInterfaces": false,
-    "inline": {
-      "style": false,
-      "template": false
-    },
-    "spec": {
-      "class": false,
-      "component": true,
-      "directive": true,
-      "module": false,
-      "pipe": true,
-      "service": true
-    }
+    "styleExt": "css",
+    "component": {}
   }
 }
