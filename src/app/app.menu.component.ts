@@ -138,7 +138,7 @@ export class AppMenuComponent implements OnInit {
                     <i class="fa fa-fw fa-angle-down" *ngIf="child.items"></i>
                 </a>
 
-                <a (click)="itemClick($event,child,i)" class="ripplelink" *ngIf="child.routerLink" [attr.target]="child.target"
+                <a (click)="itemClick($event,child,i)" *ngIf="child.routerLink" [attr.target]="child.target"
                     [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink" [routerLinkActiveOptions]="{exact: true}">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>
