@@ -45,7 +45,9 @@ export class DataDemo implements OnInit {
     
     events: any[];
     
-    selectedNode: TreeNode;
+    selectedNode1: TreeNode;
+
+    selectedNode2: TreeNode;
         
     scheduleHeader: any;
 

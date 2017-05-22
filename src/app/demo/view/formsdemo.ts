@@ -47,6 +47,10 @@ export class FormsDemo implements OnInit {
     
     splitButtonItems: MenuItem[];
     
+    radioValue: string;
+    
+    selectedType: string;
+    
     constructor(private countryService: CountryService) { }
     
     ngOnInit() {
