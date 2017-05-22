@@ -18,11 +18,7 @@ export class AppComponent implements AfterViewInit {
     layoutCompact: boolean = false;
 
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
-    
-    darkMenu: boolean = false;
-    
-    profileMode: string = 'inline';
-
+        
     rotateMenuButton: boolean;
 
     topbarMenuActive: boolean;

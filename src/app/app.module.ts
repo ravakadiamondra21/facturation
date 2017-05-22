@@ -75,7 +75,6 @@ import {AppComponent}  from './app.component';
 import {AppMenuComponent,AppSubMenu}  from './app.menu.component';
 import {AppTopBar}  from './app.topbar.component';
 import {AppFooter}  from './app.footer.component';
-import {InlineProfileComponent}  from './app.profile.component';
 import {DashboardDemo} from './demo/view/dashboarddemo';
 import {SampleDemo} from './demo/view/sampledemo';
 import {FormsDemo} from './demo/view/formsdemo';
@@ -173,7 +172,6 @@ import {NodeService} from './demo/service/nodeservice';
         AppSubMenu,
         AppTopBar,
         AppFooter,
-        InlineProfileComponent,
         DashboardDemo,
         SampleDemo,
         FormsDemo,

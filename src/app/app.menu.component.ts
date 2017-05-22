@@ -132,13 +132,13 @@ export class AppMenuComponent implements OnInit {
     template: `
         <ng-template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
             <li [ngClass]="{'active-menuitem': isActive(i)}" *ngIf="child.visible === false ? false : true">
-                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" *ngIf="!child.routerLink" [attr.tabindex]="!visible ? '-1' : null">
+                <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" *ngIf="!child.routerLink" [attr.tabindex]="!visible ? '-1' : null"  [attr.target]="child.target">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>
                     <i class="fa fa-fw fa-angle-down" *ngIf="child.items"></i>
                 </a>
 
-                <a (click)="itemClick($event,child,i)" class="ripplelink" *ngIf="child.routerLink"
+                <a (click)="itemClick($event,child,i)" class="ripplelink" *ngIf="child.routerLink" [attr.target]="child.target"
                     [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink" [routerLinkActiveOptions]="{exact: true}">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>

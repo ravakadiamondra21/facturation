@@ -1,6 +1,6 @@
 {
   "name": "poseidon",
-  "version": "4.0.0-SNAPSHOT",
+  "version": "4.0.0",
   "license": "COMMERCIAL",
   "angular-cli": {},
   "scripts": {
@@ -31,7 +31,9 @@
     "moment": "^2.17.1",
     "nanoscroller": "0.8.7",
     "primeng": "^4.0.0",
-    "quill": "^1.1.8"
+    "quill": "^1.1.8",
+    "font-awesome":"4.7.0",
+    "web-animations-js": "^2.2.2"
   },
   "devDependencies": {
     "@angular/cli": "^1.0.0",
