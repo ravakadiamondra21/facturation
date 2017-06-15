@@ -576,6 +576,9 @@ body {
             .ui-chkbox {                
                 .ui-chkbox-box {                    
                     color: $primaryColor;
+                    &.ui-state-active {
+                        color: #ffffff;
+                    }
                 }
             }
             
