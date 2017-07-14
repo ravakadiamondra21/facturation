@@ -73,6 +73,11 @@ body {
                 }
             }
         }
+        
+        .ui-dialog-footer {
+            border: 0 none;
+            border-top: 1px solid $dividerColor;
+        }
     }
         
     .ui-tooltip {
