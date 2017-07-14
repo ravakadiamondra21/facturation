@@ -340,6 +340,33 @@ body {
                 list-style: none;
                 overflow: hidden;
             }
+            
+            &.orange-badge {
+                > a {
+                    .menuitem-badge {
+                        background-color: $orange;
+                        color: #ffffff;
+                    }
+                }
+            }
+            
+            &.blue-badge {
+                > a {
+                    .menuitem-badge {
+                        background-color: $blue;
+                        color: #ffffff;
+                    }
+                }
+            }
+            
+            &.deeppurple-badge {
+                > a {
+                    .menuitem-badge {
+                        background-color: $deepPurple;
+                        color: #ffffff;
+                    }
+                }
+            }
         }
         
         > li {
@@ -357,6 +384,22 @@ body {
                     }
                 }
             }
+        }
+        
+        .menuitem-badge {
+            position: absolute;
+            right: 32px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            text-align: center;
+            background-color: $primaryColor;
+            color: #ffffff;
+            font-size: $fontSize - 2;
+            font-weight: 700;
+            line-height: 16px;
+            @include border-radius(50%);
         }
     }
     
