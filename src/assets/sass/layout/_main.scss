@@ -872,6 +872,12 @@ body {
                             }
                         }
                     }
+                    
+                    .menuitem-badge {
+                        position: absolute;
+                        right: calc(50% - 30px);
+                        top: 5px;
+                    }
                 }
                 
                 .layout-menu-footer {
