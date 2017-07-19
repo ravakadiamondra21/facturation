@@ -307,16 +307,25 @@ body {
             
     .ui-inputswitch {
         @include transition(border-color $transitionDuration);
+        height: 2em;
         
         .ui-inputswitch-on {
             background-color: $primaryColor;
             color: $primaryTextColor;
+            font-weight: normal;
         }
         
         .ui-inputswitch-off {
+            font-weight: normal;
+            
             .ui-inputswitch-offlabel {
                 border-left: 1px solid $contentBorderColor;
             }
+        }
+        
+        .ui-inputswitch-on,
+        .ui-inputswitch-off {
+            line-height: 2em;
         }
 
         &:not(.ui-state-disabled):hover {
