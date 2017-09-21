@@ -1,4 +1,4 @@
-import {Component,Inject,forwardRef} from '@angular/core';
+import {Component, Inject, forwardRef} from '@angular/core';
 import {AppComponent} from './app.component';
 
 @Component({
@@ -162,8 +162,8 @@ import {AppComponent} from './app.component';
         </div>
     `
 })
-export class AppTopBar {
+export class AppTopBarComponent {
 
-    constructor(@Inject(forwardRef(() => AppComponent)) public app:AppComponent) {}
+    constructor(@Inject(forwardRef(() => AppComponent)) public app: AppComponent) {}
 
 }

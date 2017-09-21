@@ -1,4 +1,4 @@
-import {Component,Inject,forwardRef} from '@angular/core';
+import {Component, Inject, forwardRef} from '@angular/core';
 import {AppComponent} from './app.component';
 
 @Component({
@@ -12,6 +12,6 @@ import {AppComponent} from './app.component';
         </div>
     `
 })
-export class AppFooter {
+export class AppFooterComponent {
 
 }
