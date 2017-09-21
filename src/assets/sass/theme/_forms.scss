@@ -1011,7 +1011,35 @@ body {
     .ui-password-panel {
         @include overlay-shadow();
     }
-    
+    .ui-inputgroup {
+        .ui-inputgroup-addon {
+            border-color: $inputBorderColor;
+            background-color: $inputGroupAddonBgColor;
+            padding: $inputPadding;
+
+            &:first-child {
+                @include border-radius-left($borderRadius);
+            }
+
+            &:last-child {
+                @include border-radius-right($borderRadius);
+            }
+
+            &.ui-inputgroup-addon-checkbox, &.ui-inputgroup-addon-radiobutton {
+                padding: 0.286em 0.857em;
+            }
+        }
+
+        .ui-button {
+            &:first-child {
+                @include border-radius-left($borderRadius);
+            }
+
+            &:last-child {
+                @include border-radius-right($borderRadius);
+            }
+        }
+    }
     /* Validation */
     .ui-inputtext.ng-dirty.ng-invalid,
     p-dropdown.ng-dirty.ng-invalid > .ui-dropdown,

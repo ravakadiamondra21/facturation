@@ -149,6 +149,45 @@
             <p-colorPicker [(ngModel)]="color" inline="true"></p-colorPicker>
         </div>
     </div>
+
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <h1>Input Groups</h1>
+
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" pInputText placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-credit-card"></i></span>
+                        <span class="ui-inputgroup-addon"><i class="fa fa-cc-visa"></i></span>
+                        <input type="text" pInputText placeholder="Price">
+                        <span class="ui-inputgroup-addon">$</span>
+                        <span class="ui-inputgroup-addon">.00</span>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup">
+                        <button pButton type="button" label="Search"></button>
+                        <input type="text" pInputText placeholder="Keyword">
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-6">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon ui-inputgroup-addon-checkbox"><p-checkbox></p-checkbox></span>
+                        <input type="text" pInputText placeholder="Username">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div class="ui-g-12">
         <div class="card card-w-title">
