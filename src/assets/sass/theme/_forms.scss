@@ -1040,6 +1040,9 @@ body {
             }
         }
     }
+    .ui-datepicker{
+        width: auto;
+    }
     /* Validation */
     .ui-inputtext.ng-dirty.ng-invalid,
     p-dropdown.ng-dirty.ng-invalid > .ui-dropdown,
