@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
         .docs h1 {
             margin-top: 30px;
         }
-        
+
         .docs pre {
             font-family: monospace;
             background-color: #0C2238;
@@ -16,7 +16,7 @@ import {Component} from '@angular/core';
             border-radius: 3px;
             overflow: auto;
         }
-        
+
         .inline-code {
             background-color: #0C2238;
             color: #dddddd;
@@ -24,7 +24,7 @@ import {Component} from '@angular/core';
             font-size: 13px;
             padding: 0 .5em;
         }
-        
+
         .video-container {
             position: relative;
             width: 100%;

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, EventEmitter, ViewChild, Inject, forwardRef} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
@@ -17,7 +17,7 @@ export class AppMenuComponent implements OnInit {
 
     model: MenuItem[];
 
-    constructor(@Inject(forwardRef(() => AppComponent)) public app: AppComponent) {}
+    constructor(public app: AppComponent) {}
 
     ngOnInit() {
         this.model = [
@@ -181,7 +181,7 @@ export class AppSubMenuComponent {
 
     activeIndex: number;
 
-    constructor(@Inject(forwardRef(() => AppComponent)) public app: AppComponent, public router: Router, public location: Location) {}
+    constructor(public app: AppComponent, public router: Router, public location: Location) {}
 
     itemClick(event: Event, item: MenuItem, index: number) {
         // avoid processing disabled items

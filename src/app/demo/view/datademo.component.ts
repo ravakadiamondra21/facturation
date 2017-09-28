@@ -7,12 +7,12 @@ import {TreeNode} from 'primeng/primeng';
 
 @Component({
     templateUrl: './datademo.component.html',
-    styles: [`                
+    styles: [`
         .cars-datalist ul {
             margin: 0;
             padding: 0;
         }
-    
+
         @media (max-width:640px) {
             .cars-datalist .text-column {
                 text-align: center;
