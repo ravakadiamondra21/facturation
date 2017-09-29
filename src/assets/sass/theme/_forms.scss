@@ -9,11 +9,11 @@ body {
         color: $textColor;
         
         &:enabled:hover {
-            border: 1px solid $inputHoverBorderColor;
+            border-color: $inputHoverBorderColor;
         }
         
         &:enabled:focus {
-            border: 1px solid $primaryColor;
+            border-color: $primaryColor;
             @include border-shadow();
         }
     }
