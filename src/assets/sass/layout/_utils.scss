@@ -11,31 +11,31 @@
     padding: 16px;
     box-sizing: border-box;
     margin-bottom: 16px;
-    
+
     &.card-w-title {
         padding-bottom: 32px;
     }
-    
+
     h1 {
         font-size: 24px;
         font-weight: 400;
         margin: 24px 0;
-        
+
         &:first-child {
             margin-top: 16px;
         }
     }
-    
+
     h2 {
         font-size: 22px;
         font-weight: 400;
     }
-    
+
     h3 {
         font-size: 20px;
         font-weight: 400;
     }
-    
+
     h4 {
         font-size: 18px;
         font-weight: 400;
@@ -44,7 +44,7 @@
 
 .nopad {
     padding: 0;
-    
+
     .ui-panel-content {
         padding: 0;
     }
@@ -104,7 +104,7 @@
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
 }
- 
+
  .fadeOutUp {
      -webkit-animation-name: fadeOutUp;
      animation-name: fadeOutUp;
@@ -141,6 +141,8 @@
 }
 
 .ui-g {
+    -ms-flex-wrap: wrap;
+
     &.form-group {
         > div {
             padding: 8px;
@@ -154,7 +156,7 @@
             padding: 8px;
         }
     }
-    
+
     &.ui-panelgrid-blank {
         .ui-grid-responsive {
             .ui-grid-row {
