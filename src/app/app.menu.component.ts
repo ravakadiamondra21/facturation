@@ -115,6 +115,7 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             },
+            {label: 'Utils', icon: 'fa fa-fw fa-wrench', routerLink: ['/utils']},
             {label: 'Documentation', icon: 'fa fa-fw fa-book', routerLink: ['/documentation']}
         ];
     }
