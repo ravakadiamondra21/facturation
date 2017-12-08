@@ -1,6 +1,6 @@
 {
   "name": "poseidon",
-  "version": "4.2.1-SNAPSHOT",
+  "version": "5.0.0",
   "license": "COMMERCIAL",
   "angular-cli": {},
   "scripts": {
