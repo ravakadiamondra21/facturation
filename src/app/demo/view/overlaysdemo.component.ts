@@ -11,6 +11,8 @@ export class OverlaysDemoComponent implements OnInit {
 
     cars: Car[];
 
+    cols: any[];
+
     images: any[];
 
     display: boolean;
@@ -20,7 +22,14 @@ export class OverlaysDemoComponent implements OnInit {
     ngOnInit() {
         this.carService.getCarsSmall().then(cars => this.cars = cars.splice(0, 5));
 
-        this.images = [];
+        this.cols = [
+            { field: 'vin', header: 'Vin' },
+            { field: 'year', header: 'Year' },
+            { field: 'brand', header: 'Brand' },
+            { field: 'color', header: 'Color' }
+        ];
+
+      this.images = [];
         this.images.push({source: 'assets/demo/images/sopranos/sopranos1.jpg',
             thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Nature 1'});
         this.images.push({source: 'assets/demo/images/sopranos/sopranos2.jpg',
