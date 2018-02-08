@@ -1,4 +1,5 @@
 import {Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy} from '@angular/core';
+import {ScrollPanel} from 'primeng/primeng';
 
 enum MenuOrientation {
     STATIC,
@@ -15,8 +16,6 @@ declare var jQuery: any;
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
 
-    layoutCompact = false;
-
     layoutMode: MenuOrientation = MenuOrientation.STATIC;
 
     rotateMenuButton: boolean;
@@ -31,10 +30,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     layoutContainer: HTMLDivElement;
 
-    layoutMenuScroller: HTMLDivElement;
-
-    modal: HTMLDivElement;
-
     menuClick: boolean;
 
     topbarItemClick: boolean;
@@ -47,13 +42,13 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     @ViewChild('layoutWrapper') layourContainerViewChild: ElementRef;
 
-    @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
+    @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ScrollPanel;
 
     constructor(public renderer: Renderer) {}
 
     ngAfterViewInit() {
         this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;
-        this.layoutMenuScroller = <HTMLDivElement> this.layoutMenuScrollerViewChild.nativeElement;
+        setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
 
         // hides the horizontal submenus or top menu if outside is clicked
         this.documentClickListener = this.renderer.listenGlobal('body', 'click', (event) => {
@@ -69,10 +64,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
             this.topbarItemClick = false;
             this.menuClick = false;
         });
-
-        setTimeout(() => {
-            jQuery(this.layoutMenuScroller).nanoScroller({flash: true});
-        }, 10);
     }
 
     onMenuButtonClick(event) {
@@ -101,9 +92,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.resetMenu = false;
 
         if (!this.isHorizontal()) {
-            setTimeout(() => {
-                jQuery(this.layoutMenuScroller).nanoScroller();
-            }, 500);
+            setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 450);
         }
     }
 
@@ -168,8 +157,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         if (this.documentClickListener) {
             this.documentClickListener();
         }
-
-        jQuery(this.layoutMenuScroller).nanoScroller({flash: true});
     }
 
 }
