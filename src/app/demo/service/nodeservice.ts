@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class NodeService {
@@ -8,15 +8,15 @@ export class NodeService {
 
     getFiles() {
         return this.http.get<any>('assets/demo/data/files.json')
-                    .toPromise()
-                    .then(res => <any[]> res.data)
-                    .then(data => { return data; });
+            .toPromise()
+            .then(res => <any[]> res.data)
+            .then(data => data);
     }
 
     getFilesystem() {
         return this.http.get<any>('assets/demo/data/filesystem.json')
-                    .toPromise()
-                    .then(res => <any[]> res.data)
-                    .then(data => { return data; });
+            .toPromise()
+            .then(res => <any[]> res.data)
+            .then(data => data);
     }
 }
