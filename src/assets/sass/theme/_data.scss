@@ -63,14 +63,32 @@ body {
         }
 
         .ui-sortable-column {
+            color: $textColor;
+
+            a, a:hover {
+                color: $textSecondaryColor;
+            }
+
             &:not(.ui-state-highlight):hover {
-              @include list-item-hover();
+                @include list-item-hover();
+
+                a, a:hover {
+                    @include list-item-hover();
+                }
             }
 
             &.ui-state-highlight {
-              background-color: $primaryColor;
-              border-color: darken($primaryColor,5%);
-              color: #ffffff;
+                background-color: $primaryColor;
+                color: $primaryTextColor;
+                border-top-color: $primaryColor;
+
+                a, a:hover {
+                    color: $primaryTextColor;
+                }
+            }
+
+            .ui-sortable-column-icon {
+                vertical-align: middle;
             }
         }
 
@@ -208,11 +226,11 @@ body {
                         color: $textColor;
                         @include transition(color .3s);
 
-                        &.fa-chevron-circle-right {
+                        &.pi-chevron-circle-right {
                             @include icon_override("\f054");
                         }
 
-                        &.fa-chevron-circle-down {
+                        &.pi-chevron-circle-down {
                             @include icon_override("\f078");
                         }
 
@@ -423,13 +441,16 @@ body {
             .ui-carousel-page-link {
                 color: $headerTextColor;
                 @include transition(color $transitionDuration);
-
-                &.ui-icon-radio-on {
+                &:hover {
                     color: $primaryColor;
                 }
 
-                &:hover {
-                    color: $primaryColor;
+                &.pi-circle-off {
+                    @include icon-override("\F10C")
+                }
+
+                &.pi-circle-on {
+                    @include icon-override("\F192")
                 }
             }
         }
