@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 @Component({
     selector: 'app-menu',
     template: `
-        <ul app-submenu [item]="model" root="true" class="layout-menu clearfix" [reset]="reset" visible="true"></ul>
+        <ul app-submenu [item]="model" root="true" class="layout-menu clearfix" [reset]="reset" visible="true" parentActive="true"></ul>
     `
 })
 export class AppMenuComponent implements OnInit {
@@ -140,8 +140,8 @@ export class AppMenuComponent implements OnInit {
                    [attr.tabindex]="!visible ? '-1' : null"  [attr.target]="child.target">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>
+                    <i class="fa fa-fw fa-angle-down menuitem-toggler" *ngIf="child.items"></i>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
-                    <i class="fa fa-fw fa-angle-down" *ngIf="child.items"></i>
                 </a>
 
                 <a (click)="itemClick($event,child,i)" *ngIf="child.routerLink" [attr.target]="child.target"
@@ -149,11 +149,11 @@ export class AppMenuComponent implements OnInit {
                    [routerLinkActiveOptions]="{exact: true}">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>
+                    <i class="fa fa-fw fa-angle-down menuitem-toggler" *ngIf="child.items"></i>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
-                    <i class="fa fa-fw fa-angle-down" *ngIf="child.items"></i>
                 </a>
                 <ul app-submenu [item]="child" *ngIf="child.items" [@children]="isActive(i) ?
-                'visible' : 'hidden'" [visible]="isActive(i)" [reset]="reset"></ul>
+                'visible' : 'hidden'" [visible]="isActive(i)" [reset]="reset" [parentActive]="isActive(i)"></ul>
             </li>
         </ng-template>
     `,
@@ -177,6 +177,8 @@ export class AppSubMenuComponent {
     @Input() root: boolean;
 
     @Input() visible: boolean;
+
+    _parentActive: boolean;
 
     _reset: boolean;
 
@@ -229,6 +231,18 @@ export class AppSubMenuComponent {
         this._reset = val;
 
         if (this._reset && this.app.isHorizontal()) {
+            this.activeIndex = null;
+        }
+    }
+
+    @Input() get parentActive(): boolean {
+        return this._parentActive;
+    }
+
+    set parentActive(val: boolean) {
+        this._parentActive = val;
+
+        if (!this._parentActive) {
             this.activeIndex = null;
         }
     }
