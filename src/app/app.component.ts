@@ -5,7 +5,7 @@ enum MenuOrientation {
     STATIC,
     OVERLAY,
     HORIZONTAL
-};
+}
 
 declare var jQuery: any;
 
@@ -117,6 +117,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         } else {
             this.activeTopbarItem = item; }
 
+        event.preventDefault();
+    }
+
+    onTopbarSubItemClick(event) {
         event.preventDefault();
     }
 

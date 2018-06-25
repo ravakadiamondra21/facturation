@@ -28,25 +28,25 @@ import {AppComponent} from './app.component';
 
                         <ul class="poseidon-menu fadeInDown">
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-user"></i>
                                     <span>Profile</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-user-secret"></i>
                                     <span>Privacy</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-cog"></i>
                                     <span>Settings</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-sign-out"></i>
                                     <span>Logout</span>
                                 </a>
@@ -60,25 +60,25 @@ import {AppComponent} from './app.component';
                         </a>
                         <ul class="poseidon-menu fadeInDown">
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-paint-brush"></i>
                                     <span>Change Theme</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-star-o"></i>
                                     <span>Favorites</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-lock"></i>
                                     <span>Lock Screen</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-picture-o"></i>
                                     <span>Wallpaper</span>
                                 </a>
@@ -93,31 +93,31 @@ import {AppComponent} from './app.component';
                         </a>
                         <ul class="poseidon-menu fadeInDown">
                             <li role="menuitem">
-                                <a href="#" class="topbar-message">
+                                <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
                                     <img src="assets/layout/images/avatar1.png" width="35">
                                     <span>Give me a call</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#" class="topbar-message">
+                                <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
                                     <img src="assets/layout/images/avatar2.png" width="35">
                                     <span>Sales reports attached</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#" class="topbar-message">
+                                <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
                                     <img src="assets/layout/images/avatar3.png" width="35">
                                     <span>About your invoice</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#" class="topbar-message">
+                                <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
                                     <img src="assets/layout/images/avatar2.png" width="35">
                                     <span>Meeting today at 10pm</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#" class="topbar-message">
+                                <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
                                     <img src="assets/layout/images/avatar4.png" width="35">
                                     <span>Out of office</span>
                                 </a>
@@ -132,25 +132,25 @@ import {AppComponent} from './app.component';
                         </a>
                         <ul class="poseidon-menu fadeInDown">
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-tasks"></i>
                                     <span>Pending tasks</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-calendar-check-o"></i>
                                     <span>Meeting today at 3pm</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-download"></i>
                                     <span>Download documents</span>
                                 </a>
                             </li>
                             <li role="menuitem">
-                                <a href="#">
+                                <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                     <i class="fa fa-fw fa-plane"></i>
                                     <span>Book flight</span>
                                 </a>
