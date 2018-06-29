@@ -94,7 +94,7 @@ body {
 
         .ui-table-tbody {
             > tr {
-                background: $contentBgColor;
+                background: #f0f3f5;
                 border-color: darken($contentBorderColor,5%);
 
                 > td {
@@ -117,7 +117,7 @@ body {
             }
 
             > tr:nth-child(even) {
-                background-color: #f0f3f5;
+                background-color: $contentBgColor;
 
                 &.ui-state-highlight {
                   background-color: $primaryColor;
