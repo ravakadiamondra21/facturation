@@ -29,9 +29,9 @@ body {
             background-color: darken($primaryColor,5%);
         }
 
-        &:enabled:not(.ui-button-secondary):focus {
+        &:enabled:focus {
             outline: 0 none;
-            background-color: darken($primaryColor,5%);
+            background-color: lighten($primaryColor,5%);
         }
 
         &:enabled:active  {
@@ -70,7 +70,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($turquoise,5%);
+                background-color: lighten($turquoise,5%);
             }
 
             &:enabled:active {
@@ -86,7 +86,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($blue,5%);
+                background-color: lighten($blue,5%);
             }
 
             &:enabled:active {
@@ -102,7 +102,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($purple,5%);
+                background-color: lighten($purple,5%);
             }
 
             &:enabled:active {
@@ -118,7 +118,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($orange,5%);
+                background-color: lighten($orange,5%);
             }
 
             &:enabled:active {
@@ -134,7 +134,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($pink,5%);
+                background-color: lighten($pink,5%);
             }
 
             &:enabled:active {
@@ -150,7 +150,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($green,5%);
+                background-color: lighten($green,5%);
             }
 
             &:enabled:active {
@@ -166,10 +166,10 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($deepPurple,5%);
+                background-color: lighten($deepPurple,5%);
             }
 
-            &.ui-state-active {
+            &:enabled:active {
                 background-color: darken($deepPurple,10%);
             }
         }
@@ -182,7 +182,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($black,5%);
+                background-color: lighten($black,5%);
             }
 
             &:enabled:active {
@@ -198,7 +198,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($red,5%);
+                background-color: lighten($red,5%);
             }
 
             &:enabled:active {
@@ -231,7 +231,12 @@ body {
         &:enabled:focus {
             border-color: $blue;
             outline: 0 none;
-            background-color: darken($blue,5%);
+            background-color: lighten($blue,5%);
+        }
+
+        &:enabled:active {
+            border-color: $blue;
+            background-color: darken($blue,10%);
         }
     }
 
@@ -247,7 +252,12 @@ body {
         &:enabled:focus {
             border-color: $green;
             outline: 0 none;
-            background-color: darken($green,5%);
+            background-color: lighten($green,5%);
+        }
+
+        &:enabled:active {
+            border-color: $green;
+            background-color: darken($green,10%);
         }
     }
 
@@ -263,7 +273,12 @@ body {
         &:enabled:focus {
             border-color: $orange;
             outline: 0 none;
-            background-color: darken($orange,5%);
+            background-color: lighten($orange,5%);
+        }
+
+        &:enabled:active {
+            border-color: $orange;
+            background-color: darken($orange,10%);
         }
     }
 
@@ -279,7 +294,12 @@ body {
         &:enabled:focus {
             border-color: $red;
             outline: 0 none;
-            background-color: darken($red,5%);
+            background-color: lighten($red,5%);
+        }
+
+        &:enabled:active {
+            border-color: $red;
+            background-color: darken($red,10%);
         }
     }
 
