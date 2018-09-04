@@ -609,7 +609,7 @@ body {
                 padding: $listItemPadding;
                 @include border-radius(0);
 
-                &:not(.ui-state-highlight):hover {
+                &:not(.ui-state-highlight):not(.ui-state-disabled):hover {
                     @include list-item-hover();
                 }
             }
@@ -717,7 +717,7 @@ body {
                     vertical-align: middle;
                 }
 
-                &:not(.ui-state-highlight):hover {
+                &:not(.ui-state-highlight):not(.ui-state-disabled):hover {
                     @include list-item-hover();
                 }
             }
@@ -980,6 +980,12 @@ body {
                     }
                 }
             }
+
+            .ui-monthpicker {
+                a.ui-monthpicker-month:not(.ui-state-active):hover {
+                    background-color: $listItemHoverBgColor;
+                }
+            }
         }
 
         .ui-datepicker-header {
@@ -1012,11 +1018,15 @@ body {
             font-size: $fontSize;
 
             td {
-                a {
+                > a, > span {
                     text-align: center;
                     color: $textColor;
                     padding: .35em;
                     @include border-radius($borderRadius);
+                }
+
+                > a {
+                    cursor: pointer;
 
                     &.ui-state-active {
                         color: #ffffff;
@@ -1040,6 +1050,42 @@ body {
 
                 &:hover {
                     color: $primaryColor;
+                }
+            }
+        }
+
+        .ui-monthpicker {
+            .ui-monthpicker-month {
+                color: $textColor;
+
+                &.ui-state-active {
+                    color: #ffffff;
+                    background-color: $primaryColor;
+                }
+            }
+        }
+
+        &.ui-datepicker-multiple-month {
+            width: auto;
+            .ui-datepicker-group {
+                border-right: 1px solid $dividerColor;
+                padding-top: 0;
+                padding-bottom: 0;
+
+                .ui-datepicker-calendar-container {
+                    tbody {
+                        padding-right: .25em;
+                        padding-left: .25em;
+                    }
+                }
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                    border-right: 0 none;
                 }
             }
         }
