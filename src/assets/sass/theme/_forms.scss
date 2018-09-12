@@ -214,9 +214,25 @@ body {
     }
 
     .ui-button.ui-state-default.ui-button-secondary, .ui-buttonset.ui-button-secondary > .ui-button.ui-state-default  {
-         &:enabled:focus {
-             outline: 0 none;
-         }
+        background-color: $secondary;
+        border-color: $secondary;
+        color: #333333;
+
+        &:enabled:hover {
+            border-color: darken($secondary,5%);
+            background-color: darken($secondary,5%);
+        }
+
+        &:enabled:focus {
+            border-color: lighten($secondary,5%);
+            outline: 0 none;
+            background-color: lighten($secondary,5%);
+        }
+
+        &:enabled:active {
+            border-color: darken($secondary,10%);
+            background-color: darken($secondary,10%);
+        }
      }
 
     .ui-button.ui-state-default.ui-button-info, .ui-buttonset.ui-button-info > .ui-button.ui-state-default  {
