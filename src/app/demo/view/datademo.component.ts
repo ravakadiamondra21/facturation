@@ -98,9 +98,9 @@ export class DataDemoComponent implements OnInit {
     cars1: Car[];
 
     cars2: Car[];
-    
+
     cars3: Car[];
-    
+
     carsVirtual: Car[] = [];
 
     cols: any[];
@@ -148,7 +148,7 @@ export class DataDemoComponent implements OnInit {
     sortField: string;
 
     sortOrder: number;
-    
+
     timeout: any;
 
     constructor(private carService: CarService, private eventService: EventService, private nodeService: NodeService) { }
@@ -236,12 +236,12 @@ export class DataDemoComponent implements OnInit {
             { label: 'Brand', value: 'brand' }
         ];
     }
-    
+
     loadCarsLazy(event: LazyLoadEvent) {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
-        
+
         this.timeout = setTimeout(() => {
             this.cars3 = [];
             if (this.carsVirtual) {
