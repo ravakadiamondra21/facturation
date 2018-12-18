@@ -26,6 +26,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
+import { FullCalendarModule } from 'primeng/fullcalendar';
 import { GalleriaModule } from 'primeng/galleria';
 import { GrowlModule } from 'primeng/growl';
 import { InplaceModule } from 'primeng/inplace';
@@ -52,7 +53,6 @@ import { PickListModule } from 'primeng/picklist';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
-import { ScheduleModule } from 'primeng/schedule';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SlideMenuModule } from 'primeng/slidemenu';
@@ -71,6 +71,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 import {AppComponent} from './app.component';
 import {AppMenuComponent, AppSubMenuComponent} from './app.menu.component';
@@ -122,6 +123,7 @@ import {NodeService} from './demo/service/nodeservice';
         EditorModule,
         FieldsetModule,
         FileUploadModule,
+        FullCalendarModule,
         GalleriaModule,
         GrowlModule,
         InplaceModule,
@@ -148,7 +150,6 @@ import {NodeService} from './demo/service/nodeservice';
         ProgressBarModule,
         RadioButtonModule,
         RatingModule,
-        ScheduleModule,
         ScrollPanelModule,
         SelectButtonModule,
         SlideMenuModule,
@@ -167,6 +168,7 @@ import {NodeService} from './demo/service/nodeservice';
         TooltipModule,
         TreeModule,
         TreeTableModule,
+        VirtualScrollerModule,
         BrowserAnimationsModule
     ],
     declarations: [
