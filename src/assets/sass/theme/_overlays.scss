@@ -22,6 +22,26 @@ body {
                 background-color: $primaryColor;
             }
         }
+
+        &:after {
+            border-color: rgba($contentBgColor, 0);
+            border-bottom-color: $contentBgColor;
+        }
+
+        &:before {
+            border-color: rgba($contentBorderColor, 0);
+            border-bottom-color: $contentBorderColor;
+        }
+
+        &.ui-overlaypanel-flipped {
+            &:after {
+                border-top-color: $contentBgColor;
+            }
+
+            &:before {
+                border-top-color: $contentBorderColor;
+            }
+        }
     }
 
     .ui-dialog {
