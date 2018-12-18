@@ -435,7 +435,7 @@ body {
             @include transition(background-color .3s);
 
             &:before {
-                background-color: $inputBgColor;
+                background-color: #a8acb1;
                 height: 1.846em;
                 width: 1.714em;
                 left: 0;
@@ -455,15 +455,14 @@ body {
 
         &.ui-inputswitch-checked {
             .ui-inputswitch-slider:before {
-                -webkit-transform: translateX(1.51em);
-                -ms-transform: translateX(1.51em);
-                transform: translateX(1.51em);
+                -webkit-transform: translateX(1.58em);
+                -ms-transform: translateX(1.58em);
+                transform: translateX(1.58em);
             }
         }
 
         &.ui-inputswitch-focus {
             .ui-inputswitch-slider {
-                background-color: lighten($primaryColor,5%);
                 border-color: $contentBorderColor;
             }
         }
@@ -499,7 +498,6 @@ body {
 
             &.ui-inputswitch-focus {
                 .ui-inputswitch-slider {
-                    background-color: lighten($primaryColor,5%);
                     border-color: $contentBorderColor;
                     @include border-shadow();
                 }
