@@ -405,11 +405,11 @@ body {
 
             .ui-radiobutton-icon {
                 background-color: transparent;
-                width: 12px;
-                height: 12px;
+                width: .857em;
+                height: .857em;
                 display: block;
-                margin-top: -.4em;
-                margin-left: -.4em;
+                margin-top: -.429em;
+                margin-left: -.429em;
                 @include border-radius(50%);
                 @include transition(all .3s);
 
