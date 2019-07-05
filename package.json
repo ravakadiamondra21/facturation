@@ -1,6 +1,6 @@
 {
     "name": "poseidon",
-    "version": "8.0.0",
+    "version": "8.0.1-SNAPSHOT",
     "license": "COMMERCIAL",
     "angular-cli": {},
     "scripts": {
