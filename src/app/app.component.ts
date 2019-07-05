@@ -36,18 +36,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     activeTopbarItem: any;
 
-    documentClickListener: Function;
+    documentClickListener: () => void;
 
     resetMenu: boolean;
 
-    @ViewChild('layoutWrapper') layourContainerViewChild: ElementRef;
+    @ViewChild('layoutWrapper', { static: true }) layourContainerViewChild: ElementRef;
 
-    @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ScrollPanel;
+    @ViewChild('layoutMenuScroller', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
 
     constructor(public renderer: Renderer2) {}
 
     ngAfterViewInit() {
-        this.layoutContainer = <HTMLDivElement> this.layourContainerViewChild.nativeElement;
+        this.layoutContainer = this.layourContainerViewChild.nativeElement as HTMLDivElement;
         setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
 
         // hides the horizontal submenus or top menu if outside is clicked

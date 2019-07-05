@@ -29,7 +29,7 @@ export class OverlaysDemoComponent implements OnInit {
             { field: 'color', header: 'Color' }
         ];
 
-      this.images = [];
+        this.images = [];
         this.images.push({source: 'assets/demo/images/sopranos/sopranos1.jpg',
             thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Nature 1'});
         this.images.push({source: 'assets/demo/images/sopranos/sopranos2.jpg',
