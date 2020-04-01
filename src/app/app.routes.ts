@@ -28,7 +28,7 @@ export const routes: Routes = [
     {path: 'pages/empty', component: EmptyDemoComponent},
     {path: 'components/charts', component: ChartsDemoComponent},
     {path: 'components/file', component: FileDemoComponent},
-    {path: 'components/utils', component: UtilsDemoComponent},
+    {path: 'utils', component: UtilsDemoComponent},
     {path: 'documentation', component: DocumentationComponent}
 ];
 

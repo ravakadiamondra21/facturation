@@ -7,9 +7,9 @@ import {Component} from '@angular/core';
             margin-top: 30px;
         }
 
-        .docs pre {
+        .docs pre.doc-command {
             font-family: monospace;
-            background-color: #0C2238;
+            background-color: #2d353c;
             color: #dddddd;
             padding: 1em;
             font-size: 14px;
@@ -23,20 +23,6 @@ import {Component} from '@angular/core';
             font-style: normal;
             font-size: 13px;
             padding: 0 .5em;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
         }`
     ]
 })

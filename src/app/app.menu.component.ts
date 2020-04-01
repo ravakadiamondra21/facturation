@@ -41,7 +41,8 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Components', icon: 'fa fa-fw fa-sitemap', badge: '6', badgeStyleClass: 'deeppurple-badge', routerLink: ['/components'],
+                label: 'Components', icon: 'fa fa-fw fa-sitemap', badge: '6',
+                badgeStyleClass: 'deeppurple-badge', routerLink: ['/components'],
                 items: [
                     {label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/components/sample']},
                     {label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/components/forms']},

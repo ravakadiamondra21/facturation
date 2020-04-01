@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnDestroy} from '@angular/core';
+import {Component, AfterViewInit, Renderer2, OnDestroy} from '@angular/core';
 import { MenuService } from './app.menu.service';
 
 enum MenuOrientation {
