@@ -133,6 +133,8 @@ body {
             .menu-scroll-content {
                 width: 268px;
                 padding-right: 18px;
+                padding-bottom: 120px;
+                overflow: auto;
             }
 
             > ul:last-child {
@@ -280,6 +282,9 @@ body {
                 padding: 8px 16px;
                 color: #a8acb1;
                 width: 100%;
+                cursor: pointer;
+                user-select: none;
+                outline: none;
                 line-height: $fontSize;
                 box-sizing: border-box;
                 @include transition(background-color .3s);
@@ -607,6 +612,7 @@ body {
 
                     .menu-scroll-content {
                         width: 100%;
+                        overflow: visible;
                     }
 
                     > ul:last-child {

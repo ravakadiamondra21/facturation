@@ -1,5 +1,6 @@
 import {Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnDestroy} from '@angular/core';
 import {ScrollPanel} from 'primeng/scrollpanel';
+import { MenuService } from './app.menu.service';
 
 enum MenuOrientation {
     STATIC,
@@ -38,18 +39,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     documentClickListener: () => void;
 
-    resetMenu: boolean;
-
-    @ViewChild('layoutWrapper', { static: true }) layourContainerViewChild: ElementRef;
-
-    @ViewChild('layoutMenuScroller', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
-
-    constructor(public renderer: Renderer2) {}
+    constructor(public renderer: Renderer2, private menuService: MenuService) {}
 
     ngAfterViewInit() {
-        this.layoutContainer = this.layourContainerViewChild.nativeElement as HTMLDivElement;
-        setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
-
         // hides the horizontal submenus or top menu if outside is clicked
         this.documentClickListener = this.renderer.listen('body', 'click', (event) => {
             if (!this.topbarItemClick) {
@@ -58,7 +50,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
             }
 
             if (!this.menuClick && this.isHorizontal()) {
-                this.resetMenu = true;
+                this.menuService.reset();
             }
 
             this.topbarItemClick = false;
@@ -89,11 +81,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     onMenuClick($event) {
         this.menuClick = true;
-        this.resetMenu = false;
-
-        if (!this.isHorizontal()) {
-            setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 450);
-        }
     }
 
     onTopbarMenuButtonClick(event) {

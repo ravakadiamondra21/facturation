@@ -132,7 +132,6 @@ body {
             .ui-table-tbody > tr.ui-selectable-row:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover {
               cursor: pointer;
               background-color: $contentBorderColor;
-              border: 1px solid darken($contentBorderColor,5%);
             }
         }
     }
