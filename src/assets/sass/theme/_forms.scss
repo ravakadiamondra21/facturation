@@ -1089,13 +1089,13 @@ body {
                 > a {
                     cursor: pointer;
 
+                    &.ui-state-highlight {
+                        background-color: darken($listItemHoverBgColor,5%);
+                    }
+
                     &.ui-state-active {
                         color: #ffffff;
                         background-color: $primaryColor;
-                    }
-
-                    &.ui-state-highlight {
-                        background-color: darken($listItemHoverBgColor,5%);
                     }
                 }
             }

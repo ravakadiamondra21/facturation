@@ -121,11 +121,36 @@ export class AppMenuComponent implements OnInit {
     }
 
     changeTheme(theme) {
-        const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
         const layoutLink: HTMLLinkElement = document.getElementById('layout-css') as HTMLLinkElement;
+        const layoutHref = 'assets/layout/css/layout-' + theme + '.css';
+        this.replaceLink(layoutLink, layoutHref);
 
-        themeLink.href = 'assets/theme/theme-' + theme + '.css';
-        layoutLink.href = 'assets/layout/css/layout-' + theme + '.css';
+        const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
+        const themeHref = 'assets/theme/theme-' + theme + '.css';
+        this.replaceLink(themeLink, themeHref);
+    }
+
+    isIE() {
+        return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
+    }
+
+    replaceLink(linkElement, href) {
+        if (this.isIE()) {
+            linkElement.setAttribute('href', href);
+        } else {
+            const id = linkElement.getAttribute('id');
+            const cloneLinkElement = linkElement.cloneNode(true);
+
+            cloneLinkElement.setAttribute('href', href);
+            cloneLinkElement.setAttribute('id', id + '-clone');
+
+            linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+
+            cloneLinkElement.addEventListener('load', () => {
+                linkElement.remove();
+                cloneLinkElement.setAttribute('id', id);
+            });
+        }
     }
 }
 

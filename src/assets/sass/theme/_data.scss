@@ -413,36 +413,51 @@ body {
     }
 
     .ui-carousel {
-        padding: 0;
-
-        .ui-carousel-header {
-            padding: $headerPadding;
-            margin: 0;
-            @include border-radius-bottom(0);
-
-            .ui-carousel-header-title {
-                padding: 0;
-            }
-        }
-
-        .ui-carousel-footer {
-            padding: $headerPadding;
-        }
-
-        .ui-carousel-button {
-            @include transition(color .3s);
-
-            &:not(.ui-state-disabled):hover {
-                color: $primaryColor;
-            }
-        }
-
-        .ui-carousel-page-links {
-            .ui-carousel-page-link {
-                color: $headerTextColor;
+        .ui-carousel-content {
+            .ui-carousel-prev,
+            .ui-carousel-next {
+                background-color: $primaryColor;
+                border: 1px solid transparent;
+                @include border-radius(2px);
+                margin: .2em;
+                color: $buttonTextColor;
+                width: auto;
+                min-width: 2.5em;
                 @include transition(color $transitionDuration);
-                &:hover {
-                    color: $primaryColor;
+
+                &:not(.ui-state-disabled) {
+                    &:hover {
+                        background-color: darken($primaryColor,5%);
+                    }
+                }
+            }
+        }
+
+        .ui-carousel-dots-container {
+            .ui-carousel-dot-item {
+                > .ui-button {
+                    border-color: transparent;
+                    background-color: transparent;
+                }
+
+                .ui-carousel-dot-icon {
+                    width: 20px;
+                    height: 6px;
+                    background-color: #b2c1cd;
+                    margin: 0 .2em;
+
+                    &::before {
+                        content: ' ';
+                    }
+                }
+
+                &.ui-state-highlight {
+                    border-color: transparent;
+                    background-color: transparent;
+                    
+                    .ui-carousel-dot-icon {
+                        background-color: $primaryColor;
+                    }
                 }
             }
         }

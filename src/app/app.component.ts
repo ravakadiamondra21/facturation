@@ -1,5 +1,5 @@
 import {Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnDestroy} from '@angular/core';
-import {ScrollPanel} from 'primeng/primeng';
+import {ScrollPanel} from 'primeng/scrollpanel';
 
 enum MenuOrientation {
     STATIC,

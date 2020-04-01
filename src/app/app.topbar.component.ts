@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
     template: `
         <div class="topbar clearfix">
             <div class="topbar-left">
-                <div class="logo">
+                <div class="logo" style="cursor: pointer; outline: none;" routerLink="/">
                     <img src="assets/layout/images/logo-black.png" alt="Logo">
                 </div>
             </div>
