@@ -1,5 +1,4 @@
 import {Component, AfterViewInit, ElementRef, Renderer2, ViewChild, OnDestroy} from '@angular/core';
-import {ScrollPanel} from 'primeng/scrollpanel';
 import { MenuService } from './app.menu.service';
 
 enum MenuOrientation {

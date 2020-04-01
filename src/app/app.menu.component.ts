@@ -1,7 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/primeng';
 import {AppComponent} from './app.component';
 

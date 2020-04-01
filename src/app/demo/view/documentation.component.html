@@ -3,7 +3,10 @@
         <div class="card docs">
 
             <h1>Current Version</h1>
-            <p>Angular 8 and PrimeNG 8</p>
+            <p>Angular 9 and PrimeNG 9</p>
+
+            <h1>Dependencies</h1>
+            <p>Poseidon has no direct dependency. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
 
             <h1>Getting Started</h1>
             <p>Poseidon is a true native application template for Angular and is distributed as a CLI project. If you don't have CLI installed already run the following commands to set it up. In case
@@ -48,7 +51,7 @@ Run 'ng help' for more options.
                 the main template. The component class app.component.ts implements the logic such as opening menus, layout modes and so on.
             </p>
 <pre>
-&lt;div #layoutWrapper class="layout-wrapper" [ngClass]="&#123;'menu-layout-static': !isOverlay(),
+&lt;div class="layout-wrapper" [ngClass]="&#123;'menu-layout-static': !isOverlay(),
         'menu-layout-overlay': isOverlay(),
         'layout-menu-overlay-active': overlayMenuActive,
         'menu-layout-horizontal': isHorizontal(),
@@ -57,24 +60,22 @@ Run 'ng help' for more options.
 
     &lt;app-topbar&gt;&lt;/app-topbar&gt;
     &lt;div class="layout-menu-container" (click)="onMenuClick($event)"&gt;
-        &lt;p-scrollPanel #layoutMenuScroller [style]="&#123;height:'100%'&#125;"&gt;
-            &lt;div class="menu-scroll-content"&gt;
-                &lt;div class="search-input"&gt;
-                    &lt;input type="text" placeholder="Search"/&gt;
-                    &lt;i class="fa fa-search"&gt;&lt;/i&gt;
-                &lt;/div&gt;
-                &lt;app-menu [reset]="resetMenu"&gt;&lt;/app-menu&gt;
-                &lt;div class="layout-menu-footer"&gt;
-                    &lt;span class="layout-menu-footer-title"&gt;Tasks Overview&lt;/span&gt;
-
-                    &lt;p-progressBar [value]="50" [showValue]="false"&gt;&lt;/p-progressBar&gt;
-                    Today
-
-                    &lt;p-progressBar [value]="80" [showValue]="false"&gt;&lt;/p-progressBar&gt;
-                    Overall
-                &lt;/div&gt;
+        &lt;div class="menu-scroll-content"&gt;
+            &lt;div class="search-input"&gt;
+                &lt;input type="text" placeholder="Search"/&gt;
+                &lt;i class="fa fa-search"&gt;&lt;/i&gt;
             &lt;/div&gt;
-        &lt;/p-scrollPanel&gt;
+            &lt;app-menu&gt;&lt;/app-menu&gt;
+            &lt;div class="layout-menu-footer"&gt;
+                &lt;span class="layout-menu-footer-title"&gt;Tasks Overview&lt;/span&gt;
+
+                &lt;p-progressBar [value]="50" [showValue]="false"&gt;&lt;/p-progressBar&gt;
+                Today
+
+                &lt;p-progressBar [value]="80" [showValue]="false"&gt;&lt;/p-progressBar&gt;
+                Overall
+            &lt;/div&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div class="layout-main"&gt;
@@ -84,25 +85,23 @@ Run 'ng help' for more options.
             &lt;app-footer&gt;&lt;/app-footer&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-
 &lt;/div&gt;
 </pre>
 
             <h1>Menu</h1>
             <p>Menu is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,
-            navigate to menu.component.ts and define your own model. Here is the menu component from the sample application. The helper
-            app-submenu component is also available in the same file.</p>
+            navigate to menu.component.ts and define your own model. Here is the menu component from the sample application.</p>
 <pre>
-import &#123;Component,Input,OnInit,EventEmitter,ViewChild,trigger,state,transition,style,animate,Inject,forwardRef&#125; from '@angular/core';
-import &#123;Location&#125; from '@angular/common';
-import &#123;Router&#125; from '@angular/router';
+import &#123;Component,OnInit&#125; from '@angular/core';
 import &#123;MenuItem&#125; from 'primeng/primeng';
 import &#123;AppComponent&#125; from './app.component';
 
 @Component(&#123;
     selector: 'app-menu',
     template: `
-        &lt;ul app-submenu [item]="model" root="true" class="layout-menu clearfix" [reset]="reset" visible="true"&gt;&lt;/ul&gt;
+        &lt;ul class="layout-menu"&gt;
+            &lt;li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"&gt;&lt;/li&gt;
+        &lt;/ul&gt;
     `
 &#125;)
 export class AppMenuComponent implements OnInit &#123;
@@ -117,50 +116,51 @@ export class AppMenuComponent implements OnInit &#123;
         this.model = [
             &#123;label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/']&#125;,
             &#123;
-                label: 'Themes', icon: 'fa fa-fw fa-paint-brush',
+                label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: '8',
                 items: [
-                    &#123;label: 'Turquoise', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('turquoise')&#125;&#125;,
-                    &#123;label: 'Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('blue')&#125;&#125;,
-                    &#123;label: 'Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('purple')&#125;&#125;,
-                    &#123;label: 'Orange', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('orange')&#125;&#125;,
-                    &#123;label: 'Pink', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('pink')&#125;&#125;,
-                    &#123;label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('light-blue')&#125;&#125;,
-                    &#123;label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('green')&#125;&#125;,
-                    &#123;label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => &#123;this.changeTheme('deep-purple')&#125;&#125;
+                    &#123;label: 'Turquoise', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('turquoise'); &#125;&#125;,
+                    &#123;label: 'Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('blue'); &#125;&#125;,
+                    &#123;label: 'Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('purple'); &#125;&#125;,
+                    &#123;label: 'Orange', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('orange'); &#125;&#125;,
+                    &#123;label: 'Pink', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('pink'); &#125;&#125;,
+                    &#123;label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('light-blue'); &#125;&#125;,
+                    &#123;label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('green'); &#125;&#125;,
+                    &#123;label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) =&gt; &#123;this.changeTheme('deep-purple'); &#125;&#125;
                 ]
             &#125;,
             &#123;
                 label: 'Customization', icon: 'fa fa-fw fa-bars',
                 items: [
-                    &#123;label: 'Static Menu', icon: 'fa fa-fw fa-bars',  command: () => this.app.changeToStaticMenu()&#125;,
-                    &#123;label: 'Overlay Menu', icon: 'fa fa-fw fa-bars',  command: () => this.app.changeToOverlayMenu()&#125;,
-                    &#123;label: 'Horizontal Menu', icon: 'fa fa-fw fa-bars',  command: () => this.app.changeToHorizontalMenu()&#125;
+                    &#123;label: 'Static Menu', icon: 'fa fa-fw fa-bars',  command: () =&gt; this.app.changeToStaticMenu()&#125;,
+                    &#123;label: 'Overlay Menu', icon: 'fa fa-fw fa-bars',  command: () =&gt; this.app.changeToOverlayMenu()&#125;,
+                    &#123;label: 'Horizontal Menu', icon: 'fa fa-fw fa-bars',  command: () =&gt; this.app.changeToHorizontalMenu()&#125;
                 ]
             &#125;,
             &#123;
-                label: 'Components', icon: 'fa fa-fw fa-sitemap',
+                label: 'Components', icon: 'fa fa-fw fa-sitemap', badge: '6', badgeStyleClass: 'deeppurple-badge', routerLink: ['/components'],
                 items: [
-                    &#123;label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample']&#125;,
-                    &#123;label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/forms']&#125;,
-                    &#123;label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/data']&#125;,
-                    &#123;label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/panels']&#125;,
-                    &#123;label: 'Overlays', icon: 'fa fa-fw fa-square', routerLink: ['/overlays']&#125;,
-                    &#123;label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', routerLink: ['/menus']&#125;,
-                    &#123;label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', routerLink: ['/messages']&#125;,
-                    &#123;label: 'Charts', icon: 'fa fa-fw fa-area-chart', routerLink: ['/charts']&#125;,
-                    &#123;label: 'File', icon: 'fa fa-fw fa-arrow-circle-o-up', routerLink: ['/file']&#125;,
-                    &#123;label: 'Misc', icon: 'fa fa-fw fa-user-secret', routerLink: ['/misc']&#125;
+                    &#123;label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/components/sample']&#125;,
+                    &#123;label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/components/forms']&#125;,
+                    &#123;label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/components/data']&#125;,
+                    &#123;label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/components/panels']&#125;,
+                    &#123;label: 'Overlays', icon: 'fa fa-fw fa-square', routerLink: ['/components/overlays']&#125;,
+                    &#123;label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', routerLink: ['/components/menus']&#125;,
+                    &#123;label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', routerLink: ['/components/messages']&#125;,
+                    &#123;label: 'Charts', icon: 'fa fa-fw fa-area-chart', routerLink: ['/components/charts']&#125;,
+                    &#123;label: 'File', icon: 'fa fa-fw fa-arrow-circle-o-up', routerLink: ['/components/file']&#125;,
+                    &#123;label: 'Misc', icon: 'fa fa-fw fa-user-secret', routerLink: ['/components/misc']&#125;
                 ]
             &#125;,
             &#123;
-                label: 'Template Pages', icon: 'fa fa-fw fa-life-saver',
+                label: 'Template Pages', icon: 'fa fa-fw fa-life-saver', routerLink: ['/pages'],
                 items: [
-                    &#123;label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/empty']&#125;,
-                    &#123;label: 'Landing Page', icon: 'fa fa-fw fa-certificate', url: 'landing.html'&#125;,
-                    &#123;label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'login.html'&#125;,
-                    &#123;label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'error.html'&#125;,
-                    &#123;label: '404 Page', icon: 'fa fa-fw fa-times', url: '404.html'&#125;,
-                    &#123;label: 'Access Denied Page', icon: 'fa fa-fw fa-exclamation-triangle', url: 'access.html'&#125;
+                    &#123;label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/pages/empty']&#125;,
+                    &#123;label: 'Landing Page', icon: 'fa fa-fw fa-certificate', url: 'assets/pages/landing.html', target: '_blank'&#125;,
+                    &#123;label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank'&#125;,
+                    &#123;label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank'&#125;,
+                    &#123;label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank'&#125;,
+                    &#123;label: 'Access Denied Page', icon: 'fa fa-fw fa-exclamation-triangle',
+                        url: 'assets/pages/access.html', target: '_blank'&#125;
                 ]
             &#125;,
             &#123;
@@ -208,6 +208,7 @@ export class AppMenuComponent implements OnInit &#123;
                     &#125;
                 ]
             &#125;,
+            &#123;label: 'Utils', icon: 'fa fa-fw fa-wrench', routerLink: ['/utils']&#125;,
             &#123;label: 'Documentation', icon: 'fa fa-fw fa-book', routerLink: ['/documentation']&#125;
         ];
     &#125;
@@ -430,6 +431,16 @@ label: 'Components', icon: 'list', badge: '2', badgeStyleClass: 'orange-badge'
             </ul>
 
             <h1>Migration Guide</h1>
+            <h4>8.0.0 to 9.0.0</h4>
+            <p>Angular 9 and PrimeNG 9</p>
+            <ul>
+                <li>Update dependencies with <a href="https://angular.io/cli/update">ng update</a>.</li>
+                <li>Update theme.css and layout.css files.</li>
+                <li>Update app.menu.component.ts and app.menu.component.html while retaining your MenuModel.</li>
+                <li>Include app.menuitem.component.ts under app folder and define it app.module.ts with declarations property.</li>
+                <li>Include app.menu.service.ts under app folder and define it app.module.ts with providers property.</li>
+            </ul>
+
             <h4>7.0.0 to 8.0.0</h4>
             <ul>
                 <li>Update your project to Angular 8 with ng update. View the official update guide -<a href="https://update.angular.io/">https://update.angular.io/</a>- for more information.</li>
