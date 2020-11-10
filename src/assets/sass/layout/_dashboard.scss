@@ -1,21 +1,21 @@
 .dashboard {
-    
+
     .card {
         height: 100%;
     }
-    
+
     .overview-box {
-        padding: 0 !important; 
+        padding: 0 !important;
         text-align: center;
         overflow: hidden;
         margin-bottom: 0px !important;
-        
+
         i {
-            font-size: 48px;
+            font-size: 45px;
             margin-top: 20px;
             color: #ffffff;
         }
-        
+
         .overview-box-name {
             font-size: 20px;
             display: inline-block;
@@ -23,111 +23,111 @@
             margin: 4px 0 10px 0;
             color: #ffffff;
         }
-        
+
         .overview-box-count {
             color: #ffffff;
             font-size: 36px;
         }
-        
+
         > div:last-child {
             text-align: left;
         }
-        
-        &.overview-box-1 {            
+
+        &.overview-box-1 {
             background-color: $turquoise;
         }
-        
-        &.overview-box-2 {            
+
+        &.overview-box-2 {
             background-color: $blue;
         }
-        
-        &.overview-box-3 {            
+
+        &.overview-box-3 {
             background-color: $purple;
         }
-        
-        &.overview-box-4 {            
+
+        &.overview-box-4 {
             background-color: $orange;
         }
     }
-    
+
     .task-list {
         overflow: hidden;
-        
-        > .ui-panel {
+
+        > .p-panel {
             min-height: 340px;
         }
-        
-        .ui-panel-content {
+
+        .p-panel-content {
             padding: 10px 0 !important;
         }
-        
+
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
-            
+
             li {
                 padding: 8px 16px;
                 border-bottom: 1px solid $dividerColor;
-                
+
                 &:first-child {
                     margin-top: 10px;
                 }
             }
-            
-            .ui-chkbox {
+
+            .p-checkbox {
                 vertical-align: middle;
                 margin-right: 5px;
             }
-            
+
             .task-name {
                 vertical-align: middle;
             }
-            
+
             i {
                 color: $textSecondaryColor;
                 float: right;
                 font-size: 16px;
                 margin-top: 5px;
             }
-        } 
+        }
     }
-    
+
     .contact-form {
         overflow: hidden;
-        
-        .ui-panel {
+
+        .p-panel {
             min-height: 340px;
         }
-        
-        .ui-g-12 {
-            padding: 16px 10px;
+
+        .p-col-12 {
+            padding: 10px 10px;
         }
-        
-        .ui-button {
+
+        .p-button {
             margin-top: 20px;
         }
     }
-    
+
     .contacts {
         overflow: hidden;
-        
-        > .ui-panel {
+
+        > .p-panel {
             min-height: 340px;
         }
-        
-        .ui-panel-content{
+
+        .p-panel-content{
             padding: 15px 0 10px 0 !important;
         }
-        
+
         ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
-            
+
             li {
                 border-bottom: 1px solid $dividerColor;
-                
+
                 a {
                     padding: 9px;
                     width: 100%;
@@ -137,7 +137,7 @@
                     display: block;
                     @include border-radius(2px);
                     @include transition(background-color .2s);
-                    
+
                     .name {
                         position: absolute;
                         right: 10px;
@@ -145,7 +145,7 @@
                         font-size: 18px;
                         color: $textColor;
                     }
-                    
+
                     .email {
                         position: absolute;
                         right: 10px;
@@ -153,29 +153,29 @@
                         font-size: 14px;
                         color: $textSecondaryColor;
                     }
-                    
+
                     &:hover {
                         cursor: pointer;
                         background-color: $listItemHoverBgColor;
                     }
                 }
-                
+
                 &:last-child {
                     border: 0;
                 }
             }
         }
     }
-    
+
     .activity-list {
         list-style-type: none;
         padding: 0;
         margin: 0;
-        
+
         li {
             border-bottom: 1px solid $dividerColor;
             padding: 15px 0 9px 9px;
-            
+
             .count {
                 font-size: 24px;
                 color: #ffffff;
@@ -185,37 +185,40 @@
                 padding: 5px;
                 @include border-radius(2px);
             }
-            
+
             &:first-child {
                 border-top: 1px solid $dividerColor;
             }
-            
+
             &:last-child {
                 border: 0;
             }
 
-            .ui-g-6:first-child {
-                font-size: 18px;
-                padding-left: 0;
+            .p-grid {
+                margin-top: .25em;
             }
-            
-            .ui-g-6:last-child {
+
+            .p-col-6:first-child {
+                font-size: 18px;
+            }
+
+            .p-col-6:last-child {
                 text-align: right;
                 color: $textSecondaryColor;
             }
         }
     }
-    
+
     .timeline {
         height: 100%;
         box-sizing: border-box;
-        
-        > .ui-g {
-            .ui-g-3 {
+
+        > .p-grid {
+            .p-col-3 {
                 font-size: 14px;
                 position: relative;
                 border-right: 1px solid #bdbdbd;
-                
+
                 i {
                     background-color: #ffffff;
                     font-size: 24px;
@@ -224,20 +227,20 @@
                     right: -12px;
                 }
             }
-            
-            .ui-g-9 {
+
+            .p-col-9 {
                 padding-left: 1.5em;
                 .event-owner {
-                    
+
                 }
-                
+
                 .event-text {
                     color: $textSecondaryColor;
                     font-size: 14px;
                     display: block;
                     padding-bottom: 20px;
                 }
-                
+
                 .event-content {
                     img {
                         width: 100%;
@@ -245,5 +248,29 @@
                 }
             }
         }
-    }  
+    }
+
+    .product-badge {
+        border-radius: 2px;
+        padding: .25em .5rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: .3px;
+
+        &.status-instock {
+            background: #C8E6C9;
+            color: #256029;
+        }
+
+        &.status-outofstock {
+            background: #FFCDD2;
+            color: #C63737;
+        }
+
+        &.status-lowstock {
+            background: #FEEDAF;
+            color: #8A5340;
+        }
+    }
 }

@@ -1,4 +1,6 @@
 .login-body {
+    min-height: 100vh;
+
     .login-panel {
         height: 100%;
         width: 350px;
@@ -12,27 +14,27 @@
         box-sizing: border-box;
         background-color: #ffffff;
         overflow: auto;
-        
-        .ui-g-12 {
+
+        .p-col-12 {
             padding: 16px 0;
             text-align: center;
-            
+
             &.logo-container {
                 img {
                     margin-bottom: 20px;
                 }
             }
-            
+
             &.chkbox-container {
                 text-align: left;
-                
-                .ui-outputlabel {
+
+                .p-outputlabel {
                     display: inline-block;
                     vertical-align: middle;
                     margin-left: 8px;
                 }
             }
-            
+
             &.button-container {
                 button {
                     margin-bottom: 20px;
@@ -51,7 +53,7 @@
 @media (max-width: 640px) {
     .login-body {
         background: none;
-        
+
         .login-panel {
             width: 100%;
         }

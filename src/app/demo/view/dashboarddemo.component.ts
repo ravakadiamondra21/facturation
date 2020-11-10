@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CarService} from '../service/carservice';
 import {EventService} from '../service/eventservice';
-import {Car} from '../domain/car';
-import {SelectItem} from 'primeng/primeng';
+import {SelectItem} from 'primeng/api';
+import {Product} from '../domain/product';
+import {ProductService} from '../service/productservice';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -14,9 +14,7 @@ export class DashboardDemoComponent implements OnInit {
 
     cities: SelectItem[];
 
-    cars: Car[];
-
-    cols: any[];
+    products: Product[];
 
     chartData: any;
 
@@ -24,22 +22,12 @@ export class DashboardDemoComponent implements OnInit {
 
     selectedCity: any;
 
-    selectedCar: Car;
-
     fullcalendarOptions: any;
 
-    constructor(private carService: CarService, private eventService: EventService) { }
+    constructor(private productService: ProductService, private eventService: EventService) { }
 
     ngOnInit() {
-        this.carService.getCarsSmall().then(cars => this.cars = cars);
-
-        this.cols = [
-            { field: 'vin', header: 'Vin' },
-            { field: 'year', header: 'Year' },
-            { field: 'brand', header: 'Brand' },
-            { field: 'color', header: 'Color' }
-        ];
-
+        this.productService.getProducts().then(data => this.products = data);
         this.eventService.getEvents().then(events => {this.events = events; });
 
         this.cities = [];
@@ -70,9 +58,9 @@ export class DashboardDemoComponent implements OnInit {
 
         this.fullcalendarOptions = {
             plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
-            defaultDate: '2016-01-12',
+            defaultDate: '2017-02-12',
             header: {
-                right: 'prev,next, today',
+                right: 'prev,next,today',
                 left: 'title'
             }
         };

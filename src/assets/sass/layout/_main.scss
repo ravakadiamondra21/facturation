@@ -1,5 +1,6 @@
 html {
     height: 100%;
+    font-size: $fontSize;
 }
 
 body {
@@ -16,10 +17,6 @@ body {
     a {
         color: $primaryColor;
         text-decoration: none;
-
-        &:hover {
-            color: lighten($primaryColor, 5%);
-        }
     }
 }
 
@@ -31,7 +28,7 @@ body {
     @include opacity(.7);
     top: 0;
     left: 0;
-    z-index: 999999997;
+    z-index: 997;
 }
 
 .layout-wrapper {
@@ -96,7 +93,7 @@ body {
                 @include transition(all .3s);
 
                 i {
-                    font-size: 36px;
+                    font-size: 32px;
                 }
 
                 &:hover {
@@ -115,33 +112,6 @@ body {
         height: 100%;
         background-color: #2d353c;
         @include transition(margin-left .3s);
-
-
-        .ui-scrollpanel {
-            background: transparent;
-            border-radius: 0;
-            border: none;
-            .ui-scrollpanel-bar {
-                background-color: #aaaaaa;
-                @include opacity(.3);
-            }
-            .ui-scrollpanel-hidden {
-                display: block;
-                visibility: hidden;
-            }
-
-            .menu-scroll-content {
-                width: 268px;
-                padding-right: 18px;
-                padding-bottom: 120px;
-                overflow: auto;
-            }
-
-            > ul:last-child {
-                margin-top: 16px;
-                padding-bottom: 120px;
-            }
-        }
 
         .search-input {
             padding: 24px 16px 16px 16px;
@@ -169,11 +139,11 @@ body {
                 }
             }
 
-            .fa-search {
+            .pi-search {
                 position: absolute;
                 right: 24px;
                 top: 32px;
-                font-size: 22px;
+                font-size: 20px;
                 color: #a8acb1;
             }
         }
@@ -193,7 +163,7 @@ body {
                 border-bottom: 1px solid #86898d;
             }
 
-            .ui-progressbar {
+            .p-progressbar {
                 height: 5px;
                 border: 0 none;
                 margin: 16px 0 4px 0;
@@ -212,7 +182,7 @@ body {
 
         &.layout-menu-overlay-active {
             .layout-menu-container {
-                z-index: 999999999;
+                z-index: 999;
                 margin-left: 0px;
             }
 
@@ -232,7 +202,7 @@ body {
         }
 
         .topbar {
-            z-index: 999999998;
+            z-index: 998;
 
             .topbar-left {
                 background-color: #f0f3f5;
@@ -250,6 +220,10 @@ body {
     }
 
     .layout-main {
+        @include flex();
+        @include flex-direction-column();
+        @include flex-justify-between();
+        min-height: 100vh;
         padding: 75px 0 15px 0;
         @include transition(margin-left .3s);
 
@@ -257,13 +231,14 @@ body {
             padding: 5px 20px 5px 25px;
             background-color: #f0f3f5;
 
-            .fa {
+            i {
                 margin-right: 2px;
             }
         }
 
         .layout-main-content {
-            padding: 15px;
+            padding: 20px;
+            flex: 1 1 auto;
         }
     }
 
@@ -301,7 +276,13 @@ body {
                     font-size: 18px;
                 }
 
-                .menuitem-toggler {
+                &.rotated-icon {
+                    .layout-menuitem-icon {
+                        transform: rotate(90deg);
+                    }
+                }
+
+                .layout-menuitem-toggler {
                     float: right;
                     font-size: 20px;
                     margin-right: -3px;
@@ -333,7 +314,7 @@ body {
                     i {
                         color: $primaryColor;
 
-                        &.menuitem-toggler {
+                        &.layout-menuitem-toggler {
                             @include rotate(-180deg);
                         }
                     }
@@ -385,7 +366,7 @@ body {
                     i {
                         color: #ffffff;
 
-                        &.menuitem-toggler {
+                        &.layout-menuitem-toggler {
                             @include rotate(-180deg);
                         }
                     }
@@ -412,7 +393,7 @@ body {
     }
 
     .footer {
-        padding: .5em;
+        padding: 20px 20px 0 20px;
 
         .footer-text-left {
             float: left;
@@ -474,7 +455,7 @@ body {
                 }
 
                 .topbar-icon {
-                    font-size: 36px;
+                    font-size: 34px;
                     @include transition(color .3s);
 
                     &:hover {
@@ -511,7 +492,7 @@ body {
                         box-sizing: border-box;
                         color: $textColor;
 
-                        .fa {
+                        i {
                             margin-right: 8px;
                         }
 
@@ -599,28 +580,6 @@ body {
                 -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 
-                .ui-scrollpanel {
-                    overflow: visible;
-                    border: none;
-                    .ui-scrollpanel-wrapper {
-                        overflow: visible;
-                        .ui-scrollpanel-content {
-                            overflow: visible;
-                            padding: 0;
-                        }
-                    }
-
-                    .menu-scroll-content {
-                        width: 100%;
-                        overflow: visible;
-                    }
-
-                    > ul:last-child {
-                        margin-top: 0;
-                        padding-bottom: 0;
-                    }
-                }
-
                 .search-input {
                     display: none;
                 }
@@ -640,7 +599,7 @@ body {
                                 margin: 4px 0;
                             }
 
-                            .menuitem-toggler {
+                            .layout-menuitem-toggler {
                                 display: none;
                             }
 
@@ -765,11 +724,11 @@ body {
             &.layout-menu-static-active {
                 .layout-menu-container {
                     margin-left: 0;
-                    z-index: 999999999;
+                    z-index: 999;
                 }
 
                 .topbar {
-                    z-index: 999999998;
+                    z-index: 998;
 
                     .topbar-right {
                         #menu-button {
@@ -838,8 +797,8 @@ body {
 
                             .topbar-badge {
                                 position: absolute;
-                                left: 30px;
-                                top: 10px;
+                                left: 35px;
+                                top: 5px;
                                 background-color: orange;
                                 color: yellow;
                                 @include border-radius(50%);
@@ -864,7 +823,7 @@ body {
                                     box-sizing: border-box;
                                     color: $textColor;
 
-                                    span, img, .fa {
+                                    span, img, i {
                                         display: inline-block;
                                         vertical-align: middle;
                                     }
@@ -874,7 +833,7 @@ body {
                                         margin-right: 8px;
                                     }
 
-                                    .fa {
+                                    i {
                                         margin-right: 8px;
                                     }
 
