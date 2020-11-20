@@ -1,68 +1,209 @@
 import {Component, OnInit} from '@angular/core';
-import {EventService} from '../service/eventservice';
-import {SelectItem} from 'primeng/api';
+import {MenuItem} from 'primeng/api';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './dashboard.component.html'
 })
 export class DashboardDemoComponent implements OnInit {
 
-    cities: SelectItem[];
+    ordersChart: any;
+
+    ordersOptions: any;
+
+    activeOrders = 0;
+
+    trafficChart: any;
+
+    trafficOptions: any;
+
+    activeTraffic = 0;
+
+    goalChart: any;
+
+    goalOptions: any;
+
+    items: MenuItem[];
+
+    val1 = 1;
+
+    val2 = 2;
+
+    orderWeek: any;
+
+    selectedOrderWeek: any;
 
     products: Product[];
 
-    chartData: any;
+    productsThisWeek: Product[];
 
-    events: any[];
+    productsLastWeek: Product[];
 
-    selectedCity: any;
-
-    fullcalendarOptions: any;
-
-    constructor(private productService: ProductService, private eventService: EventService) { }
+    constructor(private productService: ProductService,
+                private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Favorites' },
+            { label: 'Dashboard', routerLink: ['/'] }
+        ]);
+    }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
-        this.eventService.getEvents().then(events => {this.events = events; });
+        this.productService.getProducts().then(data => this.productsThisWeek = data);
+        this.productService.getProductsMixed().then(data => this.productsLastWeek = data);
 
-        this.cities = [];
-        this.cities.push({label: 'Select City', value: null});
-        this.cities.push({label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}});
-        this.cities.push({label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}});
-        this.cities.push({label: 'London', value: {id: 3, name: 'London', code: 'LDN'}});
-        this.cities.push({label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}});
-        this.cities.push({label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}});
-
-        this.chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    borderColor: '#FFC107'
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    borderColor: '#03A9F4'
-                }
-            ]
+        this.ordersChart = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+            datasets: [{
+                label: 'Revenue',
+                data:     [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                borderColor: [
+                    '#00acac',
+                ],
+                borderWidth: 2,
+                fill: false,
+                borderDash: [3, 6],
+            }, {
+                label: 'Cost',
+                data:     [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                borderColor: [
+                    '#f1b263',
+                ],
+                backgroundColor: [
+                    'rgba(241, 178, 99, .07)',
+                ],
+                borderWidth: 2,
+                fill: true,
+                pointRadius: 3,
+            }]
         };
 
-        this.fullcalendarOptions = {
-            plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
-            defaultDate: '2017-02-12',
-            header: {
-                right: 'prev,next,today',
-                left: 'title'
+        this.ordersOptions = {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: '#A0A7B5'
+                }
+            },
+            responsive: true,
+            hover: {
+                mode: 'index'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: '#A0A7B5'
+                    },
+                    gridLines: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: '#A0A7B5'
+                    },
+                    gridLines: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                }],
             }
         };
+
+        this.trafficChart = {
+            labels: [
+                'Add View',
+                'Total View',
+            ],
+            datasets: [{
+                data:  [48, 52],
+                backgroundColor: [
+                    getComputedStyle(document.body).getPropertyValue('--primaryColor') || '#2c84d8',
+                    getComputedStyle(document.body).getPropertyValue('--contentAltBgColor') || '#B1B9C9',
+                ],
+                borderWidth: 0,
+            }]
+        };
+
+        this.trafficOptions = {
+            legend: {
+                display: false,
+            },
+            responsive: true,
+            cutoutPercentage: 70
+        };
+
+        this.goalChart = {
+            labels: [
+                'Complete',
+                'Not Complete',
+                'Extra Tasks',
+            ],
+            datasets: [{
+                data:  [183, 62, 10],
+                backgroundColor: [
+                    '#ffffff',
+                    'rgba(255,255,255,.2)',
+                    'rgba(255,255,255,.5)',
+                ],
+                borderWidth: 0,
+            }]
+        };
+
+        this.goalOptions = {
+            legend: {
+                display: false,
+            },
+            responsive: true,
+        };
+
+        this.items = [
+            {label: 'View Profile', icon: 'pi pi-user'},
+            {label: 'Update Profile', icon: 'pi pi-refresh'},
+            {label: 'Delete Profile', icon: 'pi pi-trash'},
+        ];
+
+        this.orderWeek = [
+            {name: 'This Week', code: '0'},
+            {name: 'Last Week', code: '1'}
+        ];
+    }
+
+    changeDataset(event) {
+        const dataSet = [
+            [31, 83, 69, 29, 62, 25, 59, 26, 46],
+            [40, 29, 7, 73, 81, 69, 46, 21, 96],
+        ];
+        const dataSet2 = [
+            [67, 98, 27, 88, 38, 3, 22, 60, 56],
+            [74, 67, 11, 36, 100, 49, 34, 56, 45],
+        ];
+
+        this.activeOrders = parseInt(event.currentTarget.getAttribute('data-index'));
+
+        this.ordersChart.datasets[0].data = dataSet[parseInt(event.currentTarget.getAttribute('data-index'))];
+        this.ordersChart.datasets[1].data = dataSet2[parseInt(event.currentTarget.getAttribute('data-index'))];
+        this.ordersChart.datasets[0].label = event.currentTarget.getAttribute('data-label');
+        this.ordersChart.datasets[0].borderColor = event.currentTarget.getAttribute('data-stroke');
+    }
+
+    changeTrafficset(event){
+        const traffidDataSet = [
+            [48, 52],
+            [26, 74],
+            [12, 88],
+        ];
+        this.activeTraffic = parseInt(event.currentTarget.getAttribute('data-index'));
+
+        this.trafficChart.datasets[0].data = traffidDataSet[parseInt(event.currentTarget.getAttribute('data-index'))];
+    }
+
+    recentSales(event) {
+        if (event.value.code === '0') {
+            this.products = this.productsThisWeek;
+        } else {
+            this.products = this.productsLastWeek;
+        }
     }
 }

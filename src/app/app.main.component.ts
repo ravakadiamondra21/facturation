@@ -8,7 +8,15 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
-    layoutMode = 'static';
+    menuMode = 'static';
+
+    topbarTheme = 'light';
+
+    menuTheme = 'dim';
+
+    layoutMode = 'light';
+
+    isRTL = false;
 
     rotateMenuButton: boolean;
 
@@ -36,6 +44,14 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     configClick: boolean;
 
+    rightPanelActive: boolean;
+
+    rightPanelClick: boolean;
+
+    grouped = true;
+
+    menuHoverActive = false;
+
     constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig) { }
 
     ngOnInit() {
@@ -58,27 +74,46 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
                 this.configActive = false;
             }
 
+            if (!this.rightPanelClick) {
+                this.rightPanelActive = false;
+            }
+
+            if (!this.menuClick) {
+                if (this.overlayMenuActive) {
+                    this.overlayMenuActive = false;
+                }
+                if (this.staticMenuMobileActive) {
+                    this.staticMenuMobileActive = false;
+                }
+
+                this.menuHoverActive = false;
+                this.unblockBodyScroll();
+            }
+
             this.configClick = false;
             this.topbarItemClick = false;
             this.menuClick = false;
+            this.rightPanelClick = false;
         });
     }
 
     onMenuButtonClick(event) {
         this.rotateMenuButton = !this.rotateMenuButton;
         this.topbarMenuActive = false;
+        this.menuClick = true;
 
-        if (this.layoutMode === 'overlay') {
+        if (this.menuMode === 'overlay' && !this.isMobile()) {
             this.overlayMenuActive = !this.overlayMenuActive;
+        }
+
+        if (this.isDesktop()) {
+            this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
         } else {
-            if (this.isDesktop()) {
-                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
+            this.staticMenuMobileActive = !this.staticMenuMobileActive;
+            if (this.staticMenuMobileActive) {
+                this.blockBodyScroll();
             } else {
-                if (this.staticMenuMobileActive) {
-                    this.staticMenuMobileActive = false;
-                } else {
-                    this.staticMenuMobileActive = true;
-                }
+                this.unblockBodyScroll();
             }
         }
 
@@ -87,19 +122,6 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     onMenuClick($event) {
         this.menuClick = true;
-    }
-
-    onTopbarMenuButtonClick(event) {
-        this.topbarItemClick = true;
-        this.topbarMenuActive = !this.topbarMenuActive;
-
-        if (this.overlayMenuActive || this.staticMenuMobileActive) {
-            this.rotateMenuButton = false;
-            this.overlayMenuActive = false;
-            this.staticMenuMobileActive = false;
-        }
-
-        event.preventDefault();
     }
 
     onTopbarItemClick(event, item) {
@@ -117,12 +139,26 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         event.preventDefault();
     }
 
+    onRTLChange(event) {
+        this.isRTL = event.checked;
+    }
+
     onRippleChange(event) {
         this.ripple = event.checked;
     }
 
     onConfigClick(event) {
         this.configClick = true;
+    }
+
+    onRightPanelButtonClick(event) {
+        this.rightPanelClick = true;
+        this.rightPanelActive = !this.rightPanelActive;
+        event.preventDefault();
+    }
+
+    onRightPanelClick() {
+        this.rightPanelClick = true;
     }
 
     isTablet() {
@@ -139,23 +175,32 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     isOverlay() {
-        return this.layoutMode === 'overlay';
+        return this.menuMode === 'overlay';
+    }
+
+    isStatic() {
+        return this.menuMode === 'static';
     }
 
     isHorizontal() {
-        return this.layoutMode === 'horizontal';
+        return this.menuMode === 'horizontal';
     }
 
-    changeToStaticMenu() {
-        this.layoutMode = 'static';
+    blockBodyScroll(): void {
+        if (document.body.classList) {
+            document.body.classList.add('blocked-scroll');
+        } else {
+            document.body.className += ' blocked-scroll';
+        }
     }
 
-    changeToOverlayMenu() {
-        this.layoutMode = 'overlay';
-    }
-
-    changeToHorizontalMenu() {
-        this.layoutMode = 'horizontal';
+    unblockBodyScroll(): void {
+        if (document.body.classList) {
+            document.body.classList.remove('blocked-scroll');
+        } else {
+            document.body.className = document.body.className.replace(new RegExp('(^|\\b)' +
+                'blocked-scroll'.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        }
     }
 
     ngOnDestroy() {

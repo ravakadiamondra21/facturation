@@ -4,10 +4,19 @@ import {CustomerService} from '../service/customerservice';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
 import {Table} from 'primeng/table';
+import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './tabledemo.component.html',
-    styleUrls: ['./tabledemo.scss']
+    styleUrls: ['./tabledemo.scss'],
+    styles: [`
+        @media screen and (max-width: 960px) {
+            :host ::ng-deep .p-datatable.p-datatable-customers .p-datatable-tbody > tr > td:nth-child(6) {
+                display: flex;
+            }
+        }
+
+    `],
 })
 export class TableDemoComponent implements OnInit {
 
@@ -31,7 +40,13 @@ export class TableDemoComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private customerService: CustomerService, private productService: ProductService) {}
+    constructor(private customerService: CustomerService, private productService: ProductService,
+                private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Table', routerLink: ['/uikit/table'] }
+        ]);
+    }
 
     ngOnInit() {
         this.customerService.getCustomersMedium().then(customers => this.customers1 = customers);

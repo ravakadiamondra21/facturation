@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Message, MessageService} from 'primeng/api';
+import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './messagesdemo.component.html',
@@ -18,7 +19,12 @@ export class MessagesDemoComponent {
 
     msgs: Message[] = [];
 
-    constructor(private service: MessageService) {}
+    constructor(private service: MessageService, private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Message', routerLink: ['/uikit/message'] }
+        ]);
+    }
 
     showInfoViaToast() {
         this.service.add({key: 'tst', severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks'});

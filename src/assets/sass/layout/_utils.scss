@@ -1,16 +1,18 @@
 /* Utils */
 .clearfix:after {
-    content: " ";
-    display: block;
-    clear: both;
+    content:" ";
+    display:block;
+    clear:both;
 }
 
 .card {
-    @include border-radius(2px);
-    background: #ffffff;
-    padding: 16px;
+    border-radius: $borderRadius;
+    background: $contentBgColor;
+    padding: 12px 16px;
     box-sizing: border-box;
-    margin-bottom: 16px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+    @include border-radius($borderRadius);
+    margin-bottom: 2rem;
 
     &:last-child {
         margin-bottom: 0;
@@ -20,79 +22,34 @@
         @include flex();
         @include flex-align-center();
         @include flex-justify-between();
+        padding-bottom: 6px;
+
+        h6,h5 {
+            margin-bottom: 0;
+            color: $textSecondaryColor;
+        }
+
+        .header-buttons {
+            @include flex();
+            @include flex-align-center();
+        }
     }
 
-    .card-subtitle {
-        color: $textSecondaryColor;
-        font-weight: 600;
-        margin: -1rem 0 1rem 0;
+    &.no-gutter {
+        margin-bottom: 0;
     }
+
 }
 
-.p-toast {
-    &.p-toast-top-right,
-    &.p-toast-top-left,
-    &.p-toast-top-center {
-        top: 80px;
-    }
-}
-
-@-webkit-keyframes fadeInDown {
-    from {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -20px, 0);
-        transform: translate3d(0, -20px, 0);
-    }
-
-    to {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translate3d(0, -20px, 0);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-
-@-webkit-keyframes fadeOutUp {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -20px, 0);
-        transform: translate3d(0, -20px, 0);
-    }
-}
-
-@keyframes fadeOutUp {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -20px, 0);
-        transform: translate3d(0, -20px, 0);
-    }
-}
-
-.fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-}
-
-.fadeOutUp {
-    -webkit-animation-name: fadeOutUp;
-    animation-name: fadeOutUp;
+.p-sr-only {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
 }

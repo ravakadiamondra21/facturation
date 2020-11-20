@@ -1,32 +1,27 @@
-<div class="layout-wrapper" [ngClass]="{'menu-layout-static': !isOverlay(),
-        'menu-layout-overlay': isOverlay(),
-        'layout-menu-overlay-active': overlayMenuActive,
-        'menu-layout-horizontal': isHorizontal(),
-        'layout-menu-static-inactive': staticMenuDesktopInactive,
-        'layout-menu-static-active': staticMenuMobileActive, 'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple}">
+<div class="layout-wrapper" [ngClass]="{'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple,
+        'layout-static': isStatic(),
+        'layout-overlay': isOverlay(),
+        'layout-overlay-active': overlayMenuActive && isOverlay(),
+        'layout-horizontal': isHorizontal(),
+        'layout-static-active': !staticMenuDesktopInactive && isStatic(),
+        'layout-mobile-active': staticMenuMobileActive,
+        'layout-rtl': isRTL,
+        'layout-rightpanel-active': rightPanelActive}" [class]="'layout-menu-'+menuTheme+ ' layout-topbar-'+topbarTheme">
 
     <app-topbar></app-topbar>
-    <div class="layout-menu-container" (click)="onMenuClick($event)">
-        <div class=" menu-scroll-content">
-            <div class="search-input">
-                <input type="text" placeholder="Search"/>
-                <i class="pi pi-search"></i>
-            </div>
+
+    <app-rightpanel></app-rightpanel>
+
+    <div class="menu-wrapper" (click)="onMenuClick($event)">
+        <div class="layout-menu-container">
             <app-menu></app-menu>
-            <div class="layout-menu-footer">
-                <span class="layout-menu-footer-title">Tasks Overview</span>
-
-                <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
-                Today
-
-                <p-progressBar [value]="80" [showValue]="false"></p-progressBar>
-                Overall
-            </div>
         </div>
     </div>
 
     <div class="layout-main">
-        <div class="layout-main-content">
+        <app-breadcrumb></app-breadcrumb>
+
+        <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
 
@@ -35,6 +30,6 @@
 
     <app-config></app-config>
 
-    <div class="layout-mask"></div>
+    <div *ngIf="staticMenuMobileActive" class="layout-mask modal-in"></div>
 
 </div>

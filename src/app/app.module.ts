@@ -79,6 +79,8 @@ import {AppMainComponent} from './app.main.component';
 import {AppConfigComponent} from './app.config.component';
 import {AppMenuComponent} from './app.menu.component';
 import {AppMenuitemComponent} from './app.menuitem.component';
+import {AppRightPanelComponent} from './app.rightpanel.component';
+import {AppBreadcrumbComponent} from './app.breadcrumb.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
@@ -124,7 +126,9 @@ import {IconService} from './demo/service/iconservice';
 import {NodeService} from './demo/service/nodeservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
+
 import {MenuService} from './app.menu.service';
+import {AppBreadcrumbService} from './app.breadcrumb.service';
 
 @NgModule({
     imports: [
@@ -207,6 +211,8 @@ import {MenuService} from './app.menu.service';
         AppConfigComponent,
         AppMenuComponent,
         AppMenuitemComponent,
+        AppRightPanelComponent,
+        AppBreadcrumbComponent,
         AppTopBarComponent,
         AppFooterComponent,
         DashboardDemoComponent,
@@ -249,7 +255,7 @@ import {MenuService} from './app.menu.service';
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService
+        PhotoService, ProductService, MenuService, AppBreadcrumbService
     ],
     bootstrap: [AppComponent]
 })

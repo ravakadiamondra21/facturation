@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
+import {AppBreadcrumbService} from '../app.breadcrumb.service';
 
 @Component({
     templateUrl: './grid.component.html',
@@ -51,6 +52,13 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 export class GridComponent implements OnInit{
 
     columns: number[];
+
+    constructor(private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Utilities' },
+            { label: 'Grid', routerLink: ['/utilities/grid'] }
+        ]);
+    }
 
     ngOnInit() {
         this.columns = [0, 1, 2, 3, 4, 5];

@@ -11,32 +11,37 @@ import {AppMainComponent} from './app.main.component';
     selector: '[app-menuitem]',
     /* tslint:enable:component-selector */
     template: `
-		<ng-container>
-			<a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items" (keydown.enter)="itemClick($event)"
-			   [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
+        <ng-container>
+            <div *ngIf="root">
+                <span class="layout-menuitem-text">{{item.label}}</span>
+            </div>
+            <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items" (keydown.enter)="itemClick($event)"
+               [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" (mouseenter)="onMouseEnter()" pRipple>
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-               <span>{{item.label}}</span>
-               <i class="pi pi-fw pi-angle-down layout-menuitem-toggler" *ngIf="item.items"></i>
-               <span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
-			</a>
-			<a (click)="itemClick($event)" *ngIf="item.routerLink && !item.items"
-			   [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
-			   [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
+                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+            </a>
+            <a (click)="itemClick($event)" *ngIf="item.routerLink && !item.items"
+               [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink" [routerLinkActiveOptions]="{exact: true}"
+               [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" (mouseenter)="onMouseEnter()" pRipple>
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-               <span>{{item.label}}</span>
-               <i class="pi pi-fw pi-angle-down layout-menuitem-toggler" *ngIf="item.items"></i>
-               <span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
-			</a>
-			<ul *ngIf="item.items && active"
-				[@children]="active ? 'visibleAnimated' : 'hiddenAnimated'">
-				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-				</ng-template>
-			</ul>
-		</ng-container>
+                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+            </a>
+            <div class="layout-menu-tooltip">
+                <div class="layout-menu-tooltip-arrow"></div>
+                <div class="layout-menu-tooltip-text">{{item.label}}</div>
+            </div>
+            <ul *ngIf="item.items" [@children]="root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'">
+                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+                    <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                </ng-template>
+            </ul>
+        </ng-container>
     `,
     host: {
-        '[class.active-menuitem]': 'active'
+        '[class.layout-root-menuitem]': 'root || active',
+        '[class.active-menuitem]': '(active)'
     },
     animations: [
         trigger('children', [
@@ -48,6 +53,12 @@ import {AppMainComponent} from './app.main.component';
             })),
             state('visibleAnimated', style({
                 height: '*'
+            })),
+            state('visible', style({
+                height: '*'
+            })),
+            state('hidden', style({
+                height: '0px'
             })),
             transition('visibleAnimated => hiddenAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
             transition('hiddenAnimated => visibleAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
@@ -119,6 +130,11 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             return true;
         }
 
+        // navigate with hover in horizontal mode
+        if (this.root) {
+            this.app.menuHoverActive = !this.app.menuHoverActive;
+        }
+
         // notify other items
         this.menuService.onMenuStateChange(this.key);
 
@@ -137,10 +153,21 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             // reset horizontal menu
             if (this.app.isHorizontal()) {
                 this.menuService.reset();
+                this.app.menuHoverActive = false;
             }
 
             this.app.overlayMenuActive = false;
             this.app.staticMenuMobileActive = false;
+        }
+    }
+
+    onMouseEnter() {
+        // activate item on hover
+        if (this.root  && this.app.isHorizontal() && this.app.isDesktop()) {
+            if (this.app.menuHoverActive) {
+                this.menuService.onMenuStateChange(this.key);
+                this.active = true;
+            }
         }
     }
 

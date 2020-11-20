@@ -1,252 +1,182 @@
-.dashboard {
-
-    .card {
-        height: 100%;
-    }
-
-    .overview-box {
-        padding: 0 !important;
-        text-align: center;
-        overflow: hidden;
-        margin-bottom: 0px !important;
-
-        i {
-            font-size: 45px;
-            margin-top: 20px;
-            color: #ffffff;
+.layout-dashboard {
+    .traffic {
+        overflow: auto;
+        > span {
+            display: block;
+            margin-top: 2px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: $textColor;
         }
 
-        .overview-box-name {
-            font-size: 20px;
-            display: inline-block;
-            width: 100%;
-            margin: 4px 0 10px 0;
-            color: #ffffff;
-        }
+        .traffic-tabs {
+            margin-top: 28px;
+            @include flex();
+            @include flex-align-center();
+            @include flex-justify-between();
 
-        .overview-box-count {
-            color: #ffffff;
-            font-size: 36px;
-        }
+            .traffic-tab {
+                border-radius: 4px;
+                background-color: $contentAltBgColor;
+                text-align: center;
+                padding: 6px 1px 8px;
+                width: 100%;
+                margin-right: 5px;
+                cursor: pointer;
+                @include transition(background-color $transitionDuration);
 
-        > div:last-child {
-            text-align: left;
-        }
+                &:last-child{
+                    margin: 0;
+                }
 
-        &.overview-box-1 {
-            background-color: $turquoise;
-        }
+                > h6 {
+                    font-weight: bold;
+                    margin: 0;
+                    color: $textColor;
+                    margin-bottom: 10px;
+                }
 
-        &.overview-box-2 {
-            background-color: $blue;
-        }
+                > i {
+                    font-size: 24px;
+                }
 
-        &.overview-box-3 {
-            background-color: $purple;
-        }
+                > span {
+                    display: block;
+                    font-size: 12px;
+                    color: $textColor;
+                    margin-top: 6px;
+                }
 
-        &.overview-box-4 {
-            background-color: $orange;
-        }
-    }
+                &:hover {
+                    background-color: rgba($contentAltBgColor, .4);
+                }
 
-    .task-list {
-        overflow: hidden;
-
-        > .p-panel {
-            min-height: 340px;
-        }
-
-        .p-panel-content {
-            padding: 10px 0 !important;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-
-            li {
-                padding: 8px 16px;
-                border-bottom: 1px solid $dividerColor;
-
-                &:first-child {
-                    margin-top: 10px;
+                &.traffic-tab-active {
+                    background-color: #1c75c6;
+                    background-color: var(--primaryColor,#1c75c6);
+                    > h6,
+                    > span,
+                    i {
+                        color: #ffffff;
+                    }
+                    &:hover {
+                        background-color: #2c84d8;
+                        background-color: var(--primaryLightColor,#2c84d8)
+                    }
                 }
             }
-
-            .p-checkbox {
-                vertical-align: middle;
-                margin-right: 5px;
-            }
-
-            .task-name {
-                vertical-align: middle;
-            }
-
-            i {
-                color: $textSecondaryColor;
-                float: right;
-                font-size: 16px;
-                margin-top: 5px;
-            }
         }
+
+        .traffic-chart {
+            @include flex();
+            @include flex-justify-center();
+        }
+
     }
 
-    .contact-form {
-        overflow: hidden;
+    .goals {
+        background-image: linear-gradient(134deg, #2873D3, #2873D3 99%);
+        background-image: linear-gradient(134deg, var(--primaryLightColor,#2873D3), var(--primaryColor,#2873D3) 99%);
 
-        .p-panel {
-            min-height: 340px;
-        }
-
-        .p-col-12 {
-            padding: 10px 10px;
-        }
-
-        .p-button {
-            margin-top: 20px;
-        }
-    }
-
-    .contacts {
-        overflow: hidden;
-
-        > .p-panel {
-            min-height: 340px;
-        }
-
-        .p-panel-content{
-            padding: 15px 0 10px 0 !important;
-        }
-
-        ul {
-            list-style-type: none;
+        .card-header {
             padding: 0;
+            > h6 {
+                color: #ffffff;
+                color: var(--primaryTextColor,#ffffff);
+            }
+
+            > span {
+                color: #ffffff;
+                color: var(--primaryTextColor,#ffffff);
+                font-size: 11px;
+                display: block;
+
+                > span {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        > span {
+            color: #ffffff;
+            color: var(--primaryTextColor,#ffffff);
+            opacity: 0.8;
+            font-size: 12px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .goal-graph {
+            @include flex();
+            @include flex-justify-center();
+            padding: 24px 0;
+            > img {
+                width: 100%;
+                max-width: 240px;
+                height: auto;
+            }
+
+        }
+    }
+
+    .leaderboard {
+        height: 100%;
+        > ul {
             margin: 0;
+            padding: 0;
+            list-style-type: none;
+            > li {
+                @include flex();
+                @include flex-align-center();
+                @include flex-justify-between();
+                margin-top: 6px;
+                padding: 5px 0;
+                padding: 6px;
+                @include border-radius(4px);
+                cursor: pointer;
+                &:hover {
+                    background-color: rgba($contentAltBgColor,.7);
+                }
 
-            li {
-                border-bottom: 1px solid $dividerColor;
+                .person {
+                    @include flex();
+                    @include flex-align-center();
 
-                a {
-                    padding: 9px;
-                    width: 100%;
-                    box-sizing: border-box;
-                    text-decoration: none;
-                    position: relative;
-                    display: block;
-                    @include border-radius(2px);
-                    @include transition(background-color .2s);
+                    > img {
+                        width: 32px;
+                        height: 32px;
+                        margin-right: 12px;
+                    }
 
-                    .name {
-                        position: absolute;
-                        right: 10px;
-                        top: 10px;
-                        font-size: 18px;
+                    > p {
+                        margin: 0;
                         color: $textColor;
                     }
-
-                    .email {
-                        position: absolute;
-                        right: 10px;
-                        top: 30px;
-                        font-size: 14px;
-                        color: $textSecondaryColor;
-                    }
-
-                    &:hover {
-                        cursor: pointer;
-                        background-color: $listItemHoverBgColor;
-                    }
                 }
 
-                &:last-child {
-                    border: 0;
+                .person-numbers {
+                    @include flex();
+                    @include flex-align-center();
+
+                    > h6 {
+                        margin: 0;
+                        color: $textColor;
+                        font-weight: 600;
+                        margin-right: 12px;
+                    }
+
+                    > i {
+                        color: #00acac;
+                    }
                 }
             }
         }
     }
-
-    .activity-list {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-
-        li {
-            border-bottom: 1px solid $dividerColor;
-            padding: 15px 0 9px 9px;
-
-            .count {
-                font-size: 24px;
-                color: #ffffff;
-                background-color: #03A9F4;
-                font-weight: bold;
-                display: inline-block;
-                padding: 5px;
-                @include border-radius(2px);
-            }
-
-            &:first-child {
-                border-top: 1px solid $dividerColor;
-            }
-
-            &:last-child {
-                border: 0;
-            }
-
-            .p-grid {
-                margin-top: .25em;
-            }
-
-            .p-col-6:first-child {
-                font-size: 18px;
-            }
-
-            .p-col-6:last-child {
-                text-align: right;
-                color: $textSecondaryColor;
-            }
-        }
-    }
-
-    .timeline {
-        height: 100%;
-        box-sizing: border-box;
-
-        > .p-grid {
-            .p-col-3 {
-                font-size: 14px;
-                position: relative;
-                border-right: 1px solid #bdbdbd;
-
-                i {
-                    background-color: #ffffff;
-                    font-size: 24px;
-                    position: absolute;
-                    top: 6px;
-                    right: -12px;
-                }
-            }
-
-            .p-col-9 {
-                padding-left: 1.5em;
-                .event-owner {
-
-                }
-
-                .event-text {
-                    color: $textSecondaryColor;
-                    font-size: 14px;
-                    display: block;
-                    padding-bottom: 20px;
-                }
-
-                .event-content {
-                    img {
-                        width: 100%;
-                    }
-                }
-            }
+    .sales {
+        .card-header {
+            margin-bottom: 8px;
         }
     }
 
@@ -271,6 +201,70 @@
         &.status-lowstock {
             background: #FEEDAF;
             color: #8A5340;
+        }
+    }
+}
+
+.layout-rtl {
+    .layout-dashboard {
+        .sale-graph {
+            .order-tabs {
+                .order-tab {
+                    &:first-child {
+                        margin-right: 0;
+                        margin-left: 26px;
+                    }
+                }
+            }
+        }
+        .traffic {
+            .traffic-tabs {
+                .traffic-tab {
+                    margin-right: 0px;
+                    margin-left: 5px;
+                }
+            }
+        }
+        .leaderboard {
+            > ul {
+                li {
+                    background-color: $contentBgColor;
+                    cursor: pointer;
+                    .person {
+                        > img {
+                            margin-right: 0px;
+                            margin-left: 12px;
+                        }
+                    }
+                    .person-numbers {
+                        > h6 {
+                            margin-right: 0px;
+                            margin-left: 12px;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $contentAltBgColor;
+                    }
+                }
+            }
+        }
+
+        .product-list {
+            > ul {
+                li {
+                    .product {
+                        > img {
+                            margin-right: 0px;
+                            margin-left: 12px;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $contentAltBgColor;
+                    }
+                }
+            }
         }
     }
 }

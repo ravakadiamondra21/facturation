@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './documentation.component.html',
@@ -27,4 +28,11 @@ import {Component} from '@angular/core';
     ]
 })
 export class DocumentationComponent {
+
+    constructor(private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Start' },
+            { label: 'Documentation', routerLink: ['/documentation'] }
+        ]);
+    }
 }

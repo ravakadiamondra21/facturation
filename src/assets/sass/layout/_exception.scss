@@ -1,27 +1,25 @@
 .exception-body {
-    min-height: 100vh;
+    height: 100vh;
 
     .exception-top {
-        height: 30vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+        height: 30%;
+        @include flex();
+        @include flex-align-center();
+        @include flex-justify-center();
 
         img {
             width: 100px;
             display: block;
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            margin-left: -50px;
         }
     }
 
     .exception-bottom {
+        height: 70%;
+        @include flex();
+        @include flex-align-center();
+        flex-direction: column;
+
         .exception-wrapper {
-            margin: 0 auto;
-            width: 500px;
             padding: 50px;
             text-align: center;
             box-sizing: border-box;
@@ -47,7 +45,7 @@
             }
 
             .logo-icon {
-                width: 56px;
+                height: 56px;
                 display: block;
                 margin: 0 auto 20px auto;
             }
@@ -59,7 +57,7 @@
     }
 
     &.error-page {
-        background-color: #ce5051;
+        background: linear-gradient(0deg, #781919 0%, #CE5051 100%);
 
         .exception-top {
             background-color: #f0f3f5;
@@ -67,7 +65,7 @@
     }
 
     &.access-page {
-        background-color: #ce5051;
+        background: linear-gradient(0deg, #812038 0%, #f16383 100%);
 
         .exception-top {
             background-color: #f0f3f5;
@@ -75,7 +73,7 @@
     }
 
     &.notfound-page {
-        background-color: #2d353c;
+        background: linear-gradient(0deg, #006D6D 0%, #00ACAC 100%);
 
         .exception-top {
             background-color: #f0f3f5;
@@ -91,4 +89,5 @@
             }
         }
     }
+
 }

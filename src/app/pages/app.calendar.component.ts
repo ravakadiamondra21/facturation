@@ -3,9 +3,18 @@ import {EventService} from '../demo/service/eventservice';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import {AppBreadcrumbService} from '../app.breadcrumb.service';
 
 @Component({
-    templateUrl: './app.calendar.component.html'
+    templateUrl: './app.calendar.component.html',
+    styles: [`
+        @media screen and (max-width: 960px) {
+            :host ::ng-deep .fc-header-toolbar {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    `]
 })
 export class AppCalendarComponent implements OnInit{
 
@@ -21,7 +30,12 @@ export class AppCalendarComponent implements OnInit{
 
     clickedEvent = null;
 
-    constructor(private eventService: EventService) {}
+    constructor(private eventService: EventService, private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Pages' },
+            { label: 'Calendar', routerLink: ['/pages/calendar'] }
+        ]);
+    }
 
     ngOnInit() {
         this.eventService.getEvents().then(events => {this.events = events; });

@@ -1,25 +1,39 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './panelsdemo.component.html',
     styles: [`
-		:host ::ng-deep button {
-			margin-right: .25em;
-			margin-left: .25em;
-		}
+        :host ::ng-deep button {
+            margin-right: .25em;
+            margin-left: .25em;
+        }
 
-		:host ::ng-deep .p-splitbutton button {
-			margin-right: 0;
-			margin-left: 0;
-		}`
-    ]
+        :host ::ng-deep .p-splitbutton button {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        @media screen and (max-width: 960px) {
+            .card.toolbar-demo {
+                overflow: auto;
+            }
+        }
+    `]
 })
 export class PanelsDemoComponent implements OnInit {
 
     items: MenuItem[];
 
     cardMenu: MenuItem[];
+
+    constructor(private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Panel', routerLink: ['/uikit/panel'] }
+        ]);
+    }
 
     ngOnInit() {
         this.items = [
