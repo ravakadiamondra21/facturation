@@ -200,16 +200,19 @@ export class AppConfigComponent implements OnInit {
 
         const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
         const themeHref = 'assets/theme/' + theme + '/theme-' + this.app.layoutMode + '.css';
-        this.replaceLink(themeLink, themeHref);
+        this.replaceLink(themeLink, themeHref, this.app['refreshTrafficChart']);
     }
 
     isIE() {
         return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
     }
 
-    replaceLink(linkElement, href) {
+    replaceLink(linkElement, href, callback?) {
         if (this.isIE()) {
             linkElement.setAttribute('href', href);
+            if (callback) {
+                callback();
+            }
         } else {
             const id = linkElement.getAttribute('id');
             const cloneLinkElement = linkElement.cloneNode(true);
@@ -222,6 +225,10 @@ export class AppConfigComponent implements OnInit {
             cloneLinkElement.addEventListener('load', () => {
                 linkElement.remove();
                 cloneLinkElement.setAttribute('id', id);
+
+                if (callback) {
+                    callback();
+                }
             });
         }
     }

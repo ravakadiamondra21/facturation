@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
 import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import { AppMainComponent } from '../../app.main.component';
 
 @Component({
     templateUrl: './dashboard.component.html'
@@ -42,7 +43,7 @@ export class DashboardDemoComponent implements OnInit {
     productsLastWeek: Product[];
 
     constructor(private productService: ProductService,
-                private breadcrumbService: AppBreadcrumbService) {
+                private breadcrumbService: AppBreadcrumbService, private app: AppMainComponent) {
         this.breadcrumbService.setItems([
             { label: 'Favorites' },
             { label: 'Dashboard', routerLink: ['/'] }
@@ -111,20 +112,7 @@ export class DashboardDemoComponent implements OnInit {
             }
         };
 
-        this.trafficChart = {
-            labels: [
-                'Add View',
-                'Total View',
-            ],
-            datasets: [{
-                data:  [48, 52],
-                backgroundColor: [
-                    getComputedStyle(document.body).getPropertyValue('--primary-dark-color') || '#2c84d8',
-                    getComputedStyle(document.body).getPropertyValue('--content-alt-bg-color') || '#B1B9C9',
-                ],
-                borderWidth: 0,
-            }]
-        };
+        this.trafficChart = this.getTrafficChartData();
 
         this.trafficOptions = {
             legend: {
@@ -132,6 +120,10 @@ export class DashboardDemoComponent implements OnInit {
             },
             responsive: true,
             cutoutPercentage: 70
+        };
+
+        this.app['refreshTrafficChart'] = () => {
+            this.trafficChart = this.getTrafficChartData();
         };
 
         this.goalChart = {
@@ -168,6 +160,23 @@ export class DashboardDemoComponent implements OnInit {
             {name: 'This Week', code: '0'},
             {name: 'Last Week', code: '1'}
         ];
+    }
+
+    getTrafficChartData() {
+        return {
+            labels: [
+                'Add View',
+                'Total View',
+            ],
+            datasets: [{
+                data:  [48, 52],
+                backgroundColor: [
+                    getComputedStyle(document.body).getPropertyValue('--primary-dark-color') || '#2c84d8',
+                    getComputedStyle(document.body).getPropertyValue('--content-alt-bg-color') || '#B1B9C9',
+                ],
+                borderWidth: 0,
+            }]
+        };
     }
 
     changeDataset(event) {
