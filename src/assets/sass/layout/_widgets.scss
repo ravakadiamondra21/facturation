@@ -656,12 +656,12 @@
     .pricing-header {
         padding: 18px 12px;
         border-bottom: 4px solid #2c84d8;
-        border-bottom: 4px solid var(--primaryColor, #2c84d8);
+        border-bottom: 4px solid var(--primary-dark-color, #2c84d8);
 
         .price {
             font-size: 24px;
             color: #2c84d8;
-            color: var(--primaryColor, #2c84d8);
+            color: var(--primary-dark-color, #2c84d8);
             margin: 0;
             margin-bottom: 6px;
         }

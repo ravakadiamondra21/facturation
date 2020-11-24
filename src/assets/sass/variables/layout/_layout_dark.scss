@@ -11,7 +11,7 @@ $menuTooltipTextColor:#ffffff !default;
 
 
 :root{
-    --contentAltBgColor:#{$contentAltBgColor};
+    --content-alt-bg-color:#{$contentAltBgColor};
 }
 
 @import './_layout_common';

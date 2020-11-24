@@ -38,7 +38,7 @@
         height: 52px;
         line-height: 52px;
         background-color: #2c84d8;
-        background-color: var(--primaryColor, #2c84d8);
+        background-color: var(--primary-dark-color, #2c84d8);
         text-align: center;
         top: 230px;
         left: -51px;
@@ -57,7 +57,7 @@
 
         &:hover {
             background-color: #2873D3;
-            background-color: var(--primaryLightColor, #2873D3);
+            background-color: var(--primary-color, #2873D3);
         }
     }
 
@@ -75,7 +75,7 @@
             padding: 18px 12px;
             margin-bottom: 12px;
             background-image: linear-gradient(180deg, #2873D3 10%, #2c84d8 100%);
-            background-image: linear-gradient(180deg, var(--primaryColor, #2873D3) 10%, var(--primaryLightColor, #2c84d8) 100%);
+            background-image: linear-gradient(180deg, var(--primary-dark-color, #2873D3) 10%, var(--primary-color, #2c84d8) 100%);
 
             > h3 {
                 font-size: 16px;
@@ -83,14 +83,14 @@
                 margin: 0;
                 margin-bottom: 12px;
                 color: #ffffff;
-                color: var(--primaryTextColor, #ffffff);
+                color: var(--primary-color-text, #ffffff);
             }
 
             > span {
                 font-size: 12px;
                 display: block;
                 color: #ffffff;
-                color: var(--primaryTextColor, #ffffff);
+                color: var(--primary-color-text, #ffffff);
             }
         }
 

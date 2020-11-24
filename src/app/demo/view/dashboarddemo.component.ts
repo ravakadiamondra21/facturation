@@ -119,8 +119,8 @@ export class DashboardDemoComponent implements OnInit {
             datasets: [{
                 data:  [48, 52],
                 backgroundColor: [
-                    getComputedStyle(document.body).getPropertyValue('--primaryColor') || '#2c84d8',
-                    getComputedStyle(document.body).getPropertyValue('--contentAltBgColor') || '#B1B9C9',
+                    getComputedStyle(document.body).getPropertyValue('--primary-dark-color') || '#2c84d8',
+                    getComputedStyle(document.body).getPropertyValue('--content-alt-bg-color') || '#B1B9C9',
                 ],
                 borderWidth: 0,
             }]
