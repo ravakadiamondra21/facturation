@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
