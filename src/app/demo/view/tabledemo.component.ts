@@ -11,7 +11,7 @@ import {AppBreadcrumbService} from '../../app.breadcrumb.service';
     styleUrls: ['./tabledemo.scss'],
     styles: [`
         @media screen and (max-width: 960px) {
-            :host ::ng-deep .p-datatable.p-datatable-customers .p-datatable-tbody > tr > td:nth-child(6) {
+            :host ::ng-deep .p-datatable.p-datatable-customers.rowexpand-table .p-datatable-tbody > tr > td:nth-child(6) {
                 display: flex;
             }
         }
