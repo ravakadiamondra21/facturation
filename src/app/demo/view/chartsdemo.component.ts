@@ -16,6 +16,10 @@ export class ChartsDemoComponent implements OnInit {
 
     radarData: any;
 
+    chartsOptions: any;
+
+    chartsOptions2: any;
+
     constructor(private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'UI Kit' },
@@ -124,6 +128,44 @@ export class ChartsDemoComponent implements OnInit {
                     data: [28, 48, 40, 19, 96, 27, 100]
                 }
             ]
+        };
+
+        this.chartsOptions = {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: '#A0A7B5'
+                }
+            },
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: '#A0A7B5'
+                    },
+                    gridLines: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: '#A0A7B5'
+                    },
+                    gridLines: {
+                        color:  'rgba(160, 167, 181, .3)',
+                    }
+                }],
+            }
+        };
+
+        this.chartsOptions2 = {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: '#A0A7B5'
+                }
+            },
+            responsive: true
         };
     }
 }
