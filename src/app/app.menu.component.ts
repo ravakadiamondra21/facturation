@@ -20,7 +20,7 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.modelGrouped = [
             {
-                label: 'Favorites',
+                label: 'Favorites', icon: 'pi pi-fw pi-home',
                 items: [
                     {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}
                 ]
@@ -117,7 +117,7 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Start',
+                label: 'Start', icon: 'pi pi-fw pi-download',
                 items: [
                     {
                         label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
@@ -227,7 +227,7 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },
                     {
-                        label: 'Start',
+                        label: 'Start', icon: 'pi pi-fw pi-download',
                         items: [
                             {
                                 label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
