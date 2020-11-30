@@ -18,7 +18,7 @@ import {AppMainComponent} from './app.main.component';
                     </a>
 
                     <ul class="layout-topbar-actions">
-                        <li #searchItem class="search-item topbar-item" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === searchItem}">
+                        <li #searchItem class="search-item topbar-item" [ngClass]="{'active-topmenuitem': app.search}">
                             <a href="#" (click)="app.onTopbarItemClick($event,searchItem)">
                                 <span class="topbar-icon">
                                     <i class="pi pi-search"></i>
@@ -36,7 +36,7 @@ import {AppMainComponent} from './app.main.component';
                                 <div class="search-input-wrapper p-fluid">
                                     <span class="p-input-icon-left">
                                         <i class="pi pi-search"></i>
-                                        <input type="text" pInputText placeholder="Search..."/>
+                                        <input type="text" pInputText placeholder="Search..." (click)="app.searchClick = true;"/>
                                     </span>
                                 </div>
                             </ul>

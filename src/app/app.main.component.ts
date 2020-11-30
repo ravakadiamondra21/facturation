@@ -52,6 +52,10 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     menuHoverActive = false;
 
+    searchClick = false;
+
+    search = false;
+
     constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig) { }
 
     ngOnInit() {
@@ -90,6 +94,11 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
                 this.unblockBodyScroll();
             }
 
+            if (!this.searchClick) {
+                this.search = false;
+            }
+
+            this.searchClick = false;
             this.configClick = false;
             this.topbarItemClick = false;
             this.menuClick = false;
@@ -131,6 +140,11 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
             this.activeTopbarItem = null;
         } else {
             this.activeTopbarItem = item; }
+
+        if (item.className === 'search-item topbar-item') {
+            this.search = !this.search;
+            this.searchClick = !this.searchClick;
+        }
 
         event.preventDefault();
     }
