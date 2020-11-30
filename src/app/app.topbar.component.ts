@@ -205,7 +205,7 @@ import {AppMainComponent} from './app.main.component';
                                 <li role="menuitem">
                                     <a href="#" (click)="app.onTopbarSubItemClick($event)">
                                         <i class="pi pi-cog"></i>
-                                        <h6>Setting</h6>
+                                        <h6>Settings</h6>
                                     </a>
                                 </li>
                                 <li role="menuitem">
