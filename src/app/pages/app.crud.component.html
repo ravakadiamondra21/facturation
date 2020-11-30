@@ -64,7 +64,7 @@
                             <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
                         </td>
                         <td><span class="p-column-title">Status</span>
-                            <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+                            <span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
                         </td>
 						<td>
 							<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
@@ -118,7 +118,7 @@
 				<div class="p-formgrid p-grid">
 					<div class="p-field p-col">
 						<label for="price">Price</label>
-						<p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                        <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
 					</div>
 					<div class="p-field p-col">
 						<label for="quantity">Quantity</label>
