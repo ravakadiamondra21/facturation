@@ -252,6 +252,7 @@
 }
 
 .likes {
+    overflow: auto;
     height: 100%;
 
     .likes-chart {
