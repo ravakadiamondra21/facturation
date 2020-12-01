@@ -108,14 +108,12 @@ export class AppMenuComponent implements OnInit &#123;
 
     export class AppMenuComponent implements OnInit &#123;
 
-    modelExpandedRootMenuitems: any[];
-
-    modelCollapsedRootMenuitems: any[];
+    model: any[];
 
     constructor(public app: AppComponent) &#123;&#125;
 
     ngOnInit() &#123;
-        this.modelExpandedRootMenuitems = [
+        this.model = [
             &#123;
                 label: 'Favorites', icon: 'pi pi-fw pi-home',
                 items: [
@@ -221,118 +219,6 @@ export class AppMenuComponent implements OnInit &#123;
                     &#125;,
                     &#123;
                         label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
-                    &#125;
-                ]
-            &#125;
-        ];
-
-        this.modelCollapsedRootMenuitems = [
-            &#123;
-                label: 'Main Menu',
-                icon: 'pi pi-fw pi-home',
-                items: [
-                    &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;,
-                    &#123;
-                        label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
-                        items: [
-                            &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
-                            &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,
-                            &#123;label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,
-                            &#123;label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,
-                            &#123;label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']&#125;,
-                            &#123;label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']&#125;,
-                            &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,
-                            &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,
-                            &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,
-                            &#123;label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']&#125;,
-                            &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']&#125;,
-                            &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,
-                            &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
-                            &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
-                            &#123;label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']&#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['utilities'],
-                        items: [
-                            &#123;label: 'Display', icon: 'pi pi-fw pi-desktop', routerLink: ['utilities/display']&#125;,
-                            &#123;label: 'Elevation', icon: 'pi pi-fw pi-external-link', routerLink: ['utilities/elevation']&#125;,
-                            &#123;label: 'FlexBox', icon: 'pi pi-fw pi-directions', routerLink: ['utilities/flexbox']&#125;,
-                            &#123;label: 'Icons', icon: 'pi pi-fw pi-search', routerLink: ['utilities/icons']&#125;,
-                            &#123;label: 'Text', icon: 'pi pi-fw pi-pencil', routerLink: ['utilities/text']&#125;,
-                            &#123;label: 'Widgets', icon: 'pi pi-fw pi-star-o', routerLink: ['utilities/widgets']&#125;,
-                            &#123;label: 'Grid System', icon: 'pi pi-fw pi-th-large', routerLink: ['utilities/grid']&#125;,
-                            &#123;label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', routerLink: ['utilities/spacing']&#125;,
-                            &#123;label: 'Typography', icon: 'pi pi-fw pi-align-center', routerLink: ['utilities/typography']&#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
-                        items: [
-                            &#123;label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']&#125;,
-                            &#123;label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']&#125;,
-                            &#123;label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'&#125;,
-                            &#123;label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']&#125;,
-                            &#123;label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/pages/invoice']&#125;,
-                            &#123;label: 'Help', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help']&#125;,
-                            &#123;label: 'Error', icon: 'pi pi-fw pi-times-circle', routerLink: ['/error']&#125;,
-                            &#123;label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']&#125;,
-                            &#123;label: 'Access Denied', icon: 'pi pi-fw pi-lock', routerLink: ['/access']&#125;,
-                            &#123;label: 'Empty', icon: 'pi pi-fw pi-circle-off', routerLink: ['/pages/empty']&#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
-                        items: [
-                            &#123;
-                                label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
-                                items: [
-                                    &#123;
-                                        label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
-                                        items: [
-                                            &#123;label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'&#125;,
-                                            &#123;label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'&#125;,
-                                            &#123;label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'&#125;,
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
-                                        items: [
-                                            &#123;label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'&#125;
-                                        ]
-                                    &#125;,
-                                ]
-                            &#125;,
-                            &#123;
-                                label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
-                                items: [
-                                    &#123;
-                                        label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
-                                        items: [
-                                            &#123;label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'&#125;,
-                                            &#123;label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'&#125;,
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
-                                        items: [
-                                            &#123;label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'&#125;,
-                                        ]
-                                    &#125;,
-                                ]
-                            &#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Start', icon: 'pi pi-fw pi-download',
-                        items: [
-                            &#123;
-                                label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
-                            &#125;,
-                            &#123;
-                                label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
-                            &#125;
-                        ]
                     &#125;
                 ]
             &#125;

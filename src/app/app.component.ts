@@ -22,8 +22,6 @@ export class AppComponent implements OnInit{
 
     ripple: boolean;
 
-    expandedRootMenuitems = true;
-
     constructor(private primengConfig: PrimeNGConfig) {}
 
     ngOnInit() {

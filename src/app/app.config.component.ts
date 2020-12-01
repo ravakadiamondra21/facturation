@@ -125,20 +125,6 @@ import { AppMainComponent } from './app.main.component';
                             </div>
                         </div>
                     </div>
-
-                    <div id="menutypes-panel" class="layout-config-section options">
-                        <span class="section-name">Root Menu Items </span>
-                        <div class="p-grid layout-config-options">
-                            <div class="p-col-12 p-md-6">
-                                <p-radioButton name="expandedRootMenuitems" [value]="true" [(ngModel)]="app.expandedRootMenuitems" inputId="expandedRootMenuitems1"></p-radioButton>
-                                <label for="expandedRootMenuitems1">Expanded</label>
-                            </div>
-                            <div class="p-col-12 p-md-6">
-                                <p-radioButton name="expandedRootMenuitems" [value]="false" [(ngModel)]="app.expandedRootMenuitems" inputId="expandedRootMenuitems2"></p-radioButton>
-                                <label for="expandedRootMenuitems2">Collapsed</label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
