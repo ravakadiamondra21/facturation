@@ -32,7 +32,7 @@ import {AppMainComponent} from './app.main.component';
                 <div class="layout-menu-tooltip-arrow"></div>
                 <div class="layout-menu-tooltip-text">{{item.label}}</div>
             </div>
-            <ul *ngIf="item.items" [@children]="root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'">
+            <ul *ngIf="(item.items && root) || (item.items && active)" [@children]="root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'">
                 <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
                     <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
                 </ng-template>
