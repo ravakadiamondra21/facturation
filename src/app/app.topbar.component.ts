@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { AppComponent } from './app.component';
 import {AppMainComponent} from './app.main.component';
 
 @Component({
@@ -8,7 +9,7 @@ import {AppMainComponent} from './app.main.component';
             <div class="layout-topbar-wrapper">
                 <div class="layout-topbar-left">
                     <div class="layout-topbar-logo" id="logolink" style="cursor: pointer; outline: none;" routerLink="/">
-                        <img id="app-logo" src="assets/layout/images/logo-poseidon.png" alt="poseidon-layout">
+                        <img id="app-logo" [src]="'assets/layout/images/logo-' + (appComponent.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark') + '.png'" alt="poseidon-layout">
                     </div>
                 </div>
 
@@ -240,6 +241,6 @@ import {AppMainComponent} from './app.main.component';
 })
 export class AppTopBarComponent {
 
-    constructor(public app: AppMainComponent) {}
+    constructor(public app: AppMainComponent, private appComponent: AppComponent) {}
 
 }

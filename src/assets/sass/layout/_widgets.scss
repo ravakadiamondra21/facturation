@@ -255,6 +255,10 @@
     overflow: auto;
     height: 100%;
 
+    p-chart {
+        width: 100%;
+    }
+
     .likes-chart {
         padding: 12px 8px;
         height: calc(100% - 25px);

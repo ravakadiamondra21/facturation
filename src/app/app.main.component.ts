@@ -1,6 +1,7 @@
 import {Component, AfterViewInit, Renderer2, OnDestroy, OnInit} from '@angular/core';
 import { MenuService } from './app.menu.service';
 import { PrimeNGConfig } from 'primeng/api';
+import { AppComponent } from './app.component';
 
 @Component({
     selector: 'app-main',
@@ -9,12 +10,6 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     menuMode = 'static';
-
-    topbarTheme = 'light';
-
-    menuTheme = 'dim';
-
-    layoutMode = 'light';
 
     isRTL = false;
 
@@ -56,7 +51,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     search = false;
 
-    constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig) { }
+    constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig, private appComponent: AppComponent) { }
 
     ngOnInit() {
         this.primengConfig.ripple = true;
