@@ -127,7 +127,7 @@ import { AppMainComponent } from './app.main.component';
                     </div>
 
                     <div id="menutypes-panel" class="layout-config-section options">
-                        <span class="section-name">Root Menu Item </span>
+                        <span class="section-name">Root Menu Items </span>
                         <div class="p-grid layout-config-options">
                             <div class="p-col-12 p-md-6">
                                 <p-radioButton name="expandedRootMenuitems" [value]="true" [(ngModel)]="app.expandedRootMenuitems" inputId="expandedRootMenuitems1"></p-radioButton>
