@@ -22,7 +22,7 @@ export class AppComponent implements OnInit{
 
     ripple: boolean;
 
-    grouped = true;
+    expandedRootMenuitems = true;
 
     constructor(private primengConfig: PrimeNGConfig) {}
 

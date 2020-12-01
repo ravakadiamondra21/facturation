@@ -5,20 +5,20 @@ import {AppComponent} from './app.component';
     selector: 'app-menu',
     template: `
         <ul class="layout-menu">
-            <li app-menuitem *ngFor="let item of (app.grouped ? modelGrouped : modelUngrouped); let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            <li app-menuitem *ngFor="let item of (app.expandedRootMenuitems ? modelExpandedRootMenuitems : modelCollapsedRootMenuitems); let i = index;" [item]="item" [index]="i" [root]="true"></li>
         </ul>
     `
 })
 export class AppMenuComponent implements OnInit {
 
-    modelGrouped: any[];
+    modelExpandedRootMenuitems: any[];
 
-    modelUngrouped: any[];
+    modelCollapsedRootMenuitems: any[];
 
     constructor(public app: AppComponent) {}
 
     ngOnInit() {
-        this.modelGrouped = [
+        this.modelExpandedRootMenuitems = [
             {
                 label: 'Favorites', icon: 'pi pi-fw pi-home',
                 items: [
@@ -129,7 +129,7 @@ export class AppMenuComponent implements OnInit {
             }
         ];
 
-        this.modelUngrouped = [
+        this.modelCollapsedRootMenuitems = [
             {
                 label: 'Main Menu',
                 icon: 'pi pi-fw pi-home',

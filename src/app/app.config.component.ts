@@ -127,15 +127,15 @@ import { AppMainComponent } from './app.main.component';
                     </div>
 
                     <div id="menutypes-panel" class="layout-config-section options">
-                        <span class="section-name">Menu Type</span>
+                        <span class="section-name">Root Menu Item </span>
                         <div class="p-grid layout-config-options">
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="grouped" [value]="true" [(ngModel)]="app.grouped" inputId="grouped1"></p-radioButton>
-                                <label for="grouped1">Grouped</label>
+                                <p-radioButton name="expandedRootMenuitems" [value]="true" [(ngModel)]="app.expandedRootMenuitems" inputId="expandedRootMenuitems1"></p-radioButton>
+                                <label for="expandedRootMenuitems1">Expanded</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="grouped" [value]="false" [(ngModel)]="app.grouped" inputId="grouped2"></p-radioButton>
-                                <label for="grouped2">Ungrouped</label>
+                                <p-radioButton name="expandedRootMenuitems" [value]="false" [(ngModel)]="app.expandedRootMenuitems" inputId="expandedRootMenuitems2"></p-radioButton>
+                                <label for="expandedRootMenuitems2">Collapsed</label>
                             </div>
                         </div>
                     </div>

@@ -46,7 +46,7 @@ Run 'ng help' for more options.
             </p>
 
             <h4>Template</h4>
-            <p>Main layout is the html view of the app.component.ts, it is divided into a couple of sections such as topbar, profile, menu and footer. Here is the code for
+            <p>Main layout is the html view of the app.component.ts, it is divided into a couple of sections such as topbar, right panel, menu and footer. Here is the code for
                 the main template. The component class app.component.ts implements the logic such as opening menus, layout modes and so on.
             </p>
 <app-code ngPreserveWhitespaces ngNonBindable>
@@ -108,14 +108,14 @@ export class AppMenuComponent implements OnInit &#123;
 
     export class AppMenuComponent implements OnInit &#123;
 
-    modelGrouped: any[];
+    modelExpandedRootMenuitems: any[];
 
-    modelUngrouped: any[];
+    modelCollapsedRootMenuitems: any[];
 
     constructor(public app: AppComponent) &#123;&#125;
 
     ngOnInit() &#123;
-        this.modelGrouped = [
+        this.modelExpandedRootMenuitems = [
             &#123;
                 label: 'Favorites', icon: 'pi pi-fw pi-home',
                 items: [
@@ -226,7 +226,7 @@ export class AppMenuComponent implements OnInit &#123;
             &#125;
         ];
 
-        this.modelUngrouped = [
+        this.modelCollapsedRootMenuitems = [
             &#123;
                 label: 'Main Menu',
                 icon: 'pi pi-fw pi-home',
@@ -356,7 +356,7 @@ npm install primeicons@latest --save
 
  <app-code ngPreserveWhitespaces ngNonBindable lang="json">
 "styles": [
-    "styles.scss"                   //your styles and overrides
+    "styles.scss"      //your styles and overrides
 ],
 </app-code>
 
@@ -439,7 +439,7 @@ sass src/assets/theme-myown/theme.scss src/assets/theme-myown/theme.css
             <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
             so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-sass --watch src/:src/ --no-source-map
+sass --watch src/assets:src/assets --no-source-map
 </app-code>
 
             <p>Same can also be applied to layout itself;</p>
@@ -463,7 +463,7 @@ $primaryTextColor:#ffffff;
 @import '../../sass/layout/_layout';
 </app-code>
 
-            <p>For both cases, several .scss files such as _layout.scss, _theme.scss or _variables.scss has to be present relative to your scss files, these are available inside the resources/sass folder in the distribution.</p>
+            <p>For both cases, several .scss files such as _layout.scss, _theme.scss or _variables.scss has to be present relative to your scss files, these are available inside the assets/sass folder in the distribution.</p>
             <p>In case you'd like to customize the structure not just the colors, the _variables.scss is where the structural variables (e.g. font size, paddings) for the layout are defined.</p>
 <h5>sass/variables/layout/_layout_common.scss</h5>
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
@@ -1233,9 +1233,9 @@ $galleriaThumbnailNavigatorHeight:2rem !default;
             <p>Menu has 3 modes, static, overlay and horizontal. Layout container element in application.html is used to define which mode to use by adding specific classes. List
             below indicates the style classes for each mode. In addition menu</p>
             <ul>
-                <li>Static: "layout-wrapper menu-layout-static"</li>
-                <li>Overlay: "layout-wrapper menu-layout-overlay"</li>
-                <li>Horizontal: "layout-wrapper menu-layout-static menu-layout-horizontal"</li>
+                <li>Static: "layout-wrapper layout-static"</li>
+                <li>Overlay: "layout-wrapper layout-overlay"</li>
+                <li>Horizontal: "layout-wrapper layout-static layout-horizontal"</li>
             </ul>
 
             <p>For example to create a horizontal menu, the div element should be in following form;</p>
