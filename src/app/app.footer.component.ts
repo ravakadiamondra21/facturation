@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
+import {AppComponent} from './app.component';
 
 @Component({
     selector: 'app-footer',
     template: `
         <div class="layout-footer">
             <a id="footerlogolink">
-                <img id="footer-logo" src="assets/layout/images/logo-poseidon.png" alt="posedion-layout">
+                <img id="footer-logo"
+                     [src]="'assets/layout/images/logo-' + (app.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark') + '.png'" alt="posedion-layout">
             </a>
             <div class="social-icons">
                 <a><i class="pi pi-github"></i></a>
@@ -16,5 +18,8 @@ import {Component} from '@angular/core';
     `
 })
 export class AppFooterComponent {
+
+    constructor(public app: AppComponent) {}
+
 
 }

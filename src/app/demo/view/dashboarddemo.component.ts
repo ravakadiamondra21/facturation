@@ -44,7 +44,7 @@ export class DashboardDemoComponent implements OnInit {
     productsLastWeek: Product[];
 
     constructor(private productService: ProductService,
-                private breadcrumbService: AppBreadcrumbService, private app: AppMainComponent) {
+                private breadcrumbService: AppBreadcrumbService, private appMain: AppMainComponent) {
         this.breadcrumbService.setItems([
             { label: 'Favorites' },
             { label: 'Dashboard', routerLink: ['/'] }
@@ -123,7 +123,7 @@ export class DashboardDemoComponent implements OnInit {
             cutoutPercentage: 70
         };
 
-        this.app['refreshTrafficChart'] = () => {
+        this.appMain['refreshTrafficChart'] = () => {
             this.trafficChart = this.getTrafficChartData();
         };
 

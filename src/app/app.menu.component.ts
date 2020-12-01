@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppMainComponent} from './app.main.component';
+import {AppComponent} from './app.component';
 
 @Component({
     selector: 'app-menu',
@@ -15,7 +15,7 @@ export class AppMenuComponent implements OnInit {
 
     modelUngrouped: any[];
 
-    constructor(public app: AppMainComponent) {}
+    constructor(public app: AppComponent) {}
 
     ngOnInit() {
         this.modelGrouped = [

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {AppMainComponent} from './app.main.component';
 
 @Component({
@@ -9,18 +9,20 @@ import {AppMainComponent} from './app.main.component';
             <div class="layout-topbar-wrapper">
                 <div class="layout-topbar-left">
                     <div class="layout-topbar-logo" id="logolink" style="cursor: pointer; outline: none;" routerLink="/">
-                        <img id="app-logo" [src]="'assets/layout/images/logo-' + (appComponent.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark') + '.png'" alt="poseidon-layout">
+                        <img id="app-logo"
+                             [src]="'assets/layout/images/logo-' + (app.topbarTheme === 'light' ? 'poseidon' : 'poseidon-dark') + '.png'"
+                             alt="poseidon-layout">
                     </div>
                 </div>
 
                 <div class="layout-topbar-right">
-                    <a class="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
+                    <a class="menu-button" href="#" (click)="appMain.onMenuButtonClick($event)">
                         <i class="pi pi-bars"></i>
                     </a>
 
                     <ul class="layout-topbar-actions">
-                        <li #searchItem class="search-item topbar-item" [ngClass]="{'active-topmenuitem': app.search}">
-                            <a href="#" (click)="app.onTopbarItemClick($event,searchItem)">
+                        <li #searchItem class="search-item topbar-item" [ngClass]="{'active-topmenuitem': appMain.search}">
+                            <a href="#" (click)="appMain.onTopbarItemClick($event,searchItem)">
                                 <span class="topbar-icon">
                                     <i class="pi pi-search"></i>
                                 </span>
@@ -37,13 +39,14 @@ import {AppMainComponent} from './app.main.component';
                                 <div class="search-input-wrapper p-fluid">
                                     <span class="p-input-icon-left">
                                         <i class="pi pi-search"></i>
-                                        <input type="text" pInputText placeholder="Search..." (click)="app.searchClick = true;"/>
+                                        <input type="text" pInputText placeholder="Search..." (click)="appMain.searchClick = true;"/>
                                     </span>
                                 </div>
                             </ul>
                         </li>
-                        <li #notifications class="topbar-item notifications" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === notifications}">
-                            <a href="#" (click)="app.onTopbarItemClick($event,notifications)">
+                        <li #notifications class="topbar-item notifications"
+                            [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === notifications}">
+                            <a href="#" (click)="appMain.onTopbarItemClick($event,notifications)">
                                 <span class="p-overlay-badge topbar-icon">
                                     <i class="pi pi-bell"></i>
                                     <span class="p-badge">2</span>
@@ -55,7 +58,7 @@ import {AppMainComponent} from './app.main.component';
                                     <span class="p-badge">3</span>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-shopping-cart"></i>
                                         <div class="notifications-item">
                                             <h6>Order <span>#2254</span> is placed</h6>
@@ -64,7 +67,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-clock"></i>
                                         <div class="notifications-item">
                                             <h6>Meeting with <span>AF04</span> Team</h6>
@@ -73,7 +76,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-th-large"></i>
                                         <div class="notifications-item">
                                             <h6>Task <span>#41</span> is complete</h6>
@@ -82,7 +85,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-shopping-cart"></i>
                                         <div class="notifications-item">
                                             <h6>Order <span>#2255</span> is placed</h6>
@@ -92,8 +95,8 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                             </ul>
                         </li>
-                        <li #messages class="topbar-item messages" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === messages}">
-                            <a href="#" (click)="app.onTopbarItemClick($event,messages)">
+                        <li #messages class="topbar-item messages" [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === messages}">
+                            <a href="#" (click)="appMain.onTopbarItemClick($event,messages)">
                                 <span class="p-overlay-badge topbar-icon">
                                     <i class="pi pi-comments"></i>
                                     <span class="p-badge">6</span>
@@ -105,7 +108,7 @@ import {AppMainComponent} from './app.main.component';
                                     <span class="p-badge">5</span>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <img src="assets/layout/images/dashboard/leader-1.png" alt="demo">
                                         <div class="messages-item">
                                             <h6>Hey! I sent the sales report</h6>
@@ -114,7 +117,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <img src="assets/layout/images/dashboard/leader-2.png" alt="demo">
                                         <div class="messages-item">
                                             <h6>OK. Let’s meet at 15 pm...</h6>
@@ -123,7 +126,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" class="topbar-message" (click)="appMain.onTopbarSubItemClick($event)">
                                         <img src="assets/layout/images/dashboard/leader-3.png" alt="demo">
                                         <div class="messages-item">
                                             <h6>Presentation is ready</h6>
@@ -132,7 +135,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" class="topbar-message" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" class="topbar-message" (click)="appMain.onTopbarSubItemClick($event)">
                                         <img src="assets/layout/images/dashboard/leader-4.png" alt="demo">
                                         <div class="messages-item">
                                             <h6>Faulty delivery on #959</h6>
@@ -142,8 +145,8 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                             </ul>
                         </li>
-                        <li #settings class="topbar-item settings" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === settings}">
-                            <a href="#" (click)="app.onTopbarItemClick($event,settings)">
+                        <li #settings class="topbar-item settings" [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === settings}">
+                            <a href="#" (click)="appMain.onTopbarItemClick($event,settings)">
                                 <span class="topbar-icon">
                                     <i class="pi pi-cog"></i>
                                 </span>
@@ -153,7 +156,7 @@ import {AppMainComponent} from './app.main.component';
                                     <h6 class="header-text">Settings</h6>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-user"></i>
                                         <div class="settings-item">
                                             <h6>Account Info</h6>
@@ -161,7 +164,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-users"></i>
                                         <div class="settings-item">
                                             <h6>Global Accounts</h6>
@@ -169,7 +172,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-bell"></i>
                                         <div class="settings-item">
                                             <h6>Notification Preferences</h6>
@@ -177,7 +180,7 @@ import {AppMainComponent} from './app.main.component';
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-lock"></i>
                                         <div class="settings-item">
                                             <h6>Login Settings</h6>
@@ -186,8 +189,9 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                             </ul>
                         </li>
-                        <li #profile class="topbar-item user-profile" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === profile}">
-                            <a href="#" (click)="app.onTopbarItemClick($event,profile)">
+                        <li #profile class="topbar-item user-profile"
+                            [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
+                            <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
                                 <img class="profile-image" src="assets/layout/images/avatar-profile.png" alt="demo">
                                 <div class="profile-info">
                                     <h6>Peter Taylor</h6>
@@ -204,25 +208,25 @@ import {AppMainComponent} from './app.main.component';
                                     </div>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-cog"></i>
                                         <h6>Settings</h6>
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-file-o"></i>
                                         <h6>Terms of Usage</h6>
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-compass"></i>
                                         <h6>Support</h6>
                                     </a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                                    <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
                                         <i class="pi pi-power-off"></i>
                                         <h6>Logout</h6>
                                     </a>
@@ -231,7 +235,7 @@ import {AppMainComponent} from './app.main.component';
                         </li>
                     </ul>
 
-                    <a class="layout-rightpanel-button" href="#" (click)="app.onRightPanelButtonClick($event)">
+                    <a class="layout-rightpanel-button" href="#" (click)="appMain.onRightPanelButtonClick($event)">
                         <i class="pi pi-arrow-left"></i>
                     </a>
                 </div>
@@ -241,6 +245,7 @@ import {AppMainComponent} from './app.main.component';
 })
 export class AppTopBarComponent {
 
-    constructor(public app: AppMainComponent, private appComponent: AppComponent) {}
+    constructor(public appMain: AppMainComponent, public app: AppComponent) {
+    }
 
 }

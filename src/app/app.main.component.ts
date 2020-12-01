@@ -7,11 +7,7 @@ import { AppComponent } from './app.component';
     selector: 'app-main',
     templateUrl: './app.main.component.html'
 })
-export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
-
-    menuMode = 'static';
-
-    isRTL = false;
+export class AppMainComponent implements AfterViewInit, OnDestroy {
 
     rotateMenuButton: boolean;
 
@@ -31,10 +27,6 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     documentClickListener: () => void;
 
-    inputStyle = 'outlined';
-
-    ripple: boolean;
-
     configActive: boolean;
 
     configClick: boolean;
@@ -43,19 +35,14 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     rightPanelClick: boolean;
 
-    grouped = true;
-
     menuHoverActive = false;
 
     searchClick = false;
 
     search = false;
 
-    constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig, private appComponent: AppComponent) { }
-
-    ngOnInit() {
-        this.primengConfig.ripple = true;
-    }
+    constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
+                public app: AppComponent) { }
 
     ngAfterViewInit() {
         // hides the horizontal submenus or top menu if outside is clicked
@@ -106,7 +93,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         this.topbarMenuActive = false;
         this.menuClick = true;
 
-        if (this.menuMode === 'overlay' && !this.isMobile()) {
+        if (this.app.menuMode === 'overlay' && !this.isMobile()) {
             this.overlayMenuActive = !this.overlayMenuActive;
         }
 
@@ -149,11 +136,12 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     onRTLChange(event) {
-        this.isRTL = event.checked;
+        this.app.isRTL = event.checked;
     }
 
     onRippleChange(event) {
-        this.ripple = event.checked;
+        this.app.ripple = event.checked;
+        this.primengConfig.ripple = event.checked;
     }
 
     onConfigClick(event) {
@@ -184,15 +172,15 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     isOverlay() {
-        return this.menuMode === 'overlay';
+        return this.app.menuMode === 'overlay';
     }
 
     isStatic() {
-        return this.menuMode === 'static';
+        return this.app.menuMode === 'static';
     }
 
     isHorizontal() {
-        return this.menuMode === 'horizontal';
+        return this.app.menuMode === 'horizontal';
     }
 
     blockBodyScroll(): void {

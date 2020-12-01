@@ -1,12 +1,12 @@
-<div class="layout-wrapper" [ngClass]="{'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple,
+<div class="layout-wrapper" [ngClass]="{'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple,
         'layout-static': isStatic(),
         'layout-overlay': isOverlay(),
         'layout-overlay-active': overlayMenuActive && isOverlay(),
         'layout-horizontal': isHorizontal(),
         'layout-static-active': !staticMenuDesktopInactive && isStatic(),
         'layout-mobile-active': staticMenuMobileActive,
-        'layout-rtl': isRTL,
-        'layout-rightpanel-active': rightPanelActive}" [class]="'layout-menu-'+ appComponent.menuTheme+ ' layout-topbar-'+ appComponent.topbarTheme">
+        'layout-rtl': app.isRTL,
+        'layout-rightpanel-active': rightPanelActive}" [class]="'layout-menu-'+ app.menuTheme+ ' layout-topbar-'+ app.topbarTheme">
 
     <app-topbar></app-topbar>
 

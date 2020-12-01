@@ -5,7 +5,7 @@ import { AppMainComponent } from './app.main.component';
 @Component({
     selector: 'app-config',
     template: `
-        <div id="layout-config" class="layout-config" [ngClass]="{'layout-config-active': app.configActive}" (click)="app.onConfigClick($event)">
+        <div id="layout-config" class="layout-config" [ngClass]="{'layout-config-active': appMain.configActive}" (click)="appMain.onConfigClick($event)">
             <a style="cursor: pointer" id="layout-config-button" class="layout-config-button" (click)="onConfigButtonClick($event)">
                 <i class="pi pi-cog"></i>
             </a>
@@ -20,15 +20,15 @@ import { AppMainComponent } from './app.main.component';
                         <span class="section-name">Layout Mode</span>
                         <div class="p-grid layout-config-options">
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="layoutMode" value="light" [(ngModel)]="appComponent.layoutMode" inputId="layoutMode1" (onClick)="onLayoutModeChange($event)"></p-radioButton>
+                                <p-radioButton name="layoutMode" value="light" [(ngModel)]="app.layoutMode" inputId="layoutMode1" (onClick)="onLayoutModeChange($event)"></p-radioButton>
                                 <label for="layoutMode1">Light</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="layoutMode" value="dark" [(ngModel)]="appComponent.layoutMode" inputId="layoutMode2" (onClick)="onLayoutModeChange($event)"></p-radioButton>
+                                <p-radioButton name="layoutMode" value="dark" [(ngModel)]="app.layoutMode" inputId="layoutMode2" (onClick)="onLayoutModeChange($event)"></p-radioButton>
                                 <label for="layoutMode2">Dark</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="layoutMode" value="dim" [(ngModel)]="appComponent.layoutMode" inputId="layoutMode3" (onClick)="onLayoutModeChange($event)"></p-radioButton>
+                                <p-radioButton name="layoutMode" value="dim" [(ngModel)]="app.layoutMode" inputId="layoutMode3" (onClick)="onLayoutModeChange($event)"></p-radioButton>
                                 <label for="layoutMode3">Dim</label>
                             </div>
                         </div>
@@ -36,7 +36,7 @@ import { AppMainComponent } from './app.main.component';
 
                     <div id="orientation-panel" class="layout-config-section dark">
                         <span class="section-name">RTL Mode</span>
-                        <p-inputSwitch [ngModel]="app.isRTL" (onChange)="app.onRTLChange($event)"></p-inputSwitch>
+                        <p-inputSwitch [ngModel]="app.isRTL" (onChange)="appMain.onRTLChange($event)"></p-inputSwitch>
                     </div>
 
                     <div id="outlined-panel" class="layout-config-section options">
@@ -55,7 +55,7 @@ import { AppMainComponent } from './app.main.component';
 
                     <div id="ripple-panel" class="layout-config-section ripple">
                         <span class="section-name">Ripple Effect</span>
-                        <p-inputSwitch [ngModel]="app.ripple" (onChange)="app.onRippleChange($event)"></p-inputSwitch>
+                        <p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
                     </div>
 
                     <div id="componentthemes-panel" class="layout-config-section colors">
@@ -76,15 +76,15 @@ import { AppMainComponent } from './app.main.component';
                         <span class="section-name">Menu Theme</span>
                         <div class="p-grid layout-config-options">
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="menuTheme" [disabled]="appComponent.layoutMode !== 'light'" value="light" [(ngModel)]="appComponent.menuTheme" inputId="menuTheme1"></p-radioButton>
+                                <p-radioButton name="menuTheme" [disabled]="app.layoutMode !== 'light'" value="light" [(ngModel)]="app.menuTheme" inputId="menuTheme1"></p-radioButton>
                                 <label for="menuTheme1">Light</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="menuTheme" [disabled]="appComponent.layoutMode !== 'light'" value="dark" [(ngModel)]="appComponent.menuTheme" inputId="menuTheme2"></p-radioButton>
+                                <p-radioButton name="menuTheme" [disabled]="app.layoutMode !== 'light'" value="dark" [(ngModel)]="app.menuTheme" inputId="menuTheme2"></p-radioButton>
                                 <label for="menuTheme2">Dark</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="menuTheme" [disabled]="appComponent.layoutMode !== 'light'" value="dim" [(ngModel)]="appComponent.menuTheme" inputId="menuTheme3"></p-radioButton>
+                                <p-radioButton name="menuTheme" [disabled]="app.layoutMode !== 'light'" value="dim" [(ngModel)]="app.menuTheme" inputId="menuTheme3"></p-radioButton>
                                 <label for="menuTheme3">Dim</label>
                             </div>
                         </div>
@@ -94,15 +94,15 @@ import { AppMainComponent } from './app.main.component';
                         <span class="section-name">Topbar Theme</span>
                         <div class="p-grid layout-config-options">
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="topbarTheme" [disabled]="appComponent.layoutMode !== 'light'" value="light" [(ngModel)]="appComponent.topbarTheme" (onClick)="onTopbarThemeChange($event)" inputId="topbarTheme1"></p-radioButton>
+                                <p-radioButton name="topbarTheme" [disabled]="app.layoutMode !== 'light'" value="light" [(ngModel)]="app.topbarTheme" inputId="topbarTheme1"></p-radioButton>
                                 <label for="topbarTheme1">Light</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="topbarTheme" [disabled]="appComponent.layoutMode !== 'light'" value="dark" [(ngModel)]="appComponent.topbarTheme" (onClick)="onTopbarThemeChange($event)" inputId="topbarTheme2"></p-radioButton>
+                                <p-radioButton name="topbarTheme" [disabled]="app.layoutMode !== 'light'" value="dark" [(ngModel)]="app.topbarTheme" inputId="topbarTheme2"></p-radioButton>
                                 <label for="topbarTheme2">Dark</label>
                             </div>
                             <div class="p-col-12 p-md-6">
-                                <p-radioButton name="topbarTheme" [disabled]="appComponent.layoutMode !== 'light'" value="dim" [(ngModel)]="appComponent.topbarTheme" (onClick)="onTopbarThemeChange($event)" inputId="topbarTheme3"></p-radioButton>
+                                <p-radioButton name="topbarTheme" [disabled]="app.layoutMode !== 'light'" value="dim" [(ngModel)]="app.topbarTheme" inputId="topbarTheme3"></p-radioButton>
                                 <label for="topbarTheme3">Dim</label>
                             </div>
                         </div>
@@ -150,7 +150,7 @@ export class AppConfigComponent implements OnInit {
 
     theme = 'denim';
 
-    constructor(public app: AppMainComponent, private appComponent: AppComponent) {}
+    constructor(public appMain: AppMainComponent, public app: AppComponent) {}
 
     ngOnInit() {
         this.themes = [
@@ -170,38 +170,27 @@ export class AppConfigComponent implements OnInit {
     }
 
     onLayoutModeChange(event) {
-        this.appComponent.menuTheme = this.appComponent.layoutMode;
-        this.appComponent.topbarTheme = this.appComponent.layoutMode;
-        this.changeLogo();
+        this.app.menuTheme = this.app.layoutMode;
+        this.app.topbarTheme = this.app.layoutMode;
 
         const layoutLink: HTMLLinkElement = document.getElementById('layout-css') as HTMLLinkElement;
-        const layoutHref = 'assets/layout/css/layout-' + this.appComponent.layoutMode + '.css';
+        const layoutHref = 'assets/layout/css/layout-' + this.app.layoutMode + '.css';
         this.replaceLink(layoutLink, layoutHref);
 
         const themeLink = document.getElementById('theme-css');
         const urlTokens = themeLink.getAttribute('href').split('/');
-        urlTokens[urlTokens.length - 1] = 'theme-' + this.appComponent.layoutMode + '.css';
+        urlTokens[urlTokens.length - 1] = 'theme-' + this.app.layoutMode + '.css';
         const newURL = urlTokens.join('/');
 
         this.replaceLink(themeLink, newURL);
-    }
-
-    onTopbarThemeChange(event) {
-        const appLogoLink: HTMLImageElement = document.getElementById('app-logo') as HTMLImageElement;
-
-        const logoUrl = `assets/layout/images/logo-${this.appComponent.topbarTheme === 'light' ? 'poseidon' : 'poseidon-dark'}.png`;
-
-        if (appLogoLink) {
-            appLogoLink.src = logoUrl;
-        }
     }
 
     changeTheme(theme) {
         this.theme = theme;
 
         const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
-        const themeHref = 'assets/theme/' + theme + '/theme-' + this.appComponent.layoutMode + '.css';
-        this.replaceLink(themeLink, themeHref, this.app['refreshTrafficChart']);
+        const themeHref = 'assets/theme/' + theme + '/theme-' + this.app.layoutMode + '.css';
+        this.replaceLink(themeLink, themeHref, this.appMain['refreshTrafficChart']);
     }
 
     isIE() {
@@ -234,30 +223,9 @@ export class AppConfigComponent implements OnInit {
         }
     }
 
-    changeLogo() {
-        const appLogoLink: HTMLImageElement = document.getElementById('app-logo') as HTMLImageElement;
-        const invoiceLogoLink: HTMLImageElement = document.getElementById('invoice-logo') as HTMLImageElement;
-        const footerLogoLink: HTMLImageElement = document.getElementById('footer-logo') as HTMLImageElement;
-
-
-        const logoUrl = `assets/layout/images/logo-${this.appComponent.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark'}.png`;
-
-        if (appLogoLink) {
-            appLogoLink.src = logoUrl;
-        }
-
-        if (invoiceLogoLink) {
-            invoiceLogoLink.src = logoUrl;
-        }
-
-        if (footerLogoLink) {
-            footerLogoLink.src = logoUrl;
-        }
-    }
-
     onConfigButtonClick(event) {
-        this.app.configActive = !this.app.configActive;
-        this.app.configClick = true;
+        this.appMain.configActive = !this.appMain.configActive;
+        this.appMain.configClick = true;
         event.preventDefault();
     }
 }

@@ -1,27 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppBreadcrumbService} from '../app.breadcrumb.service';
-import { AppComponent } from '../app.component';
+import {AppComponent} from '../app.component';
 
 @Component({
     templateUrl: './app.invoice.component.html'
 })
-export class AppInvoiceComponent implements OnInit{
+export class AppInvoiceComponent {
 
-    constructor(private breadcrumbService: AppBreadcrumbService, public appComponent: AppComponent) {
+    constructor(private breadcrumbService: AppBreadcrumbService, public app: AppComponent) {
         this.breadcrumbService.setItems([
-            { label: 'Pages' },
-            { label: 'Invoice', routerLink: ['/pages/invoice'] }
+            {label: 'Pages'},
+            {label: 'Invoice', routerLink: ['/pages/invoice']}
         ]);
-    }
-
-    ngOnInit(): void {
-        const invoiceLogoLink: HTMLImageElement = document.getElementById('invoice-logo') as HTMLImageElement;
-
-        const logoUrl = `assets/layout/images/logo-${this.appComponent.layoutMode === 'light' ? 'poseidon' : 'poseidon-dark'}.png`;
-
-        if (invoiceLogoLink) {
-            invoiceLogoLink.src = logoUrl;
-        }
     }
 
     print() {
