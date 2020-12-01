@@ -79,6 +79,30 @@
             background-color: #f0f3f5;
         }
     }
+
+    .p-button {
+        background-color: #ffffff;
+        border-color: #ffffff;
+        color: #515C66;
+
+        &:enabled:hover {
+            background-color: #EDF4F7;
+            border-color: #EDF4F7;
+            color: #515C66;
+        }
+
+        &:enabled:active {
+            background-color: #DBE9EF;
+            border-color: #DBE9EF;
+            color: #515C66;
+        }
+
+        &:focus {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: 0 0 0 0.2rem #DBE9EF;
+        }
+    }
 }
 
 @media (max-width: 640px) {
@@ -89,5 +113,4 @@
             }
         }
     }
-
 }
