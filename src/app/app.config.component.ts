@@ -182,7 +182,7 @@ export class AppConfigComponent implements OnInit {
         urlTokens[urlTokens.length - 1] = 'theme-' + this.app.layoutMode + '.css';
         const newURL = urlTokens.join('/');
 
-        this.replaceLink(themeLink, newURL);
+        this.replaceLink(themeLink, newURL, this.appMain['refreshTrafficChart']);
     }
 
     changeTheme(theme) {
