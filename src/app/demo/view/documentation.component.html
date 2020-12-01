@@ -50,35 +50,30 @@ Run 'ng help' for more options.
                 the main template. The component class app.component.ts implements the logic such as opening menus, layout modes and so on.
             </p>
 <app-code ngPreserveWhitespaces ngNonBindable>
-&lt;div class="layout-wrapper" [ngClass]="&#123;'menu-layout-static': !isOverlay(),
-        'menu-layout-overlay': isOverlay(),
-        'layout-menu-overlay-active': overlayMenuActive,
-        'menu-layout-horizontal': isHorizontal(),
-        'layout-menu-static-inactive': staticMenuDesktopInactive,
-        'layout-menu-static-active': staticMenuMobileActive, 'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple&#125;"&gt;
+&lt;div class=&quot;layout-wrapper&quot; [ngClass]=&quot;&#123;'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple,
+    'layout-static': isStatic(),
+    'layout-overlay': isOverlay(),
+    'layout-overlay-active': overlayMenuActive &amp;&amp; isOverlay(),
+    'layout-horizontal': isHorizontal(),
+    'layout-static-active': !staticMenuDesktopInactive &amp;&amp; isStatic(),
+    'layout-mobile-active': staticMenuMobileActive,
+    'layout-rtl': app.isRTL,
+    'layout-rightpanel-active': rightPanelActive&#125;&quot; [class]=&quot;'layout-menu-'+ app.menuTheme+ ' layout-topbar-'+ app.topbarTheme&quot;&gt;
 
     &lt;app-topbar&gt;&lt;/app-topbar&gt;
-    &lt;div class="layout-menu-container" (click)="onMenuClick($event)"&gt;
-        &lt;div class="menu-scroll-content"&gt;
-            &lt;div class="search-input"&gt;
-                &lt;input type="text" placeholder="Search"/&gt;
-                &lt;i class="pi pi-search"&gt;&lt;/i&gt;
-            &lt;/div&gt;
+
+    &lt;app-rightpanel&gt;&lt;/app-rightpanel&gt;
+
+    &lt;div class=&quot;menu-wrapper&quot; (click)=&quot;onMenuClick($event)&quot;&gt;
+        &lt;div class=&quot;layout-menu-container&quot;&gt;
             &lt;app-menu&gt;&lt;/app-menu&gt;
-            &lt;div class="layout-menu-footer"&gt;
-                &lt;span class="layout-menu-footer-title"&gt;Tasks Overview&lt;/span&gt;
-
-                &lt;p-progressBar [value]="50" [showValue]="false"&gt;&lt;/p-progressBar&gt;
-                Today
-
-                &lt;p-progressBar [value]="80" [showValue]="false"&gt;&lt;/p-progressBar&gt;
-                Overall
-            &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;layout-main&quot;&gt;
-        &lt;div class=&quot;layout-main-content&quot;&gt;
+        &lt;app-breadcrumb&gt;&lt;/app-breadcrumb&gt;
+
+        &lt;div class=&quot;layout-content&quot;&gt;
             &lt;router-outlet&gt;&lt;/router-outlet&gt;
         &lt;/div&gt;
 
@@ -87,7 +82,7 @@ Run 'ng help' for more options.
 
     &lt;app-config&gt;&lt;/app-config&gt;
 
-    &lt;div class=&quot;layout-mask&quot;&gt;&lt;/div&gt;
+    &lt;div *ngIf=&quot;staticMenuMobileActive&quot; class=&quot;layout-mask modal-in&quot;&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 </app-code>
@@ -98,7 +93,7 @@ Run 'ng help' for more options.
 <div style="height:400px;overflow: auto;">
 <app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
 import &#123;Component,OnInit&#125; from '@angular/core';
-import &#123;AppMainComponent&#125; from './app.main.component';
+import &#123;AppMainComponent&#125; from './app.component';
 
 @Component(&#123;
     selector: 'app-menu',
@@ -110,15 +105,23 @@ import &#123;AppMainComponent&#125; from './app.main.component';
 &#125;)
 export class AppMenuComponent implements OnInit &#123;
 
-    @Input() reset: boolean;
 
-    model: any[];
+    export class AppMenuComponent implements OnInit &#123;
 
-    constructor(public app: AppMainComponent) &#123;&#125;
+    modelGrouped: any[];
+
+    modelUngrouped: any[];
+
+    constructor(public app: AppComponent) &#123;&#125;
 
     ngOnInit() &#123;
-        this.model = [
-            &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;,
+        this.modelGrouped = [
+            &#123;
+                label: 'Favorites', icon: 'pi pi-fw pi-home',
+                items: [
+                    &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;
+                ]
+            &#125;,
             &#123;
                 label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
                 items: [
@@ -211,10 +214,127 @@ export class AppMenuComponent implements OnInit &#123;
                 ]
             &#125;,
             &#123;
-                label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
-            &#125;,
+                label: 'Start', icon: 'pi pi-fw pi-download',
+                items: [
+                    &#123;
+                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
+                    &#125;,
+                    &#123;
+                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                    &#125;
+                ]
+            &#125;
+        ];
+
+        this.modelUngrouped = [
             &#123;
-                label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                label: 'Main Menu',
+                icon: 'pi pi-fw pi-home',
+                items: [
+                    &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;,
+                    &#123;
+                        label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
+                        items: [
+                            &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
+                            &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,
+                            &#123;label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,
+                            &#123;label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,
+                            &#123;label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']&#125;,
+                            &#123;label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']&#125;,
+                            &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,
+                            &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,
+                            &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,
+                            &#123;label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']&#125;,
+                            &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']&#125;,
+                            &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,
+                            &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
+                            &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
+                            &#123;label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']&#125;
+                        ]
+                    &#125;,
+                    &#123;
+                        label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['utilities'],
+                        items: [
+                            &#123;label: 'Display', icon: 'pi pi-fw pi-desktop', routerLink: ['utilities/display']&#125;,
+                            &#123;label: 'Elevation', icon: 'pi pi-fw pi-external-link', routerLink: ['utilities/elevation']&#125;,
+                            &#123;label: 'FlexBox', icon: 'pi pi-fw pi-directions', routerLink: ['utilities/flexbox']&#125;,
+                            &#123;label: 'Icons', icon: 'pi pi-fw pi-search', routerLink: ['utilities/icons']&#125;,
+                            &#123;label: 'Text', icon: 'pi pi-fw pi-pencil', routerLink: ['utilities/text']&#125;,
+                            &#123;label: 'Widgets', icon: 'pi pi-fw pi-star-o', routerLink: ['utilities/widgets']&#125;,
+                            &#123;label: 'Grid System', icon: 'pi pi-fw pi-th-large', routerLink: ['utilities/grid']&#125;,
+                            &#123;label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', routerLink: ['utilities/spacing']&#125;,
+                            &#123;label: 'Typography', icon: 'pi pi-fw pi-align-center', routerLink: ['utilities/typography']&#125;
+                        ]
+                    &#125;,
+                    &#123;
+                        label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
+                        items: [
+                            &#123;label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']&#125;,
+                            &#123;label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']&#125;,
+                            &#123;label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'&#125;,
+                            &#123;label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']&#125;,
+                            &#123;label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/pages/invoice']&#125;,
+                            &#123;label: 'Help', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help']&#125;,
+                            &#123;label: 'Error', icon: 'pi pi-fw pi-times-circle', routerLink: ['/error']&#125;,
+                            &#123;label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']&#125;,
+                            &#123;label: 'Access Denied', icon: 'pi pi-fw pi-lock', routerLink: ['/access']&#125;,
+                            &#123;label: 'Empty', icon: 'pi pi-fw pi-circle-off', routerLink: ['/pages/empty']&#125;
+                        ]
+                    &#125;,
+                    &#123;
+                        label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
+                        items: [
+                            &#123;
+                                label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
+                                items: [
+                                    &#123;
+                                        label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
+                                        items: [
+                                            &#123;label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'&#125;,
+                                            &#123;label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'&#125;,
+                                            &#123;label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'&#125;,
+                                        ]
+                                    &#125;,
+                                    &#123;
+                                        label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
+                                        items: [
+                                            &#123;label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'&#125;
+                                        ]
+                                    &#125;,
+                                ]
+                            &#125;,
+                            &#123;
+                                label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
+                                items: [
+                                    &#123;
+                                        label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
+                                        items: [
+                                            &#123;label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'&#125;,
+                                            &#123;label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'&#125;,
+                                        ]
+                                    &#125;,
+                                    &#123;
+                                        label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
+                                        items: [
+                                            &#123;label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'&#125;,
+                                        ]
+                                    &#125;,
+                                ]
+                            &#125;
+                        ]
+                    &#125;,
+                    &#123;
+                        label: 'Start', icon: 'pi pi-fw pi-download',
+                        items: [
+                            &#123;
+                                label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
+                            &#125;,
+                            &#123;
+                                label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                            &#125;
+                        ]
+                    &#125;
+                ]
             &#125;
         ];
     &#125;
@@ -244,17 +364,45 @@ npm install primeicons@latest --save
             the fly by changing the path however if this is not a requirement, you may also add them to the styles configuration so they go inside the bundle.</p>
 
             <h4>Theme</h4>
-            <p>Poseidon provides 8 PrimeNG themes out of the box, setup of a theme simple including the css of theme to your page that are located inside resources/theme folder.</p>
+            <p>Poseidon provides 36 PrimeNG themes out of the box, setup of a theme simple including the css of theme to your page that are located inside assets/theme folder such as assets/theme/theme-amber.</p>
 
             <ul>
-                <li>theme-blue</li>
-                <li>theme-deep-purple</li>
-                <li>theme-green</li>
-                <li>theme-light-blue</li>
-                <li>theme-orange</li>
-                <li>theme-pink</li>
-                <li>theme-purple</li>
-                <li>theme-turquoise</li>
+                <li>theme-amber-dark</li>
+                <li>theme-amber-dim</li>
+                <li>theme-amber-light</li>
+                <li>theme-amethyst-dark</li>
+                <li>theme-amethyst-dim</li>
+                <li>theme-amethyst-light</li>
+                <li>theme-apple-dark</li>
+                <li>theme-apple-dim</li>
+                <li>theme-apple-light</li>
+                <li>theme-camelot-dark</li>
+                <li>theme-camelot-dim</li>
+                <li>theme-camelot-light</li>
+                <li>theme-cape-palliser-dark</li>
+                <li>theme-cape-palliser-dim</li>
+                <li>theme-cape-palliser-light</li>
+                <li>theme-cyan-dark</li>
+                <li>theme-cyan-dim</li>
+                <li>theme-cyan-light</li>
+                <li>theme-denim-dark</li>
+                <li>theme-denim-dim</li>
+                <li>theme-denim-light</li>
+                <li>theme-gigas-dark</li>
+                <li>theme-gigas-dim</li>
+                <li>theme-gigas-light</li>
+                <li>theme-jungle-green-dark</li>
+                <li>theme-jungle-green-dim</li>
+                <li>theme-jungle-green-light</li>
+                <li>theme-sea-green-dark</li>
+                <li>theme-sea-green-dim</li>
+                <li>theme-sea-green-light</li>
+                <li>theme-tapestry-dark</li>
+                <li>theme-tapestry-dim</li>
+                <li>theme-tapestry-light</li>
+                <li>theme-wegewood-dark</li>
+                <li>theme-wegewood-dim</li>
+                <li>theme-wegewood-light</li>
             </ul>
 
             <p>A custom theme can be developed by the following steps.</p>
@@ -270,17 +418,16 @@ npm install primeicons@latest --save
                 relative path of the sass folder in your application.</p>
 
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
-$primaryColor: #2f8ee5;
-$primaryLightColor: scale-color($primaryColor, $lightness: 60%) !default;
-$primaryDarkColor: scale-color($primaryColor, $lightness: -10%) !default;
-$primaryDarkerColor: scale-color($primaryColor, $lightness: -20%) !default;
-$primaryTextColor: #ffffff;
+$primaryLightColor: #4D9FDC;
+$primaryColor: #1B74C5;
+$primaryDarkColor: #135AA9;
+$primaryDarkerColor: #0D438D;
+$primaryTextColor: #f8fafc;
 
 $highlightBg: $primaryColor;
 $highlightTextColor: $primaryTextColor;
 
-@import '../sass/theme/_theme';
-
+@import '../../sass/theme/_theme_light';
 </app-code>
 
             <p> An example sass command to compile the css would be;</p>
@@ -308,62 +455,53 @@ sass --watch src/:src/ --no-source-map
                 relative path of the sass folder in your application.</p>
 
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
-$primaryColor:#57c279;
+$primaryColor:#2c84d8;
+$primaryLightColor:#3B92E5;
+$primaryTextColor:#ffffff;
 
-@import '/../sass/layout/_layout';
+@import '../../sass/variables/layout/_layout_light';
+@import '../../sass/layout/_layout';
 </app-code>
 
             <p>For both cases, several .scss files such as _layout.scss, _theme.scss or _variables.scss has to be present relative to your scss files, these are available inside the resources/sass folder in the distribution.</p>
             <p>In case you'd like to customize the structure not just the colors, the _variables.scss is where the structural variables (e.g. font size, paddings) for the layout are defined.</p>
-<h5>sass/layout/_variables.scss</h5>
+<h5>sass/variables/layout/_layout_common.scss</h5>
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
-$fontFamily:"Open Sans","Helvetica Neue",sans-serif;
-$fontSize:14px;
-$textColor:#5f666c;
-$textSecondaryColor:lighten($textColor,10%);
-$borderRadius:2px;
-$dividerColor:#c9cdd2;
-$transitionDuration:.3s;
-$inlineSpacing:.5em;
-
-/* List Items */
-$listItemPadding:.5em 1em;
-$listItemHoverBgColor:#f0f3f5;
-$listItemHoverTextColor:#5f666c;
-
-/* Horizontal Menu */
-$hmenuBGColor:#f0f3f5;
-
-/* Predefined Colors */
-$turquoise:#00acac;
-$blue:#2f8ee5;
-$orange:#efa64c;
-$purple:#6c76af;
-$deepPurple:#7e57c2;
+//general
+$fontSize:14px !default;
+$fontFamily: 'Open Sans' !default;
+$mobileBreakpoint:991px !default;
+$borderRadius:5px !default;
+$animationDuration:.2s !default;
+$animationTimingFunction:cubic-bezier(.05,.74,.2,.99) !default;
+$letterSpacing:normal !default;
+$transitionDuration:.2s !default;
+$tabletBreakpoint:991px !default;
+$phoneBreakpoint:576px !default;
 </app-code>
 
-<h5>sass/theme/_variables.scss</h5>
+<h5>sass/variables/theme/_theme_light.scss</h5>
 <div style="height:400px;overflow: auto;">
 <app-code ngPreserveWhitespaces ngNonBindable lang="css">
 //reused color variables
-$shade000:#ffffff !default;    //surface
-$shade100:#f8f9fa !default;    //header background
-$shade200:#e9ecef !default;    //hover background
-$shade300:#dee2e6 !default;    //border, divider
-$shade400:#ced4da !default;    //input border
-$shade500:#adb5bd !default;    //input icon
-$shade600:#6c757d !default;    //text secondary color
-$shade700:#495057 !default;    //text color
-$shade800:#343a40 !default;    //unused
-$shade900:#212529 !default;    //unused
+$shade000:#FDFEFF !default;    //surface
+$shade100:#F6F9FE !default;    //header background
+$shade200:rgba(#E8F1F8,.7) !default;    //hover background
+$shade300:#E4E5E5 !default;    //border, divider
+$shade400:#D7D8D9 !default;    //input border
+$shade500:#515C66 !default;    //input icon
+$shade600:#657380 !default;    //text secondary color
+$shade700:#515C66 !default;    //text color
+$shade800:#3B475F !default;    //unused
+$shade900:#252F44 !default;    //unused
 
 //global
-$fontFamily:"Open Sans","Helvetica Neue",sans-serif;
+$fontFamily:'Open Sans' !default;
 $fontSize:1rem !default;
 $fontWeight:normal !default;
 $textColor:$shade700 !default;
 $textSecondaryColor:$shade600 !default;
-$borderRadius:3px !default;
+$borderRadius:5px !default;
 $transitionDuration:.2s !default;
 $formElementTransition:background-color $transitionDuration, color $transitionDuration, border-color $transitionDuration, box-shadow $transitionDuration !default;
 $actionIconTransition:background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration !default;
@@ -862,6 +1000,17 @@ $treeNodeContentPadding:.5rem !default;
 $treeNodeChildrenPadding:0 0 0 1rem !default;
 $treeNodeIconColor:$shade600 !default;
 
+//timeline
+$timelineVerticalEventContentPadding:0 1rem !default;
+$timelineHorizontalEventContentPadding:1rem 0 !default;
+$timelineEventMarkerWidth:1rem !default;
+$timelineEventMarkerHeight:1rem !default;
+$timelineEventMarkerBorderRadius:50% !default;
+$timelineEventMarkerBorder:2px solid $primaryColor !default;
+$timelineEventMarkerBackground:$shade000 !default;
+$timelineEventConnectorSize:2px !default;
+$timelineEventColor:$shade300 !default;
+
 //org chart
 $organizationChartConnectorColor:$shade300 !default;
 
@@ -1074,6 +1223,7 @@ $galleriaThumbnailNavigatorHeight:2rem !default;
 --text-color-secondary:#&#123;$shade600&#125;;
 --primary-color:#&#123;$primaryColor&#125;;
 --primary-color-text:#&#123;$primaryTextColor&#125;;
+--primary-dark-color:#&#123;$primaryDarkColor&#125;;
 --font-family:#&#123;$fontFamily&#125;;
 &#125;
 </app-code>
@@ -1104,7 +1254,7 @@ label: 'Components', icon: 'list', badge: '2', badgeStyleClass: 'orange-badge'
             <p>For example to create a horizontal menu, the div element should be in following form;</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
 &lt;div class="layout-wrapper layout-compact"&gt;
-    &lt;div class="layout-container menu-layout-static menu-layout-horizonal"&gt;
+    &lt;div class="layout-container layout-static layout-horizonal"&gt;
 </app-code>
 
             <p>It is also possible to leave the choice to the user by keeping the preference at a component and usign an expression to bind it so that user can switch between modes. Sample
