@@ -12,7 +12,7 @@
 - Migrate to PrimeOne Design Architecture
 
 ## 9.0.0
-#### *Angular 9 and PrimeNG 9
+###### * Angular 9 and PrimeNG 9
 
 **Migration Guide**
 - Update dependencies with <a href="https://angular.io/cli/update">ng update</a>.
@@ -37,14 +37,14 @@
 - Update theme css files.
 
 ## 6.0.0 to 6.1.0
-#### * Adds support for new features in PrimeNG 6.1.x
+###### * Adds support for new features in PrimeNG 6.1.x
 
 **Migration Guide**
 - Update theme css files.
 - Update layout css files.
 
 ## 6.0.0
-#### * Brings support for Angular 6 and RxJS 6, adds theming for new components in PrimeNG such as the new TreeTable and improves behaviors of the layout menus.
+###### * Brings support for Angular 6 and RxJS 6, adds theming for new components in PrimeNG such as the new TreeTable and improves behaviors of the layout menus.
 
 **Migration Guide**
 - Add PrimeIcons package.
@@ -56,7 +56,7 @@
 - Update theme css files.
 
 ## 5.2.0
-#### * Adds support for PrimeNG 5.2.0 (e.g. TurboTable), replaces nanoscroller with PrimeNG ScrollPanel.
+###### * Adds support for PrimeNG 5.2.0 (e.g. TurboTable), replaces nanoscroller with PrimeNG ScrollPanel.
 
 **Migration Guide**
 - Remove nanoscroller as it is replaced by ScrollPanel component of PrimeNG.
