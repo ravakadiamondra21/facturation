@@ -1,5 +1,18 @@
 # Changelog
 
+## 10.1.0
+
+**Migration Guide**
+- Update app files(app.menuitem.component.ts etc..).
+- Update theme files and layout files.
+
+**Implemented New Features and Enhancements:**
+
+- New Design for Menu, Topbar and Config
+- New Design for Template Pages (Error, Login, Not Found, Access Denied and Help)
+- Implementation of Dim, Dark and Light Modes
+
+
 ## 10.0.0
 
 **Migration Guide**
