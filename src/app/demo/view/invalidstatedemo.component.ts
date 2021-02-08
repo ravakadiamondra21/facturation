@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
 import {CountryService} from '../service/countryservice';
 
 @Component({
@@ -31,7 +32,12 @@ export class InvalidStateDemoComponent implements OnInit {
 
     value9: any;
 
-    constructor(private countryService: CountryService) {
+    constructor(private countryService: CountryService, private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Invalid State', routerLink: ['/uikit/invalidstate'] }
+        ]);
+
         this.cities = [
             {name: 'New York', code: 'NY'},
             {name: 'Rome', code: 'RM'},

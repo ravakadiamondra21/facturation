@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
     templateUrl: './miscdemo.component.html',
@@ -49,6 +50,13 @@ import {Component, OnInit} from '@angular/core';
 export class MiscDemoComponent implements OnInit {
 
     value = 0;
+
+    constructor(private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Misc', routerLink: ['/uikit/misc'] }
+        ]);
+    }
 
     ngOnInit() {
         const interval = setInterval(() => {

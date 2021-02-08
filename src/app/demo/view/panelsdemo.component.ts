@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
 
 @Component({
     templateUrl: './panelsdemo.component.html',
@@ -26,6 +27,13 @@ export class PanelsDemoComponent implements OnInit {
     items: MenuItem[];
 
     cardMenu: MenuItem[];
+
+    constructor(private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            {label: 'Panel', routerLink: ['/uikit/panel']}
+        ]);
+    }
 
     ngOnInit() {
         this.items = [

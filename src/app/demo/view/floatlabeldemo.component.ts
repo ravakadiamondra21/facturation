@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import {CountryService} from '../service/countryservice';
 
 @Component({
@@ -37,7 +38,11 @@ export class FloatLabelDemoComponent implements OnInit {
 
     value12: any;
 
-    constructor(private countryService: CountryService) {
+    constructor(private countryService: CountryService, private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Float Label', routerLink: ['/uikit/floatlabel'] }
+        ]);
         this.cities = [
             {name: 'New York', code: 'NY'},
             {name: 'Rome', code: 'RM'},

@@ -4,6 +4,7 @@ import {CustomerService} from '../service/customerservice';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
 import {Table} from 'primeng/table';
+import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
 
 @Component({
     templateUrl: './tabledemo.component.html',
@@ -41,7 +42,13 @@ export class TableDemoComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private customerService: CustomerService, private productService: ProductService) {}
+    constructor(private customerService: CustomerService, private productService: ProductService,
+                private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Table', routerLink: ['/uikit/table'] }
+        ]);
+    }
 
     ngOnInit() {
         this.customerService.getCustomersLarge().then(customers => {

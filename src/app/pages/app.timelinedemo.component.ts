@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PrimeIcons} from 'primeng/api';
+import {AppBreadcrumbService} from '../app.breadcrumb.service';
 
 @Component({
     templateUrl: './app.timelinedemo.component.html',
@@ -10,6 +11,13 @@ export class AppTimelineDemoComponent implements OnInit{
     customEvents: any[];
 
     horizontalEvents: any[];
+
+    constructor(private breadcrumbService: AppBreadcrumbService) {
+        this.breadcrumbService.setItems([
+            { label: 'Ui Kit' },
+            { label: 'Timeline', routerLink: ['/pages/timeline']}
+        ]);
+    }
 
     ngOnInit() {
         this.customEvents = [
