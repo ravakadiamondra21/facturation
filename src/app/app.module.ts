@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {BadgeModule} from 'primeng/badge';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {ButtonModule} from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
@@ -63,6 +64,7 @@ import {StepsModule} from 'primeng/steps';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {TableModule} from 'primeng/table';
 import {TabViewModule} from 'primeng/tabview';
+import {TagModule} from 'primeng/tag';
 import {TerminalModule} from 'primeng/terminal';
 import {TieredMenuModule} from 'primeng/tieredmenu';
 import {ToastModule} from 'primeng/toast';
@@ -139,6 +141,7 @@ import {AppBreadcrumbService} from './app.breadcrumb.service';
         BrowserAnimationsModule,
         AccordionModule,
         AutoCompleteModule,
+        BadgeModule,
         BreadcrumbModule,
         ButtonModule,
         CalendarModule,
@@ -194,6 +197,7 @@ import {AppBreadcrumbService} from './app.breadcrumb.service';
         TableModule,
         TabMenuModule,
         TabViewModule,
+        TagModule,
         TerminalModule,
         TieredMenuModule,
         ToastModule,

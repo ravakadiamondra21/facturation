@@ -48,8 +48,7 @@ import {AppMainComponent} from './app.main.component';
                             [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === notifications}">
                             <a href="#" (click)="appMain.onTopbarItemClick($event,notifications)">
                                 <span class="p-overlay-badge topbar-icon">
-                                    <i class="pi pi-bell"></i>
-                                    <span class="p-badge">2</span>
+                                    <i class="pi pi-bell" pBadge value="2"></i>
                                 </span>
                             </a>
                             <ul class="fadeInDown">
@@ -98,8 +97,7 @@ import {AppMainComponent} from './app.main.component';
                         <li #messages class="topbar-item messages" [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === messages}">
                             <a href="#" (click)="appMain.onTopbarItemClick($event,messages)">
                                 <span class="p-overlay-badge topbar-icon">
-                                    <i class="pi pi-comments"></i>
-                                    <span class="p-badge">6</span>
+                                    <i class="pi pi-comments" pBadge value="6"></i>
                                 </span>
                             </a>
                             <ul class="fadeInDown">
