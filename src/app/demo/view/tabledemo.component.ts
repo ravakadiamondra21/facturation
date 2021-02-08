@@ -4,7 +4,6 @@ import {CustomerService} from '../service/customerservice';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
 import {Table} from 'primeng/table';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './tabledemo.component.html',
@@ -38,18 +37,18 @@ export class TableDemoComponent implements OnInit {
 
     rowGroupMetadata: any;
 
+    activityValues: number[] = [0, 100];
+
     @ViewChild('dt') table: Table;
 
-    constructor(private customerService: CustomerService, private productService: ProductService,
-                private breadcrumbService: AppBreadcrumbService) {
-        this.breadcrumbService.setItems([
-            { label: 'Ui Kit' },
-            { label: 'Table', routerLink: ['/uikit/table'] }
-        ]);
-    }
+    constructor(private customerService: CustomerService, private productService: ProductService) {}
 
     ngOnInit() {
-        this.customerService.getCustomersMedium().then(customers => this.customers1 = customers);
+        this.customerService.getCustomersLarge().then(customers => {
+            this.customers1 = customers;
+            // @ts-ignore
+            this.customers1.forEach(customer => customer.date = new Date(customer.date));
+        });
         this.customerService.getCustomersMedium().then(customers => this.customers2 = customers);
         this.customerService.getCustomersMedium().then(customers => this.customers3 = customers);
         this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
