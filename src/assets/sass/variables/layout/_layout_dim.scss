@@ -9,17 +9,6 @@ $dividerColor:#495771 !default;
 $menuTooltipBgColor:#1c202c !default;
 $menuTooltipTextColor:#ffffff !default;
 
-$overlayBorder:1px solid $dividerColor !default;
-$overlayShadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
-
-//accent
-$accentColor: #90CAF9 !default;
-$accentTextColor: #121212 !default;
-
-//sidebar right
-$rightSidebarWidth: 16rem !default;
-$rightSidebarBg: #1f2d40 !default;
-
 :root{
     --content-alt-bg-color:#{$contentAltBgColor};
 }
