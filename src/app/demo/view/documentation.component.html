@@ -47,7 +47,7 @@ Run 'ng help' for more options.
 
             <h4>Template</h4>
             <p>Main layout is the html view of the app.component.ts, it is divided into a couple of sections such as topbar, right panel, menu and footer. Here is the code for
-                the main template. The component class app.component.ts implements the logic such as opening menus, layout modes and so on.
+                the main template. The component class app.main.component.ts implements the logic such as opening menus, layout modes and so on.
             </p>
 <app-code ngPreserveWhitespaces ngNonBindable>
 &lt;div class=&quot;layout-wrapper&quot; [ngClass]=&quot;&#123;'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple,
@@ -467,7 +467,7 @@ $inputListHeaderBorder:0 none !default;
 //inputs with overlays (e.g. autocomplete, dropdown, multiselect)
 $inputOverlayBg:$inputListBg !default;
 $inputOverlayHeaderBg:$inputListHeaderBg !default;
-$inputOverlayBorder:0 none !default;                  
+$inputOverlayBorder:0 none !default;
 $inputOverlayShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
 
 //button
