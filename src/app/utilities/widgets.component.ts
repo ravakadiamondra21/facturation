@@ -42,6 +42,7 @@ export class WidgetsComponent implements OnInit{
                 borderWidth: 2,
                 fill: false,
                 borderDash: [3, 6],
+                tension: .4
             }, {
                 label: 'Cost',
                 data:     [67, 98, 27, 88, 38, 3, 22, 60, 56],
@@ -54,14 +55,17 @@ export class WidgetsComponent implements OnInit{
                 borderWidth: 2,
                 fill: true,
                 pointRadius: 3,
+                tension: .4
             }]
         };
 
         this.ordersOptions = {
-            legend: {
-                display: true,
-                labels: {
-                    fontColor: '#A0A7B5'
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#A0A7B5'
+                    }
                 }
             },
             responsive: true,
@@ -69,22 +73,22 @@ export class WidgetsComponent implements OnInit{
                 mode: 'index'
             },
             scales: {
-                yAxes: [{
+                y: {
                     ticks: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     },
-                    gridLines: {
+                    grid: {
                         color:  'rgba(160, 167, 181, .3)',
                     }
-                }],
-                xAxes: [{
+                },
+                x: {
                     ticks: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     },
-                    gridLines: {
+                    grid: {
                         color:  'rgba(160, 167, 181, .3)',
                     }
-                }],
+                },
             }
         };
 
@@ -113,10 +117,12 @@ export class WidgetsComponent implements OnInit{
         };
 
         this.likeOptions = {
-            legend: {
-                display: true,
-                labels: {
-                    fontColor: '#c3ccdd'
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#c3ccdd'
+                    }
                 }
             },
             responsive: true,
@@ -124,14 +130,14 @@ export class WidgetsComponent implements OnInit{
                 mode: 'index'
             },
             scales: {
-                xAxes: [{
+                x: {
                     display: false,
                     stacked: true,
-                }],
-                yAxes: [{
+                },
+                y: {
                     display: false,
                     stacked: true
-                }]
+                }
             }
         };
 

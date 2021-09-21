@@ -15,6 +15,10 @@ import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
             margin-left: 0;
         }
 
+        :host ::ng-deep .p-splitter-panel-nested {
+            overflow: auto;
+        }
+
         @media screen and (max-width: 960px) {
             .card.toolbar-demo {
                 overflow: auto;

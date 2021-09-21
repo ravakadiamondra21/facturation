@@ -67,6 +67,7 @@ export class DashboardDemoComponent implements OnInit {
                 borderWidth: 2,
                 fill: false,
                 borderDash: [3, 6],
+                tension: .4
             }, {
                 label: 'Cost',
                 data:     [67, 98, 27, 88, 38, 3, 22, 60, 56],
@@ -79,14 +80,17 @@ export class DashboardDemoComponent implements OnInit {
                 borderWidth: 2,
                 fill: true,
                 pointRadius: 3,
+                tension: .4
             }]
         };
 
         this.ordersOptions = {
-            legend: {
-                display: true,
-                labels: {
-                    fontColor: '#A0A7B5'
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#A0A7B5'
+                    }
                 }
             },
             responsive: true,
@@ -94,33 +98,35 @@ export class DashboardDemoComponent implements OnInit {
                 mode: 'index'
             },
             scales: {
-                yAxes: [{
+                y: {
                     ticks: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     },
-                    gridLines: {
+                    grid: {
                         color:  'rgba(160, 167, 181, .3)',
                     }
-                }],
-                xAxes: [{
+                },
+                x: {
                     ticks: {
-                        fontColor: '#A0A7B5'
+                        color: '#A0A7B5'
                     },
-                    gridLines: {
+                    grid: {
                         color:  'rgba(160, 167, 181, .3)',
                     }
-                }],
+                },
             }
         };
 
         this.trafficChart = this.getTrafficChartData();
 
         this.trafficOptions = {
-            legend: {
-                display: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
             },
             responsive: true,
-            cutoutPercentage: 70
+            cutout: 70
         };
 
         this.appMain['refreshTrafficChart'] = () => {
@@ -145,8 +151,10 @@ export class DashboardDemoComponent implements OnInit {
         };
 
         this.goalOptions = {
-            legend: {
-                display: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
             },
             responsive: true,
         };
