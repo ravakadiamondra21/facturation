@@ -14,7 +14,7 @@ export class AppTimelineDemoComponent implements OnInit{
 
     constructor(private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Ui Kit' },
+            { label: 'Pages' },
             { label: 'Timeline', routerLink: ['/pages/timeline']}
         ]);
     }
