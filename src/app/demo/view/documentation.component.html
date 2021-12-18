@@ -3,7 +3,7 @@
         <div class="card docs">
 
             <h4>Current Version</h4>
-            <p>Angular 12 and PrimeNG 12</p>
+            <p>Angular 13 and PrimeNG 13</p>
 
             <h4>Dependencies</h4>
             <p>Poseidon has no direct dependency. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
@@ -149,7 +149,7 @@ export class AppMenuComponent implements OnInit &#123;
                     &#123;label: 'FlexBox', icon: 'pi pi-fw pi-directions', routerLink: ['utilities/flexbox']&#125;,
                     &#123;label: 'Icons', icon: 'pi pi-fw pi-search', routerLink: ['utilities/icons']&#125;,
                     &#123;label: 'Text', icon: 'pi pi-fw pi-pencil', routerLink: ['utilities/text']&#125;,
-                    &#123;label: 'Widgets', icon: 'pi pi-fw pi-star-o', routerLink: ['utilities/widgets']&#125;,
+                    &#123;label: 'Widgets', icon: 'pi pi-fw pi-star', routerLink: ['utilities/widgets']&#125;,
                     &#123;label: 'Grid System', icon: 'pi pi-fw pi-th-large', routerLink: ['utilities/grid']&#125;,
                     &#123;label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', routerLink: ['utilities/spacing']&#125;,
                     &#123;label: 'Typography', icon: 'pi pi-fw pi-align-center', routerLink: ['utilities/typography']&#125;
@@ -384,7 +384,7 @@ $shade800:#3B475F !default;    //unused
 $shade900:#252F44 !default;    //unused
 
 //global
-$fontFamily:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$fontFamily:'Open Sans' !default;
 $fontSize:1rem !default;
 $fontWeight:normal !default;
 $textColor:$shade700 !default;
@@ -469,6 +469,12 @@ $inputOverlayBg:$inputListBg !default;
 $inputOverlayHeaderBg:$inputListHeaderBg !default;
 $inputOverlayBorder:0 none !default;
 $inputOverlayShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
+
+//password
+$passwordMeterBg:$shade300 !default;
+$passwordWeakBg:#D32F2F !default;
+$passwordMediumBg:#FBC02D !default;
+$passwordStrongBg:#689F38 !default;
 
 //button
 $buttonPadding:.5rem 1rem !default;
@@ -592,6 +598,7 @@ $radiobuttonActiveHoverBorderColor:$primaryDarkerColor !default;
 $colorPickerPreviewWidth:2rem !default;
 $colorPickerPreviewHeight:2rem !default;
 $colorPickerBg:#323232 !default;
+$colorPickerBorder:1px solid #191919 !default;
 $colorPickerBorderColor:#191919 !default;
 $colorPickerHandleColor:$shade000 !default;
 
@@ -656,6 +663,7 @@ $calendarHeaderBorder:1px solid $shade300 !default;
 $calendarHeaderTextColor:$shade700 !default;
 $calendarHeaderFontWeight:600 !default;
 $calendarHeaderCellPadding:.5rem !default;
+$calendarMonthYearHeaderHoverTextColor: $primaryColor !default;
 
 $calendarCellDatePadding:.5rem !default;
 $calendarCellDateWidth:2.5rem !default;
@@ -691,6 +699,7 @@ $inputSwitchSliderOnHoverBg:$primaryDarkColor !default;
 $inputSwitchHandleOnBg:$shade000 !default;
 
 //panel
+$panelHeaderBorderColor:$shade300 !default;
 $panelHeaderBorder:1px solid $shade300 !default;
 $panelHeaderBg:$shade100 !default;
 $panelHeaderTextColor:$shade700 !default;
@@ -702,6 +711,7 @@ $panelHeaderHoverBg:$shade200 !default;
 $panelHeaderHoverBorderColor:$shade300 !default;
 $panelHeaderTextHoverColor:$shade700 !default;
 
+$panelContentBorderColor: $shade300 !default;
 $panelContentBorder:1px solid $shade300 !default;
 $panelContentBg:$shade000 !default;
 $panelContentTextColor:$shade700 !default;
@@ -878,6 +888,7 @@ $pickListBreakpoint:769px !default;
 
 //schedule
 $fullCalendarEventBg:$primaryDarkColor !default;
+$fullCalendarEventBorderColor: $primaryDarkColor !default;
 $fullCalendarEventBorder:1px solid $primaryDarkColor !default;
 $fullCalendarEventTextColor:$primaryTextColor !default;
 
@@ -983,6 +994,7 @@ $progressBarHeight:1.5rem !default;
 $progressBarBorder:0 none !default;
 $progressBarBg:$shade300 !default;
 $progressBarValueBg:$primaryColor !default;
+$progressBarValueTextColor:$primaryTextColor !default;
 
 //menu (e.g. menu, menubar, tieredmenu)
 $menuWidth:12.5rem !default;

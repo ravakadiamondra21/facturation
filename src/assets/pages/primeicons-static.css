@@ -624,7 +624,7 @@
     content: "\e935";
 }
 
-.pi-star-o:before {
+.pi-star:before {
     content: "\e936";
 }
 
@@ -700,7 +700,7 @@
     content: "\e910";
 }
 
-.pi-circle-on:before {
+.pi-circle-fill:before {
     content: "\e911";
 }
 

@@ -213,7 +213,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <i class="pi pi-file-o"></i>
+                                        <i class="pi pi-file"></i>
                                         <h6>Terms of Usage</h6>
                                     </a>
                                 </li>
