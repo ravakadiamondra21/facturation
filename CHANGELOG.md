@@ -1,5 +1,11 @@
 # Changelog
 
+## 13.0.0
+**Migration Guide**
+
+- Upgrade to PrimeFlex v3
+- Update layout files
+- Upgrade to Angular 13 and PrimeNG 13
 ## 12.2.0
 **Migration Guide**
 - Update theme files and layout files.
