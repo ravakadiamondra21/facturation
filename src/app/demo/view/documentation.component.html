@@ -6,20 +6,20 @@
             <p>Angular 13 and PrimeNG 13</p>
 
             <h4>Dependencies</h4>
-            <p>Apollo has no direct dependency. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
+            <p>Poseidon has no direct dependency. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
 
             <h4>Getting Started</h4>
-            <p>Apollo is a true native application template for Angular and is distributed as a CLI project. If you don't have CLI installed already run the following commands to set it up. In case
+            <p>Poseidon is a true native application template for Angular and is distributed as a CLI project. If you don't have CLI installed already run the following commands to set it up. In case
             you have an application that do not use CLI, skip the <a href="#noncli">Integration with an Existing Non CLI Application</a> part.
-            Apollo is distributed with PrimeNG 5.2.x and Angular 5.2.x based on Angular CLI 1.6.x.</p>
+            Poseidon is distributed with PrimeNG 5.2.x and Angular 5.2.x based on Angular CLI 1.6.x.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
 npm install -g @angular/cli
 </app-code>
 
-            <p>Once CLI is ready in your system, extract the contents of the Apollo zip file distribution, cd to the directory,
+            <p>Once CLI is ready in your system, extract the contents of the Poseidon zip file distribution, cd to the directory,
             install the libraries from npm and then execute "ng serve" to run the application in your local environment at http://localhost:4200/.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-cd apollo
+cd Poseidon
 npm install
 ng serve
 </app-code>
@@ -43,7 +43,7 @@ Run 'ng help' for more options.
 </app-code>
 
             <h4>Structure</h4>
-            <p>Apollo consists of 3 main parts; the application layout, layout resources and theme resources for PrimeNG components. <i>app.component.html</i> inside app folder is the html template for the base layout,
+            <p>Poseidon consists of 3 main parts; the application layout, layout resources and theme resources for PrimeNG components. <i>app.component.html</i> inside app folder is the html template for the base layout,
                 required resources for the layout are placed inside the <i>src/assets/layout</i> folder and similarly theme resources are inside <i>src/assets/theme</i> folder.
             </p>
 
@@ -145,7 +145,7 @@ export class AppMenuComponent implements OnInit &#123;
             &#123;
                 label: 'Prime Blocks', icon: 'pi pi-fw pi-prime', routerLink: ['/blocks'],
                 items: [
-                    &#123;label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'New'&#125;,
+                    &#123;label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks']&#125;,
                     &#123;label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank'&#125;,
                 ]
             &#125;,
@@ -233,8 +233,8 @@ export class AppMenuComponent implements OnInit &#123;
 
 
             <h4>Integration with an Existing CLI Project</h4>
-            <p>To setup Apollo in an existing project, copy the <i>src/assets</i> folder to your projects folder with the same name
-                and replace the contents of app.component.ts, app.component.html with their counterparts in Apollo under <i>src/app</i> folder.</p>
+            <p>To setup Poseidon in an existing project, copy the <i>src/assets</i> folder to your projects folder with the same name
+                and replace the contents of app.component.ts, app.component.html with their counterparts in Poseidon under <i>src/app</i> folder.</p>
 
           <p>Install PrimeNG</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
@@ -260,7 +260,7 @@ npm install primeicons@latest --save
             with the sub components which are app.menu.component.ts, app.breadcrumb.component.ts, app.app.topbar.component.ts and app.footer.component.ts.</p>
 
             <h4>Theme</h4>
-            <p>Apollo provides 16 PrimeNG themes out of the box, setup of a theme is simple by including the css of theme to your bundle that are located inside resources/theme folder.</p>
+            <p>Poseidon provides 16 PrimeNG themes out of the box, setup of a theme is simple by including the css of theme to your bundle that are located inside resources/theme folder.</p>
 
             <ul>
                 <li>theme-blue-dark</li>
@@ -1194,7 +1194,7 @@ $splitterGutterHandleBg:$shade300;
             application has an example implementation of such use case. Refer to app.component.ts for an example.</p>
 
             <h4>Breadcrumb</h4>
-            <p>Apollo has an optional built-in breadcrumb section right below the topbar.
+            <p>Poseidon has an optional built-in breadcrumb section right below the topbar.
                 The items are dynamically generated using a AppBreadcrumbService where each main page that goes into the router-outlet should provide a collection of MenuItem instances.
                 Here is an example component that updates the breadcrumb.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
@@ -1217,7 +1217,7 @@ export class ControlPanelComponent &#123;
 </app-code>
 
             <h4>Grid CSS</h4>
-            <p>Apollo uses PrimeNG Flex Grid CSS throughout the demos such as Dashboard, however any Grid library can be used with it since Apollo Layout itself does not depend on PrimeFlex CSS.</p>
+            <p>Poseidon uses PrimeNG Flex Grid CSS throughout the demos such as Dashboard, however any Grid library can be used with it since Poseidon Layout itself does not depend on PrimeFlex CSS.</p>
 
             <h4>Customizing Styles</h4>
             <p>It is suggested to add your customizations in the following sass files under the override folder instead of adding them to the
