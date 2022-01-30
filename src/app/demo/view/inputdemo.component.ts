@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from '../service/countryservice';
 import {SelectItem} from 'primeng/api';
-import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './inputdemo.component.html',
@@ -18,6 +18,7 @@ import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 		padding-bottom: .25rem;
 
 	}
+
 
 	:host ::ng-deep .multiselect-custom .country-item.country-item-value {
 		padding: .25rem .5rem;
@@ -86,12 +87,10 @@ export class InputDemoComponent implements OnInit{
 
     valueKnob = 20;
 
-    valCheck2: string;
-
     constructor(private countryService: CountryService, private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Ui Kit' },
-            { label: 'Input', routerLink: ['/uikit/input'] }
+            {label: 'UI Kit'},
+            {label: 'Input'}
         ]);
     }
 

@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
+import {ConfigService} from './demo/service/app.config.service';
+import {AppConfig} from './demo/domain/appconfig';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-config',
@@ -130,15 +133,24 @@ import { AppMainComponent } from './app.main.component';
         </div>
     `
 })
-export class AppConfigComponent implements OnInit {
+export class AppConfigComponent implements OnInit, OnDestroy {
 
     themes: any[];
 
     theme = 'denim';
 
-    constructor(public appMain: AppMainComponent, public app: AppComponent) {}
+    config: AppConfig;
+
+    subscription: Subscription;
+
+    constructor(public app: AppComponent, public appMain: AppMainComponent, public configService: ConfigService) {}
 
     ngOnInit() {
+        this.config = this.configService.config;
+        this.subscription = this.configService.configUpdate$.subscribe(config => {
+            this.config = config;
+        });
+
         this.themes = [
             {name: 'denim', color: '#2f8ee5'},
             {name: 'sea-green', color: '#30A059'},
@@ -169,6 +181,8 @@ export class AppConfigComponent implements OnInit {
         const newURL = urlTokens.join('/');
 
         this.replaceLink(themeLink, newURL, this.appMain['refreshTrafficChart']);
+
+        this.configService.updateConfig({...this.config, ...{dark: this.app.layoutMode !== 'light' }});
     }
 
     changeTheme(theme) {
@@ -213,5 +227,11 @@ export class AppConfigComponent implements OnInit {
         this.appMain.configActive = !this.appMain.configActive;
         this.appMain.configClick = true;
         event.preventDefault();
+    }
+    
+    ngOnDestroy() {
+        if(this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }
