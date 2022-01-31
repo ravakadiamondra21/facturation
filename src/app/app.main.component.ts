@@ -164,7 +164,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy {
     }
 
     isDesktop() {
-        return window.innerWidth > 1024;
+        return window.innerWidth > 992;
     }
 
     isMobile() {
