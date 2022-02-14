@@ -53,13 +53,15 @@ Run 'ng help' for more options.
             </p>
 <app-code ngPreserveWhitespaces ngNonBindable>
 &lt;div class="layout-wrapper" (click)="onLayoutClick()"
-    [ngClass]="&#123;'layout-horizontal': isHorizontal(),
-                'layout-overlay': isOverlay(),
-                'layout-static': isStatic(),
-                'layout-slim':isSlim(),
-                'layout-static-inactive': staticMenuDesktopInactive,
-                'layout-mobile-active': staticMenuMobileActive,
-                'layout-overlay-active':overlayMenuActive, 'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple&#125;"&gt;
+    [ngClass]="&#123;'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple,
+    'layout-static': isStatic(),
+    'layout-overlay': isOverlay(),
+    'layout-overlay-active': overlayMenuActive && isOverlay(),
+    'layout-horizontal': isHorizontal(),
+    'layout-static-active': !staticMenuDesktopInactive && isStatic(),
+    'layout-mobile-active': staticMenuMobileActive,
+    'layout-rtl': app.isRTL,
+    'layout-rightpanel-active': rightPanelActive&#125;"&gt;
 
     &lt;app-topbar&gt;&lt;/app-topbar&gt;
     &lt;div class="layout-menu-container" (click)="onMenuClick($event)"&gt;
