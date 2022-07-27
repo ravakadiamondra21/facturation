@@ -6,7 +6,7 @@
     top: 56px;
     z-index: 998;
     transform: none;
-    @include transition(transform $transitionDuration);
+    transition: transform $animationDuration $animationTimingFunction;
 
     .layout-menu-container {
         overflow: auto;
@@ -139,14 +139,12 @@
 @media (min-width: $tabletBreakpoint + 1) {
     .layout-overlay {
         .menu-wrapper {
-            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-            transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-            transform: translate3d(-241px, 0px, 0px);
+            transform: translateX(-100%);
         }
 
         &.layout-overlay-active {
             .menu-wrapper {
-                transform: translate3d(0px, 0px, 0px);
+                transform: translateX(0);
             }
         }
 
@@ -163,7 +161,7 @@
 
     .layout-static {
         .menu-wrapper {
-            transform: translate3d(-241px, 0px, 0px);
+            transform: translateX(-100%);
         }
 
         .layout-main {
@@ -172,7 +170,7 @@
 
         &.layout-static-active {
             .menu-wrapper {
-                transform: translate3d(0px, 0px, 0px);
+                transform: translateX(0);
             }
 
             .layout-main {
@@ -196,9 +194,7 @@
         .menu-wrapper {
             top: 104px;
             height: calc(100% - 104px);
-            -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-            transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-            transform: translate3d(-260px, 0px, 0px);
+            transform: translateX(-100%);
         }
 
         &.layout-mobile-active {
@@ -206,7 +202,7 @@
             height: 100vh;
 
             .menu-wrapper {
-                transform: translate3d(0px, 0px, 0px);
+                transform: translateX(0);
             }
 
             .layout-mask {

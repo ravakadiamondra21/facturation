@@ -72,28 +72,32 @@ export class DashboardDemoComponent implements OnInit {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
             datasets: [{
                 label: 'Revenue',
-                data:     [31, 83, 69, 29, 62, 25, 59, 26, 46],
-                borderColor: [
-                    '#00acac',
-                ],
-                borderWidth: 2,
-                fill: false,
-                borderDash: [3, 6],
-                tension: .4
-            }, {
-                label: 'Cost',
-                data:     [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
                 borderColor: [
                     '#f1b263',
                 ],
                 backgroundColor: [
-                    'rgba(241, 178, 99, .07)',
+                    'rgba(241, 178, 99, 0.1)'
+                ],
+                borderWidth: 2,
+                fill: true,
+                borderDash: [3, 6],
+                tension: .4
+            }, {
+                label: 'Cost',
+                data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                borderColor: [
+                    '#2f8ee5',
+                ],
+                backgroundColor: [
+                    'rgba(47, 142, 229, 0.05)',
                 ],
                 borderWidth: 2,
                 fill: true,
                 pointRadius: 3,
                 tension: .4
-            }]
+            }],
+            responsive: true
         };
 
         this.trafficChart = this.getTrafficChartData();
