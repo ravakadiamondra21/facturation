@@ -1,4 +1,4 @@
-.overview-box-1 {
+.overview-box {
     height: 100%;
 
     .card-header {
@@ -138,68 +138,6 @@
         }
     }
 }
-
-.overview-box-2 {
-    @include flex();
-    @include flex-align-center();
-    @include flex-justify-between();
-    padding: 32px 12px;
-
-    &.teal {
-        background-color: #02acac;
-
-        i {
-            color: #02acac;
-        }
-    }
-
-    &.orange {
-        background-color: #f1b263;
-
-        i {
-            color: #f1b263;
-        }
-    }
-
-    &.blue {
-        background-color: #2f8ee5;
-
-        i {
-            color: #2f8ee5;
-        }
-    }
-
-    &.pink {
-        background-color: #f16383;
-
-        i {
-            color: #f16383;
-        }
-    }
-
-    h6 {
-        opacity: 0.8;
-        color: #ffffff;
-        font-weight: normal;
-        margin: 0;
-    }
-
-    h3 {
-        margin: 2px 0 0;
-        font-weight: normal;
-        color: #ffffff;
-    }
-
-    i {
-        font-size: 42px;
-        width: 64px;
-        height: 64px;
-        @include border-radius(50%);
-        background-color: $contentBgColor;
-        @include flex-center();
-    }
-}
-
 
 .news {
     padding: 0;
@@ -793,7 +731,7 @@
                 background-color: rgba($contentAltBgColor, .5);
 
                 h3 {
-                    color: rgba(#02acac, .6);
+                    color: rgba(#2f8ee5, .6);
                 }
             }
 
@@ -801,7 +739,7 @@
                 background-color: rgba($contentAltBgColor, .7);
 
                 h3 {
-                    color: rgba(#2f8ee5, .6);
+                    color: #2f8ee5;
                 }
             }
 
