@@ -1,7 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../demo/service/eventservice';
 import {AppBreadcrumbService} from "../app.breadcrumb.service";
+import { defineFullCalendarElement } from '@fullcalendar/web-component';
+// @fullcalendar plugins
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
+defineFullCalendarElement();
 @Component({
     templateUrl: './app.calendar.component.html',
     styles: [`
@@ -58,6 +64,7 @@ export class AppCalendarComponent implements OnInit {
         });
 
         this.options = {
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
             initialDate: '2021-02-01',
             headerToolbar: {
                 left: 'prev,next today',
