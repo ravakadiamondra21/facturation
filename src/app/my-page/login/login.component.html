@@ -1,0 +1,24 @@
+<div class="login-body">
+    <div class="login-wrapper">
+        <div class="login-panel">
+            <a  class="logo">
+                <img src="assets/layout/images/logo-poseidon-dark.svg" alt="poseidon-layout" />
+            </a>
+            <div class="login-form" [formGroup]='loginForm'>
+                <h2>Login To Your Premium Account</h2>
+                <p>You don't have an account? <a href="#/mysignup"> Sign up</a></p>
+                
+                <input formControlName='email' type="text" autocomplete="off" pInputText placeholder="Email">
+                <input  formControlName='pwd' type="password" autocomplete="off" pInputText placeholder="Password"> <br>
+                <small>{{wrongLogin}}</small>
+                <button pButton pRipple label="LOGIN" type="button" (click)='getAdmin() ; verifyLogin()' [routerLink]='routerLink'></button>
+            </div>  
+
+            <p>A problem? <a href="#">Click here</a> and let us help you.</p>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="login-body">
+    <div class="login-wrapper">
+        <div class="login-panel">
+            <a class="logo">
+                <img src="assets/layout/images/logo-poseidon-dark.svg" alt="poseidon-layout" />
+            </a>
+            <h2>Creat An Account To Continue</h2>
+            <div class="input" [formGroup]='signupForm'>
+                <div class="login-form one">
+                    <input formControlName='lastName' type="text" autocomplete="off" pInputText placeholder="Lastname">
+                    <input formControlName='firstName' type="text" autocomplete="off" pInputText placeholder="Firstname">
+                    <input formControlName='id' type="number" autocomplete="off" pInputText placeholder="Identifiant">
+                    
+                    
+                </div>
+                <div class="login-form two">  
+                    <input formControlName='mail' type="text" autocomplete="off" pInputText placeholder="E-mail">
+                    <input formControlName='pwd' type="password" autocomplete="off" pInputText placeholder="Password">
+                    <input formControlName='confirmPwd' type="password" autocomplete="off" pInputText placeholder="Confirm password">
+                </div>
+            </div>
+            <button (click)='postSignup()' pButton pRipple label="SIGN UP" type="button" [routerLink]="['/mylogin']"></button>
+            <p>A problem? <a href="#">Click here</a> and let us help you.</p>
+        </div>
+    </div>
+</div>

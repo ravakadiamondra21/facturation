@@ -1,0 +1,159 @@
+<h2>Banque</h2>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-table #dt [value]="depense" selectionMode="single">
+                <ng-template pTemplate="caption">
+                    <div
+                        class="
+                            flex flex-column
+                            md:flex-row
+                            md:justify-content-between
+                            md:align-items-center
+                        "
+                    >
+                        <h5 class="m-0">Validation au niveau de la banque</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input
+                                pInputText
+                                type="text"
+                                placeholder="Search..."
+                                class="w-full sm:w-auto"
+                            />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th>ID <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Date <p-sortIcon field="name"></p-sortIcon></th>
+                        <th>Type <p-sortIcon field="price"></p-sortIcon></th>
+                        <th>
+                            Fournisseur
+                            <p-sortIcon field="category"></p-sortIcon>
+                        </th>
+                        <th>
+                            Designation <p-sortIcon field="rating"></p-sortIcon>
+                        </th>
+                        <th>
+                            Montant
+                            <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                        </th>
+                        <th>
+                            Saisisseur
+                            <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                        </th>
+                        <th>
+                            Validation
+                            <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                        </th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-depense>
+                    <tr (click)="onSelectedRow(depense)">
+                        <td style="width: 14%; min-width: 10rem">
+                            <p-tableCheckbox></p-tableCheckbox>
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.id }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.date | date: "dd/MM/yyyy" }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.type }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.fournisseur }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.description }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.montant }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.admin.nom }}
+                        </td>
+                        <td style="width: 14%; min-width: 10rem">
+                            {{ depense.isValidate }}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button
+                                    (click)="validation = true"
+                                    pButton
+                                    pRipple
+                                    icon="pi pi-check-circle"
+                                    class="
+                                        p-button-rounded p-button-success
+                                        mr-2
+                                    "
+                                ></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-sidebar [(visible)]="validation" position="right" [baseZIndex]="10000" >
+    <div class="text-900 font-medium text-xl mb-2" style="font-size: larger;">Validation</div>
+    <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+    <ng-template pTemplate="body" >
+        <span class="ml-2 font-medium text-600"><b>Facture du </b> {{newDepense.date | date: "dd/MM/yyyy" }}</span>
+        <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+
+        <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span>{{newDepense.type}}</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span>{{newDepense.fournisseur}}</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span>{{newDepense.description}}</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span>{{newDepense.montant}}</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+                <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                <span>{{admin}}</span>
+            </li>
+        </ul>
+        <br>
+            <span style="text-align: right;"><b>N° transaction bancaire</b></span> <br> <br> 
+            <span class="p-float-label" >
+                <p-inputNumber ></p-inputNumber>
+                <label></label>
+            </span>
+            <br> <br>
+            <button pButton pRipple label="Valider" class="p-3 w-full mt-auto" (click)="confirm = true"></button>
+    </ng-template>
+    
+</p-sidebar>
+
+<p-dialog [(visible)]="confirm" >
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span>Voulez-vous valider cette facture?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="confirm = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)= "onValidate()"></button>
+    </ng-template>
+</p-dialog>
+

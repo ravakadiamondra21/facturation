@@ -2,6 +2,7 @@ import {Component, AfterViewInit, Renderer2, OnDestroy, OnInit} from '@angular/c
 import { MenuService } from './app.menu.service';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from './app.component';
+import { TopbarComponent } from './my-page/topbar/topbar.component';
 
 @Component({
     selector: 'app-main',

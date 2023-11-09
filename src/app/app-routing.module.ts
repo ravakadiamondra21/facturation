@@ -30,6 +30,8 @@ import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {AppInvoiceComponent} from './pages/app.invoice.component';
 import {AppHelpComponent} from './pages/app.help.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
+import { CaisseModule } from './my-page/validation-recette/caisse/caisse.module';
+
 
 @NgModule({
     imports: [
@@ -63,13 +65,54 @@ import {BlocksComponent} from './blocks/blocks/blocks.component';
                     {path: 'pages/empty', component: EmptyDemoComponent},
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
+                    {
+                        path: 'uikit/mydashboard',
+                        loadChildren: () => import('./my-page/dashboard/dashboard.module').then(m => m.DashboardModule)
+                    },
+                    {
+                        path: 'depense',
+                        loadChildren: () => import('./my-page/depense/depense.module').then(m => m.DepenseModule)
+                    },
+                    {
+                        path: 'recette',
+                        loadChildren: () => import('./my-page/recette/recette.module').then(m => m.RecetteModule)
+                    },
+                    {
+                        path: 'validation-depense/banque',
+                        loadChildren: () => import('./my-page/validation-depense/banque/banque.module').then(m => m.BanqueModule)
+                    },
+                    {
+                        path: 'validation-depense/caisse',
+                        loadChildren: () => import('./my-page/validation-depense/caisse/caisse.module').then(m => m.CaisseModule)
+                    },
+                    {
+                        path: 'validation-recette/banque',
+                        loadChildren: () => import('./my-page/validation-recette/banque/banque.module').then(m => m.BanqueModule)
+                    },
+                    {
+                        path: 'validation-recette/caisse',
+                        loadChildren: () => import('./my-page/validation-recette/caisse/caisse.module').then(m => m.CaisseModule)
+                    }
+                   
                 ]
             },
+            {
+                path:'mylogin',
+                loadChildren: ()=>import('./my-page/login/login.module').then(m => m.LoginModule)
+            },
+            {
+                path:'mysignup',
+                loadChildren: ()=>import('./my-page/signup/signup.module').then(m => m.SignupModule)
+            },
+
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},
             {path: 'login', component: AppLoginComponent},
             {path: '**', redirectTo: '/notfound'},
+////////////////////////my-routing//////////////////////////////////////////
+            
+            
         ], {scrollPositionRestoration: 'enabled'})
     ],
     exports: [RouterModule]

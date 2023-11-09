@@ -127,6 +127,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     }
 
     itemClick(event: Event) {
+        console.log(event);
         // avoid processing disabled items
         if (this.item.disabled) {
             event.preventDefault();

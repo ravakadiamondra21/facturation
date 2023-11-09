@@ -140,6 +140,10 @@ import {ConfigService} from './demo/service/app.config.service';
 
 import {MenuService} from './app.menu.service';
 import {AppBreadcrumbService} from './app.breadcrumb.service';
+import { LoginModule } from './my-page/login/login.module';
+import { DashboardModule } from './my-page/dashboard/dashboard.module';
+import { BanqueRoutingModule } from './my-page/validation-depense/banque/banque-routing.module';
+
 
 @NgModule({
     imports: [
@@ -228,7 +232,12 @@ import {AppBreadcrumbService} from './app.breadcrumb.service';
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        AppCodeModule
+        AppCodeModule,
+////////////////////////////////my module/////////////////////////////////////////////////////
+        LoginModule,
+        DashboardModule,
+        BanqueRoutingModule
+       
     ],
     declarations: [
         AppComponent,
@@ -271,7 +280,11 @@ import {AppBreadcrumbService} from './app.breadcrumb.service';
         AppErrorComponent,
         AppAccessdeniedComponent,
         BlocksComponent,
-        BlockViewer
+        BlockViewer,
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        
+       
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -20,12 +20,18 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Favorites', icon: 'pi pi-fw pi-home',
                 items: [
-                    {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}
+                    {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
+                    {label: 'Log in', icon: 'pi pi-fw pi-sign-in', routerLlink:['/mylogin']},
+                    {label: 'Sign up', icon: 'pi pi-fw pi-sign-in', routerLlink:['/mysignup']},
+                    {label: 'myDashboard', icon: 'pi pi-fw pi-home', routerLlink:['/mydashboard']},
+                    {label: 'Recette', icon: 'pi pi-fw pi-home', routerLlink:['/recette']},
+
                 ]
             },
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
                 items: [
+                    {label: 'myDashboard', icon: 'pi pi-fw pi-home', routerLlink:['/uikit/mydashboard']},
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
                     {label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']},
                     {label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel']},
@@ -41,7 +47,10 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']},
                     {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']},
                     {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
-                    {label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']}
+                    {label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']},
+
+
+                    
                 ]
             },
             {
