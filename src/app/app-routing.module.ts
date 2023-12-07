@@ -66,7 +66,7 @@ import { CaisseModule } from './my-page/validation-recette/caisse/caisse.module'
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
                     {
-                        path: 'uikit/mydashboard',
+                        path: 'mydashboard',
                         loadChildren: () => import('./my-page/dashboard/dashboard.module').then(m => m.DashboardModule)
                     },
                     {
@@ -86,12 +86,40 @@ import { CaisseModule } from './my-page/validation-recette/caisse/caisse.module'
                         loadChildren: () => import('./my-page/validation-depense/caisse/caisse.module').then(m => m.CaisseModule)
                     },
                     {
+                        path: 'validation-depense/autre',
+                        loadChildren: () => import('./my-page/validation-depense/autre/autre.module').then(m => m.AutreModule)
+                    },
+                    {
                         path: 'validation-recette/banque',
                         loadChildren: () => import('./my-page/validation-recette/banque/banque.module').then(m => m.BanqueModule)
                     },
                     {
                         path: 'validation-recette/caisse',
                         loadChildren: () => import('./my-page/validation-recette/caisse/caisse.module').then(m => m.CaisseModule)
+                    },
+                    {
+                        path: 'validation-recette/autre',
+                        loadChildren: () => import('./my-page/validation-recette/autre/autre.module').then(m => m.AutreModule)
+                    },
+                    {
+                        path:'depense-valid/banque',
+                        loadChildren: () => import('./my-page/depense-valid/banque/banque.module').then(m => m.BanqueModule)
+                    },
+                    {
+                        path: 'depense-valid/caisse',
+                        loadChildren: () => import('./my-page/depense-valid/caisse/caisse.module').then(m => m.CaisseModule)
+                    },
+                    {
+                        path: 'recette-valid/banque',
+                        loadChildren: () => import('./my-page/recette-valid/banque/banque.module').then(m => m.BanqueModule)
+                    },
+                    {
+                        path: 'recette-valid/caisse',
+                        loadChildren: () => import('./my-page/recette-valid/caisse/caisse.module').then(m => m.CaisseModule)
+                    },
+                    {
+                        path: 'depense-banking',
+                        loadChildren: () => import('./my-page/depense-valid/banking/banking.module').then(m => m.BankingModule)
                     }
                    
                 ]

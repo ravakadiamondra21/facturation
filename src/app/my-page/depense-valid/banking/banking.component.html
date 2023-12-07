@@ -1,0 +1,119 @@
+<h2>Banking</h2>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-fileUpload  mode="basic" (input)="onFileChange($event)" multiple="false" maxFileSize="1000000" >
+                Choose
+            </p-fileUpload>
+
+            <p-table #dt [value]="banking"  selectionMode="single" >
+                <!-- <p-fileUpload mode="basic" accept="image/*"   class="mr-2 inline-block" (input)="onFileChange($event)" multiple="false"></p-fileUpload> -->
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Importation depius la banque</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"  placeholder="Recherche..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th>ID <p-sortIcon field="code"></p-sortIcon></th>
+                        <th >Date d'opération <p-sortIcon field="name"></p-sortIcon></th>
+                        
+                        <th>Libellé de l'opération <p-sortIcon field="price"></p-sortIcon></th>
+                        <th>Débit <p-sortIcon field="category"></p-sortIcon></th>
+                        <th>Crédit <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th>Solde <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-banking>
+                    <tr (click)="onSelectedRow(banking)">
+                        <td style="width:14%; min-width:10rem;">
+                            <p-tableCheckbox ></p-tableCheckbox >
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            <!--<span class="p-column-title">Date</span>-->
+                            {{banking.id}} 
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            <!--<span class="p-column-title">Date</span>-->
+                            {{banking.date_operation | date: 'yyyy-MM-dd'}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            <!--<span class="p-column-title">Date</span>-->
+                            {{banking.libelle}} 
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            <!--<span class="p-column-title">Date</span>-->
+                            {{banking.debit}} 
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            <!--<span class="p-column-title">Date</span>-->
+                            {{banking.credit}} 
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            <!--<span class="p-column-title">Date</span>-->
+                            {{banking.solde}} 
+                        </td>
+                    </tr> 
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+
+    <p-sidebar [style]="{width:'35%'}"  class="layout-config-content" [(visible)]="visibleSidebar" position="right" [baseZIndex]="10000">
+        <h3 style="font-weight:normal; text-align: center;">BANKING</h3>
+        <p><b>Date d'opération</b> {{date | date: 'yyyy-MM-dd'}}</p>
+        <p><b>Libellé de l'opération</b> {{libelle}}</p>
+        <p><b>Montant </b> {{credit == 0 ? debit : credit  }}</p>
+        <button (click)="debit == 0 ? callMatchDepense() : callMatchRecette()" style="margin-left: 40%;" pButton pRipple type="button" label="Envoyer" class="p-button-success mr-2 mb-2"></button> 
+
+        <p-dataView [value]="depense">
+            <ng-template let-depense pTemplate="listItem" >
+                    <div class="col-12" >
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full" >
+                            <div class="flex-1 text-center md:text-left" [ngStyle]="{'background-color': background_color}">
+                                <div class="font-bold text-xl">N° {{depense.numero_facture}}</div>
+                                <div class="mb-3">{{depense.description}}   <br> <small class="mb-3">{{depense.statu}}</small></div>
+                                
+                            </div>
+                            <div class="flex-1 text-center md:text-left" >
+                                <div class="font-bold text-xl">{{depense.montant_HT + depense.TVA}}</div>    
+                            </div>
+                            <div class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
+                                <button [ngClass]="{'selected-button' : functionSelect(depense)}" pButton pRipple type="button" label="Selectionner" class="p-button-rounded p-button-warning mr-2 mb-2" (click)="change_color(depense)"></button>   
+                                
+                            </div>
+                        </div> 
+                    </div>
+                
+            </ng-template>
+            
+        </p-dataView>
+        
+       
+    </p-sidebar>
+
+    <p-dialog [(visible)]="dialog" >
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span>Voulez-vous envoyer ce mouvement en tant qu'approvisionnement dans la caisse?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="dialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="yesClick()"></button>
+        </ng-template>
+    </p-dialog>
+
+
+
+

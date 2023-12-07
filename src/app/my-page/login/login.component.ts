@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit{
 
   loginForm = new FormGroup(
     {
-      id: new FormControl(''),
       email : new FormControl(''),
       pwd : new FormControl('')
     }
@@ -32,50 +31,56 @@ export class LoginComponent implements OnInit{
   }
 
   login : Login;
-
-  getAdmin() {
-    const mail = this.loginForm.get('email').value;
-   
-    let result: Login
-    this.loginService.getAdmin(mail).subscribe(
-      response=>{
-        result = response;
-
-        let stringToStore = JSON.stringify(result);
-        localStorage.setItem("admin", stringToStore);
-        console.log(localStorage.getItem("admin"))
-      },
-      
-    )
-  }
   
    routerLink: string;
 
    wrongLogin = '';
 
   verifyLogin(){
-    
-    const mail = this.loginForm.get("email").value;
+
+    const mail = String(this.loginForm.get('email').value);
     const pwd = this.loginForm.get("pwd").value;
+   
+    let result: Login
+    this.loginService.getAdmin(mail).subscribe(
+      response=>{
+        result = response;
 
-    let valueStorage = localStorage.getItem("admin");
-    let objectValueStorage = JSON.parse(valueStorage)
+        console.log(result)
 
-    if(objectValueStorage === null){
-      this.wrongLogin= "else voalohany"
+    if(result === null){
+      this.wrongLogin= "Erreur de login"
       this.routerLink = '/mylogin'
-      localStorage.removeItem("admin")
+      this.loginForm.setValue({
+        email : "",
+        pwd: ""
+      })
+      
     }
 
-    else if(objectValueStorage.mail == mail && objectValueStorage.mdp == pwd){
+    else if(result.mail == mail && result.mdp == pwd){
       this.routerLink = '/mydashboard'
+      this.loginForm.setValue({
+        email : "",
+        pwd: ""
+      })
+      let stringToStore = JSON.stringify(result);
+        localStorage.setItem("admin", stringToStore);
     }
 
     else{
-      this.wrongLogin = "else faharoa"
+      this.wrongLogin = "mail ou mot de passe invalide"
       this.routerLink = '/mylogin'
-      localStorage.removeItem('admin')
-    }
+      this.loginForm.setValue({
+        email : "",
+        pwd: ""
+      })
+    }        
+      },
+      
+    )
 
+    console.log(localStorage.getItem("admin"))
+    
     }
 }

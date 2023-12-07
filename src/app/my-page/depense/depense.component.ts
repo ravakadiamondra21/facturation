@@ -3,10 +3,14 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { DepenseService } from './depense.service';
 import { Depense } from './depense';
 import { NewDepense } from './newDepense';
-import { Observable, windowToggle } from 'rxjs';
+
 
 interface Statu{
   name: string;
+}
+
+interface Search{
+  value: string;
 }
 
 @Component({
@@ -15,10 +19,11 @@ interface Statu{
   styleUrls: ['./depense.component.scss']
 })
 
-
 export class DepenseComponent implements OnInit {
   status: Statu[];
   selectedStatu : Statu;
+  valueToSearch: Search[];
+  selectedValue: Search;
   
   constructor(private depenseService: DepenseService){ 
     this.status= [
@@ -26,18 +31,32 @@ export class DepenseComponent implements OnInit {
       {name: 'caisse'},
       {name: 'à definir'}
     ]
+
+    this.valueToSearch = [
+      {value: 'date facture'},
+      {value: 'date opération'},
+      {value: 'circuit'}
+    ]
   }
   
 
    addNewD = false;
 
    depenseForm = new FormGroup({
-     date: new FormControl(),
+     date_operation: new FormControl(),
+     date_facture: new FormControl(),
+     numero_facture: new FormControl(),
+     circuit: new FormControl(''),
      type: new FormControl(''),
      fournisseur: new FormControl(''),
      description : new FormControl(''),
-     montant: new FormControl(),
+     montant_HT: new FormControl(),
+     TVA: new FormControl(),
      statu: new FormControl('')
+   })
+
+   searchForm = new FormGroup({
+     search: new FormControl("")
    })
 
 ngOnInit(): void{
@@ -49,7 +68,7 @@ depense : Depense[] = [];
 readDepense(){
   this.depenseService.getDepense().subscribe(
     response=>{
-      this.depense = response;
+      this.depense = response;    
     }
   )
 }
@@ -58,12 +77,16 @@ openDialog(){
   this.addNewD = true;
   this.id = null;
   this.depenseForm.setValue({
-    date : null ,
+    date_operation : null ,
+    date_facture : null,
     type: '',
     fournisseur: '',
     description: '',
-    montant : 0,
-    statu : ''
+    montant_HT : 0,
+    statu : '',
+    TVA: 0,
+    circuit: '',
+    numero_facture: 0
 
   })
 }
@@ -75,25 +98,33 @@ hideDialog(){
 
 
 newDepense: NewDepense = {
-    date: null,
+    date_operation: null,
+    date_facture: null,
     type: "",
     fournisseur: "",
     description: "",
-    montant: 0,
+    montant_HT: 0,
     statu: "",
     admin: 0,
-    isValidate: false
-
+    isValidate: false,
+    TVA: 0,
+    circuit: '',
+    numero_facture: 0,
+    ref_lettrage: ''
 };
 postDepense(){
   this.id = null
   let valueStorage = localStorage.getItem("admin");
   let objectValueStorage = JSON.parse(valueStorage);
-  this.newDepense.date =new Date(this.depenseForm.get('date').value);
+  this.newDepense.date_operation =new Date(this.depenseForm.get('date_operation').value);
+  this.newDepense.date_facture =new Date(this.depenseForm.get('date_facture').value);
+  this.newDepense.numero_facture = Number(this.depenseForm.get("numero_facture").value);
   this.newDepense.type = this.depenseForm.get('type').value;
+  this.newDepense.circuit = this.depenseForm.get('circuit').value;
   this.newDepense.fournisseur = this.depenseForm.get('fournisseur').value;
   this.newDepense.description = this.depenseForm.get('description').value;
-  this.newDepense.montant = Number(this.depenseForm.get('montant').value);
+  this.newDepense.montant_HT = Number(this.depenseForm.get('montant_HT').value);
+  this.newDepense.TVA = Number(this.depenseForm.get('TVA').value);
   this.newDepense.statu = this.depenseForm.get('statu').value;
   this.newDepense.admin = Number(objectValueStorage.id);
   this.newDepense.isValidate = false;
@@ -123,6 +154,7 @@ delete(){
       this.readDepense()
       this.isEnable = false;
       this.deleteDialog = false
+      this.addNewD = false;
     }
   )  
 }
@@ -130,21 +162,45 @@ delete(){
 deleteDialog = false;
 
 confirmDelete(){
+  console.log(this.id)
   this.deleteDialog = true;
   this.isEnable = false;
 }
 
-getSearchValue(date){
-  return date.target.value;
+getSearchValue(event){
+  return event.target.value;
 }
 
-getByDate(date){
-  var dateToSearch = this.getSearchValue(date);
-  this.depenseService.getByDate(dateToSearch).subscribe(
-    response => {
-      this.depense = response;
-    }
-  )
+getByDate(event){
+  var valueToSearch = this.getSearchValue(event);
+  let value = this.searchForm.get('search').value;
+
+  if(value == 'date facture'){
+    this.depenseService.searchFacture(new Date(valueToSearch)).subscribe(
+      response => {
+        this.depense = response;
+        console.log("facture")
+        
+      }
+    )
+  }
+  else if(value == 'date opération'){
+    this.depenseService.searchOperation(new Date(valueToSearch)).subscribe(
+      response => {
+        this.depense = response;
+        console.log("opération")
+      }
+    )
+  }
+  else if(value == 'circuit'){
+    this.depenseService.searchCircuit(valueToSearch).subscribe(
+      response => {
+        this.depense = response
+        console.log("circuit")
+      }
+    )
+  }
+  
 }
 
 id = null;
@@ -152,39 +208,52 @@ id = null;
 openEdit(depense: any){
   console.log("ity openEdit fa misokatra")
 
+  this.onRowSelected(depense)
+
   this.addNewD = true;
   this.selectedRow = depense;
   this.id = this.selectedRow.id;
-  const Vdate =new Date(this.selectedRow.date);
+  const Vdate_operation =new Date(this.selectedRow.date_operation);
+  const Vdate_facture =new Date(this.selectedRow.date_facture);
   const Vtype = this.selectedRow.type;
+  const Vcircuit = this.selectedRow.circuit;
   const Vfournisseur = this.selectedRow.fournisseur;
   const Vdescription = this.selectedRow.description;
   const Vstatu = this.selectedRow.statu;
-  const Vmontant = this.selectedRow.montant
-
-  console.log(Vmontant)
+  const Vmontant_HT = this.selectedRow.montant_HT
+  const Vtva = this.selectedRow.TVA;
+  const Vnumero_facture = this.selectedRow.numero_facture;
+  
   this.depenseForm.setValue({
-    date : Vdate,
+    date_operation : Vdate_operation,
+    date_facture : Vdate_facture,
     description: Vdescription,
     fournisseur: Vfournisseur,
-    montant : Vmontant,
+    montant_HT : Vmontant_HT,
     statu : Vstatu,
-    type: Vtype
+    type: Vtype,
+    TVA : Vtva,
+    circuit : Vcircuit,
+    numero_facture : Vnumero_facture
   })
 
 }
 
 editDepense(){
-  const id = null;
   let valueStorage = localStorage.getItem("admin");
   let objectValueStorage = JSON.parse(valueStorage)
 
-  this.newDepense.date = new Date(this.depenseForm.get('date').value);
+  this.newDepense.date_facture = new Date(this.depenseForm.get('date_facture').value);
+  this.newDepense.date_operation = new Date(this.depenseForm.get('date_operation').value);
+  this.newDepense.numero_facture = Number(this.depenseForm.get('numero_facture').value);
+  this.newDepense.circuit = this.depenseForm.get('circuit').value;
   this.newDepense.description = this.depenseForm.get('description').value;
   this.newDepense.fournisseur = this.depenseForm.get('fournisseur').value;
-  this.newDepense.montant = Number(this.depenseForm.get('montant').value);
+  this.newDepense.montant_HT = Number(this.depenseForm.get('montant_HT').value);
+  this.newDepense.TVA = Number(this.depenseForm.get('TVA').value);
   this.newDepense.statu = this.depenseForm.get('statu').value;
   this.newDepense.type = this.depenseForm.get('type').value;
+  //this.newDepense.ref_facture = this.depenseForm.get('ref_facture').value;
   this.newDepense.admin = Number(objectValueStorage.id)
   
   return this.depenseService.updateDepense(this.id, this.newDepense).subscribe(

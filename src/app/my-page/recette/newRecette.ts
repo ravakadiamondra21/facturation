@@ -1,9 +1,12 @@
 export interface NewRecette{
-    date: Date;
+    date_operation: Date;
+    date_facture: Date;
     client: string;
     description: string;
     statu: string;
-    montant: number;
+    montant_HT: number;
+    TVA: number;
     admin: number;
-    isValidate: boolean;
+    ref_lettrage: string;
+    numero_facture: number;
 }

@@ -11,7 +11,7 @@ export class RecetteService {
 
   constructor(private http: HttpClient) { }
   getRecette(): Observable<Recette[]>{
-    return this.http.get<Recette[]>('http://localhost:3000/recette');
+    return this.http.get<Recette[]>('http://localhost:3000/recette/sort');
   }
 
   postRecette(recette: NewRecette) : Observable<NewRecette>{
@@ -24,11 +24,23 @@ export class RecetteService {
   }
 
   getByDate(date: Date){
-    return this.http.get<Recette[]>('http://localhost:3000/recette/date/'+date);
+    return this.http.get<Recette[]>('http://localhost:3000/recette/date_op/'+date);
   }
 
   updateRecette(id: number, recette: NewRecette) : Observable<NewRecette>{
     return this.http.patch<NewRecette>('http://localhost:3000/recette/'+id, recette);
+  }
+
+  countMatched(ref_lettrage) : Observable<Number>{
+    return this.http.get<Number>('http://localhost:3000/recette/count/'+ref_lettrage);
+  }
+
+  getFacture(date: Date){
+    return this.http.get<Recette[]>('http://localhost:3000/recette/date_facture/'+date)
+  }
+
+  getOperation(date: Date){
+    return this.http.get<Recette[]>('http://localhost:3000/recette/date_operation/'+date)
   }
 }
 

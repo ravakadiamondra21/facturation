@@ -8,6 +8,10 @@ interface Statu{
   name: string;
 }
 
+interface Search{
+  value: string;
+}
+
 @Component({
   selector: 'app-recette',
   templateUrl: './recette.component.html',
@@ -16,6 +20,8 @@ interface Statu{
 export class RecetteComponent implements OnInit{
   status: Statu[] ;
   selectedStatu : Statu;
+  valueToSearch: Search[];
+  selectedValue: Search;
 
   constructor(private recetteService: RecetteService){
     this.status = [
@@ -23,16 +29,24 @@ export class RecetteComponent implements OnInit{
       {name: 'caisse'},
       {name: 'à definir'}
     ]
+
+    this.valueToSearch = [
+      {value: 'date facture'},
+      {value: 'date opération'}
+    ]
   }
 
   addNew : boolean = false;
 
   recetteForm = new FormGroup({
-    date : new FormControl(),
+    date_operation : new FormControl(),
+    date_facture: new FormControl(),
     client : new FormControl(''),
     description : new FormControl(''),
     statu : new FormControl(''),
-    montant : new FormControl(),
+    montant_HT : new FormControl(),
+    TVA: new FormControl(),
+    numero_facture: new FormControl()
   })
 ngOnInit(){
   console.log(this.recette)
@@ -43,6 +57,7 @@ ngOnInit(){
 recette : Recette[] = [];
 id = null
 
+
 readRecette(){
   this.recetteService.getRecette().subscribe(
     response=>{
@@ -52,25 +67,35 @@ readRecette(){
 }
 
 newRecette: NewRecette = {
-  date: null,
+  date_operation: null,
+  date_facture: null,
   client: "",
   description: "",
-  montant: 0,
+  montant_HT: 0,
   statu: "",
   admin : null,
-  isValidate: false
+  TVA: 0,
+  numero_facture: 0,
+  ref_lettrage: ""
 }
+
+searchForm = new FormGroup({
+  search: new FormControl("")
+})
 
 postRecette(){
   let valueStorage = localStorage.getItem("admin")
   let objectValueStorage = JSON.parse(valueStorage)
-  this.newRecette.date =new Date(this.recetteForm.get('date').value);
+  this.newRecette.date_facture =new Date(this.recetteForm.get('date_facture').value);
+  this.newRecette.date_operation =new Date(this.recetteForm.get('date_operation').value);
   this.newRecette.client = this.recetteForm.get('client').value;
   this.newRecette.description = this.recetteForm.get('description').value;
-  this.newRecette.montant = Number(this.recetteForm.get('montant').value);
+  this.newRecette.montant_HT = Number(this.recetteForm.get('montant_HT').value);
+  this.newRecette.TVA = Number(this.recetteForm.get('TVA').value);
   this.newRecette.statu = this.recetteForm.get('statu').value;
+  this.newRecette.numero_facture = Number(this.recetteForm.get('numero_facture').value)
   this.newRecette.admin = Number(objectValueStorage.id);
-  this.newRecette.isValidate = false;
+
 
   this.recetteService.postRecette(this.newRecette).subscribe(
     response=> {
@@ -83,14 +108,18 @@ postRecette(){
   console.log('mande ny post')
 }
 
-openDialog(){
+openDialog(recette: any){
   this.addNew= true;
+  
   this.recetteForm.setValue({
-    date: null,
-    client: '',
-    description: '',
-    montant: 0,
-    statu: ''
+    date_operation: null,
+    date_facture: null,
+    client: "",
+    description: "",
+    montant_HT: 0,
+    statu: "",
+    TVA: 0,
+    numero_facture: 0,
   })
 }
 
@@ -119,6 +148,7 @@ delete(){
       this.readRecette();
       this.isEnable = false;
       this.deleteDialog = false;
+      this.addNew = false;
     }
   )
 }
@@ -135,42 +165,69 @@ getSearchValue(date){
 }
 
 getByDate(date){
-  var dateToSearch = this.getSearchValue(date)
-  this.recetteService.getByDate(dateToSearch).subscribe(
-    response => {
-      this.recette = response;
-      console.log(this.recette)
-      //return this.readRecette();
-    }
-  )
+  var valueToSearch = this.getSearchValue(date);
+  let value = this.searchForm.get('search').value;
+  
+  if(value == 'date facture'){
+    this.recetteService.getFacture(new Date(valueToSearch)).subscribe(
+      response => {
+        this.recette = response;
+        console.log("date facture")
+        
+      }
+    )
+  }
+  else if(value == 'date opération'){
+    this.recetteService.getOperation(new Date(valueToSearch)).subscribe(
+      response => {
+        this.recette = response;
+        console.log("date operation")
+      }
+    )
+  }
 }
 
 openEdit(recette: any){
   this.addNew = true;
+
+  this.onSelectedRow(recette)
   this.selectedRow = recette;
   this.id = this.selectedRow.id;
-  const Vdate = new Date(this.selectedRow.date)
+  const Vdate_facture = new Date(this.selectedRow.date_facture)
+  const Vdate_operation = new Date(this.selectedRow.date_operation)
   const Vclient = this.selectedRow.client;
   const Vdescription = this.selectedRow.description;
   const Vstatu = this.selectedRow.statu;
-  const Vmontant = this.selectedRow.montant;
+  const Vmontant_HT = this.selectedRow.montant_HT;
+  const VTVA = this.selectedRow.TVA;
+  const Vnumero_facture = this.selectedRow.numero_facture;
 
   this.recetteForm.setValue({
-    date: Vdate,
+    date_facture: Vdate_facture,
+    date_operation: Vdate_operation,
     client: Vclient,
     description: Vdescription,
-    montant: Vmontant,
-    statu: Vstatu
+    montant_HT: Vmontant_HT,
+    statu: Vstatu,
+    TVA: VTVA,
+    numero_facture: Vnumero_facture
   })
   
 }
 
 editRecette(){
-  this.newRecette.date =new Date(this.recetteForm.get('date').value);
+  let valueStorage = localStorage.getItem("admin")
+  let objectValueStorage = JSON.parse(valueStorage)
+  this.newRecette.date_facture =new Date(this.recetteForm.get('date_facture').value);
+  this.newRecette.date_operation =new Date(this.recetteForm.get('date_operation').value);
   this.newRecette.client = this.recetteForm.get('client').value;
   this.newRecette.description = this.recetteForm.get('description').value;
-  this.newRecette.montant = Number(this.recetteForm.get('montant').value);
+  this.newRecette.montant_HT = Number(this.recetteForm.get('montant_HT').value);
+  this.newRecette.TVA = Number(this.recetteForm.get('TVA').value);
   this.newRecette.statu = this.recetteForm.get('statu').value;
+  this.newRecette.numero_facture = Number(this.recetteForm.get('numero_facture').value)
+  this.newRecette.admin = Number(objectValueStorage.id);
+
 
   this.recetteService.updateRecette(this.id, this.newRecette).subscribe(
     response => {

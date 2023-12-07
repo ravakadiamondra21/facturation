@@ -1,9 +1,13 @@
 export interface Recette{
-    id:  number;
-    date: Date;
+    id: number;
+    date_operation: Date;
+    date_facture: Date;
     client: string;
     description: string;
-    montant: number;
     statu: string;
-    isValidate: boolean;
+    montant_HT: number;
+    TVA: number;
+    admin: number;
+    ref_lettrage: string;
+    numero_facture: number;
 }

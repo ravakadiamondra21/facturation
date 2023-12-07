@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { SidebarModule } from 'primeng/sidebar';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ButtonModule,
     DialogModule,
     SidebarModule,
-    InputNumberModule
+    InputNumberModule,
+    FormsModule
   ]
 })
 export class BanqueModule { }

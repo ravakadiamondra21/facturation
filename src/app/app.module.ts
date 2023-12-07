@@ -145,6 +145,7 @@ import { DashboardModule } from './my-page/dashboard/dashboard.module';
 import { BanqueRoutingModule } from './my-page/validation-depense/banque/banque-routing.module';
 
 
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -281,6 +282,7 @@ import { BanqueRoutingModule } from './my-page/validation-depense/banque/banque-
         AppAccessdeniedComponent,
         BlocksComponent,
         BlockViewer,
+        
 
         //////////////////////////////////////////////////////////////////////////////////////////////////
         

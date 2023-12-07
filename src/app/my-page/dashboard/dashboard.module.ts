@@ -5,7 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import {ChartModule} from 'primeng/chart';
 import {OrganizationChartModule} from 'primeng/organizationchart';
 import { ButtonModule } from 'primeng/button';
-
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { ButtonModule } from 'primeng/button';
     DashboardRoutingModule,
     ChartModule,
     OrganizationChartModule,
-    ButtonModule
+    ButtonModule,
+    DatePipe
   ],
   
 })

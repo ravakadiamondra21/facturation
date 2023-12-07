@@ -9,21 +9,21 @@ import { Solde } from '../../solde';
 })
 export class BanqueService {
 
-  constructor(private http: HttpClient) { }
+  // constructor(private http: HttpClient) { }
 
-  getNotValidate(){
-    return this.http.get<Recette[]>('http://localhost:3000/recette/statu/banque/false');
-  }
+  // getNotValidate(){
+  //   return this.http.get<Recette[]>('http://localhost:3000/recette/statu/banque/false');
+  // }
 
-  updateValidation(id: number, newRecette: NewRecette){
-    return this.http.patch<NewRecette>('http://localhost:3000/recette/'+id, newRecette)
-  }
+  // updateValidation(id: number, newRecette: NewRecette){
+  //   return this.http.patch<NewRecette>('http://localhost:3000/recette/'+id, newRecette)
+  // }
 
-  getSolde(){
-    return this.http.get<Solde>('http://localhost:3000/solde/banque');
-  }
+  // getSolde(){
+  //   return this.http.get<Solde>('http://localhost:3000/solde/banque');
+  // }
 
-  updateSolde(nom: string, solde: Solde){
-    return this.http.patch<Solde>('http://localhost:3000/solde/' +nom, solde);
-  }
+  // updateSolde(nom: string, solde: Solde){
+  //   return this.http.patch<Solde>('http://localhost:3000/solde/' +nom, solde);
+  // }
 }

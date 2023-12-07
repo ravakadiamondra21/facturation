@@ -1,0 +1,65 @@
+<h2>Recette reçue</h2>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-table #dt [value]="recette">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Recette reçue à la banque</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="search"  placeholder="Recherche..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th >ID <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Date <p-sortIcon field="name"></p-sortIcon></th>
+                        
+                        <th>Client <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="category">Motif <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Montant <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th pSortableColumn="inventoryStatus">Statu <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th>Validation <p-sortIcon field="price"></p-sortIcon></th>
+                        <th>Admin <p-sortIcon field="price"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-recette>
+                    <tr (click)="onSelectedRow(recette)" [class.selected]="recette === selectedRow">
+                        <td style="width:14%; min-width:10rem;" >
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.date | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.client}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.description}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.montant}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.statu}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.isValidate}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.admin.nom}} {{recette.admin.prenom}}
+                        </td>
+                    </tr>
+                </ng-template>
+                
+            </p-table>

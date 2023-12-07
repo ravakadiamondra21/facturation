@@ -3,13 +3,16 @@
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
+            <form style="display: flex; justify-content: flex-end;" [formGroup]='searchForm'>
+                <p-dropdown [options]= "valueToSearch" [(ngModel)]="selectedValue"  optionValue="value" optionLabel="value" formControlName='search' ></p-dropdown> 
+            </form>
             <p-table #dt [value]="recette">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Enregistrer facture</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="search"  placeholder="Search..."  class="w-full sm:w-auto" (keyup.enter)="getByDate($event)"/>
+                            <input pInputText type="search"  placeholder="Recherche..."  class="w-full sm:w-auto" (keyup.enter)="getByDate($event)"/>
                         </span>
                     </div>
                 </ng-template>
@@ -19,19 +22,21 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th >ID <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name">Date <p-sortIcon field="name"></p-sortIcon></th>
-                        
+                        <th pSortableColumn="name">Date opération<p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="name">Numéro facture<p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="name">Date opération<p-sortIcon field="name"></p-sortIcon></th>
                         <th>Client <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="category">Motif <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="rating">Montant <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th pSortableColumn="category">Description <p-sortIcon field="category"></p-sortIcon></th>
                         <th pSortableColumn="inventoryStatus">Statu <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Validation <p-sortIcon field="price"></p-sortIcon></th>
                         <th>Admin <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Montant hors taxe <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th pSortableColumn="rating">TVA <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Total <p-sortIcon field="rating"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-recette>
-                    <tr (click)="onSelectedRow(recette)" [class.selected]="recette === selectedRow">
+                    <tr (click)="openEdit(recette)" [class.selected]="recette === selectedRow">
                         <td style="width:14%; min-width:10rem;" >
                             
                         </td>
@@ -39,7 +44,13 @@
                             {{recette.id}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{recette.date | date:'dd/MM/yyyy'}}
+                            {{recette.date_operation | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.numero_facture}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.date_facture | date:'dd/MM/yyyy'}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
                             {{recette.client}}
@@ -48,22 +59,21 @@
                             {{recette.description}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{recette.montant}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
                             {{recette.statu}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{recette.etat}}
+                            {{recette.admin.nom}} {{recette.admin.prenom}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{recette.admin.nom}}
+                            {{recette.montant_HT}}
                         </td>
-                        <td>
-                            <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="openEdit(recette)"></button>
-                            </div>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.TVA}}
                         </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.montant_HT + recette.TVA}}
+                        </td>
+
                     </tr>
                 </ng-template>
                 
@@ -73,7 +83,7 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click) = "openDialog()"></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="confirmDelete()" [disabled]="!isEnable"></button>
+                        
                     </div>
                 </ng-template>
             
@@ -81,12 +91,6 @@
                     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
                     <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
                 </ng-template>
-                <span  pripple="" tabindex="0" class="p-ripple p-element p-button p-component p-fileupload-choose" ng-reflect-ng-class="[object Object]">
-                    
-                    <span ng-reflect-ng-class="p-button-icon p-button-icon-le" class="pi pi-plus p-button-icon p-button-icon-left"></span>
-                <span class="p-button-label">Choose</span><span class="p-ink"></span>
-                </span>
-
                
             </p-toolbar>
             
@@ -104,11 +108,20 @@
         <ng-template pTemplate="content">
             
             <div class="field">
-                <label for="">date</label>
-                <p-calendar formControlName='date' inputId="icon"></p-calendar>
+                <label for="">Date d'opération bancaire</label>
+                <p-calendar formControlName='date_operation' inputId="icon"></p-calendar>
             </div>
-            
+            <div class="field">
+                <label for="">Date de la facture</label>
+                <p-calendar formControlName='date_facture' inputId="icon"></p-calendar>
+            </div>
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="price">Numéro facture</label>
+                    <p-inputNumber formControlName='numero_facture' ></p-inputNumber>
+                </div>
                 
+            </div>
     
             <div class="field">
                 <label for="name">client</label>
@@ -130,8 +143,15 @@
     
             <div class="formgrid grid">
                 <div class="field col">
-                    <label for="price">Montant</label>
-                    <p-inputNumber formControlName='montant' ></p-inputNumber>
+                    <label for="price">Montant hors taxe</label>
+                    <p-inputNumber formControlName='montant_HT' ></p-inputNumber>
+                </div>
+                
+            </div>
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="price">TVA</label>
+                    <p-inputNumber formControlName='TVA' ></p-inputNumber>
                 </div>
                 
             </div>
@@ -139,6 +159,7 @@
     
         <ng-template pTemplate="footer">
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple  icon="pi pi-trash" class="p-button-text" label="Delete" (click)="id == null ? hideDialog() : confirmDelete()"></button>
             <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="id == null ? postRecette() : editRecette()"></button>
         </ng-template>
     </p-dialog>
@@ -148,7 +169,7 @@
 <p-dialog [(visible)]="deleteDialog" >
     <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span>Are you sure you want to delete selected products?</span>
+        <span>Voulez-vous vraiment supprimer cette facture?</span>
     </div>
     <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteDialog = false"></button>

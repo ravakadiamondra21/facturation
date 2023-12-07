@@ -1,15 +1,21 @@
 <h2>Depense</h2>
 
 <div class="grid">
+    
     <div class="col-12">
         <div class="card px-6 py-6">
+            <form style="display: flex; justify-content: flex-end;" [formGroup]='searchForm'>
+                <p-dropdown [options]= "valueToSearch" [(ngModel)]="selectedValue"  optionValue="value" optionLabel="value" formControlName='search' ></p-dropdown> 
+            </form>
             <p-table #dt [value]="depense" selectionMode="single">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Enregistrer facture</h5>
+                        
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text"  placeholder="Search..."  class="w-full sm:w-auto" (keyup.enter)="getByDate($event)"/>
+                            <input pInputText type="text"  placeholder="Recherche..."  class="w-full sm:w-auto" (keyup.enter)="getByDate($event)"/>
                         </span>
                     </div>
                 </ng-template>
@@ -19,20 +25,24 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th>ID <p-sortIcon field="code"></p-sortIcon></th>
-                        <th >Date <p-sortIcon field="name"></p-sortIcon></th>
+                        <th>Date opération <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Numero facture <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Date facture <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Type <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Circuit <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Fournisseur <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Description <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Statu <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Saisisseur <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Montant hors taxe<p-sortIcon field="code"></p-sortIcon></th>
+                        <th>TVA <p-sortIcon field="code"></p-sortIcon></th>
+                        <th>Montant TTC <p-sortIcon field="code"></p-sortIcon></th>
                         
-                        <th>Type <p-sortIcon field="price"></p-sortIcon></th>
-                        <th>Fournisseur <p-sortIcon field="category"></p-sortIcon></th>
-                        <th>Designation <p-sortIcon field="rating"></p-sortIcon></th>
-                        <th>Montant <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Statu <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Validation <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Saisisseur <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-depense>
-                    <tr (click)="onRowSelected(depense)" [class.selected]="depense === selectedRow">
+                    <tr (click)="openEdit(depense)" [class.selected]="depense === selectedRow">
                         <td style="width:14%; min-width:10rem;">
                             <p-tableCheckbox ></p-tableCheckbox >
                             
@@ -42,10 +52,19 @@
                             {{depense.id}} 
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{depense.date | date: 'dd/MM/yyyy'}}
+                            {{depense.date_operation | date: 'dd/MM/yyyy'}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{depense.numero_facture}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{depense.date_facture | date: 'dd/MM/yyyy'}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
                             {{depense.type}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{depense.circuit}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
                             {{depense.fournisseur}}
@@ -54,32 +73,30 @@
                             {{depense.description}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{depense.montant}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
                             {{depense.statu}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
-                            {{depense.isValidate}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
                             {{depense.admin.nom}} {{depense.admin.prenom}}
                         </td>
-                        <td>
-                            <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="openEdit(depense)"></button>
-                            </div>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{depense.montant_HT}}
                         </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{depense.TVA}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{depense.montant_HT + depense.TVA}}
+                        </td> 
                     </tr>
                 </ng-template>
-                
             </p-table>
+
             
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openDialog()"></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" [disabled]="!isEnable" (click)="confirmDelete()"></button>
+                        
                     </div>
                 </ng-template>
             
@@ -87,12 +104,6 @@
                     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
                     <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
                 </ng-template>
-                <span  pripple="" tabindex="0" class="p-ripple p-element p-button p-component p-fileupload-choose" ng-reflect-ng-class="[object Object]">
-                    
-                    <span ng-reflect-ng-class="p-button-icon p-button-icon-le" class="pi pi-plus p-button-icon p-button-icon-left"></span>
-                <span class="p-button-label">Choose</span><span class="p-ink"></span>
-                </span>
-
                
             </p-toolbar>
             
@@ -106,23 +117,38 @@
 </div>
 
 <form [formGroup]='depenseForm'>
-    <p-dialog  [(visible)]="addNewD" [style]="{width: '450px'}" header="Product Details" [modal]="true" class="p-fluid">
-       
+    <p-dialog  [(visible)]="addNewD" [style]="{width: '450px'}" header="Facture de dépense" [modal]="true" class="p-fluid">
+    
+        
         <ng-template pTemplate="content">
             
             <div class="field">
-                <label for="">date</label>
-                <p-calendar type="string" inputId="icon" formControlName = 'date'></p-calendar>
+                <label for="">Date d'opération</label>
+                <p-calendar type="string" inputId="icon" formControlName = 'date_operation' dateFormat="dd-mm-yy"></p-calendar>
             </div>
-            
+            <div class="field">
+                <label for="">Date de la facture</label>
+                <p-calendar type="string" inputId="icon" formControlName = 'date_facture' dateFormat="dd-mm-yy"></p-calendar>
+            </div>
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="price">Numero de la facture</label>
+                    <p-inputNumber formControlName='numero_facture' type="number"></p-inputNumber>
+                </div>
                 
-    
+            </div>
             <div class="field">
                 <label for="type">type</label>
                 <input formControlName='type' type="text" pInputText id="type"  required autofocus/>
                 <!--<small class="ng-dirty ng-invalid">Name is required.</small>-->
             </div>
-    
+            
+            <div class="field">
+                <label for="fournisseur">Circuit</label>
+                <input type="text" pInputText id="circuit"  required autofocus formControlName='circuit'/>
+               <!--<small class="ng-dirty ng-invalid">Name is required.</small>-->
+            </div>
+
             <div class="field">
                 <label for="fournisseur">fournisseur</label>
                 <input type="text" pInputText id="fournisseur"  required autofocus formControlName='fournisseur'/>
@@ -135,7 +161,7 @@
             </div>
     
             <div class="field">
-                <label for="status">Statu</label>
+                <label for="status">Chemin</label>
                 <p-dropdown [options]= "status" [(ngModel)]="selectedStatu" optionValue="name" optionLabel="name" formControlName='statu'>
                     <!-- <ng-template pTemplate="selectedItem">
                         <span >statu1</span>
@@ -150,8 +176,15 @@
     
             <div class="formgrid grid">
                 <div class="field col">
-                    <label for="price">Montant</label>
-                    <p-inputNumber formControlName='montant' type="number"></p-inputNumber>
+                    <label for="price">Montant hors taxe</label>
+                    <p-inputNumber formControlName='montant_HT' type="number"></p-inputNumber>
+                </div>
+                
+            </div>
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="price">TVA</label>
+                    <p-inputNumber formControlName='TVA' type="number"></p-inputNumber>
                 </div>
                 
             </div>
@@ -159,7 +192,9 @@
     
         <ng-template pTemplate="footer">
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click) = "hideDialog()"></button>
+            <button pButton pRipple  icon="pi pi-trash" class="p-button-text" label="Delete" (click)="id == null ? hideDialog() : confirmDelete()"></button>
             <button (click)="id == null ? postDepense() : editDepense()"  pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"></button>
+            
         </ng-template>
     </p-dialog>
     

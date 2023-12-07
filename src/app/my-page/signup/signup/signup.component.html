@@ -19,8 +19,11 @@
                     <input formControlName='confirmPwd' type="password" autocomplete="off" pInputText placeholder="Confirm password">
                 </div>
             </div>
-            <button (click)='postSignup()' pButton pRipple label="SIGN UP" type="button" [routerLink]="['/mylogin']"></button>
-            <p>A problem? <a href="#">Click here</a> and let us help you.</p>
+            <br>
+            <small>{{erreur}}</small>
+            <br>
+            <button (click)='postSignup()' pButton pRipple label="SIGN UP" type="button" [routerLink]="routerLink"></button>
+            
         </div>
     </div>
 </div>

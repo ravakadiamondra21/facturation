@@ -16,7 +16,7 @@ export class BanqueComponent implements OnInit {
     validation = false;
     ngOnInit() {
          this.getNotValidate();
-         this.getSolde()
+         
     }
 
     getNotValidate() {
@@ -25,67 +25,71 @@ export class BanqueComponent implements OnInit {
         });
     }
 
-    toValide: Depense;
-    selectedRow;
-    admin;
-    onSelectedRow(depense: any) {
-        this.selectedRow = depense;
+    // toValide: Depense;
+    // selectedRow;
+    // admin;
+    // onSelectedRow(depense: any) {
+    //     this.selectedRow = depense;
 
-        this.newDepense.date = new Date(this.selectedRow.date);
-        this.newDepense.description = this.selectedRow.description;
-        this.newDepense.fournisseur = this.selectedRow.fournisseur;
-        this.newDepense.type = this.selectedRow.type;
-        this.newDepense.statu = this.selectedRow.statu;
-        this.newDepense.montant = Number(this.selectedRow.montant);
-        this.admin = this.selectedRow.admin.nom + " " + this.selectedRow.admin.prenom;
-    }
+    //     this.newDepense.date = new Date(this.selectedRow.date);
+    //     this.newDepense.description = this.selectedRow.description;
+    //     this.newDepense.fournisseur = this.selectedRow.fournisseur;
+    //     this.newDepense.type = this.selectedRow.type;
+    //     this.newDepense.statu = this.selectedRow.statu;
+    //     this.newDepense.montant = Number(this.selectedRow.montant);
+    //     this.admin = this.selectedRow.admin.nom + " " + this.selectedRow.admin.prenom;
+    // }
 
-    newDepense: NewDepense = {
-        date: null,
-        type: "",
-        fournisseur: "",
-        description: "",
-        montant: 0,
-        statu: "",
-        admin: 0,
-        isValidate: false,
-    };
-    confirm = false;
-    onValidate() {
-      this.newDepense.admin = this.selectedRow.admin.id;
-      this.newDepense.isValidate = true;
-        return this.banqueService.updateDepense(this.selectedRow.id, this.newDepense).subscribe(
-          (response) => {
-                this.validation = false;
-                this.confirm = false;
-                this.getNotValidate();
-                this.getSolde();
+    // newDepense: NewDepense = {
+    //     date: null,
+    //     type: "",
+    //     fournisseur: "",
+    //     description: "",
+    //     montant: 0,
+    //     statu: "",
+    //     admin: 0,
+    //     isValidate: false,
+    //     numero_paiement : 0
+    // };
+    // confirm = false;
+    // numero_paiement : Number;
+    // onValidate() {
+    //   this.newDepense.admin = this.selectedRow.admin.id;
+    //   this.newDepense.numero_paiement = this.numero_paiement
+    //   console.log(this.numero_paiement)
+    //   this.newDepense.isValidate = true;
+    //     return this.banqueService.updateDepense(this.selectedRow.id, this.newDepense).subscribe(
+    //       (response) => {
+    //             this.validation = false;
+    //             this.confirm = false;
+    //             this.getNotValidate();
+    //             this.getSolde();
                 
-            });
+    //         });
 
-    }
+    // }
 
-    soldeEnBanque: Solde = {
-        nom : "Banque",
-        somme : 0
-    };
+    // soldeEnBanque: Solde = {
+    //     nom : "Banque",
+    //     somme : 0
+    // };
 
-    getSolde(){
-        return this.banqueService.getSolde().subscribe(
-            response => {
-                this.soldeEnBanque.somme = Number(response.somme);
-                console.log(this.soldeEnBanque);
-                this.updateSolde();
-            }
-        )
-    }
+    // getSolde(){
+    //     return this.banqueService.getSolde().subscribe(
+    //         response => {
+    //             this.soldeEnBanque.somme = Number(response.somme);
+    //             console.log(this.soldeEnBanque);
+    //             this.updateSolde();
+    //         }
+    //     )
+    // }
 
-    updateSolde(){
-        this.soldeEnBanque.somme = this.soldeEnBanque.somme - this.newDepense.montant;
-        return this.banqueService.updateSolde(this.soldeEnBanque.nom, this.soldeEnBanque).subscribe(
-            response => {
-                console.log("niova ny solde")
-            }
-        )
-    }
+    // updateSolde(){
+    //     this.soldeEnBanque.somme = this.soldeEnBanque.somme - this.newDepense.montant;
+    //     return this.banqueService.updateSolde(this.soldeEnBanque.nom, this.soldeEnBanque).subscribe(
+    //         response => {
+    //             console.log("niova ny solde")
+    //         }
+    //     )
+    // }
 }

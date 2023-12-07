@@ -1,11 +1,17 @@
 export interface Depense{
     id: number;
-    date: Date;
+    date_operation: Date;
+    date_facture: Date;
+    numero_facture: number;
+    circuit: string;
     type: string;
     fournisseur: string;
     description: string;
-    montant: number;
+    montant_HT: Number;
+    TVA: number;
     statu: string;
-    isValidate: boolean
+    admin: number;
+    isValidate: boolean;
+    ref_lettrage: string;
 }
 

@@ -9,84 +9,87 @@ import { BanqueService } from './banque.service';
   templateUrl: './banque.component.html',
   styleUrls: ['./banque.component.scss']
 })
-export class BanqueComponent implements OnInit{
-  constructor(private banqueService : BanqueService){}
+export class BanqueComponent{
+//   constructor(private banqueService : BanqueService){}
 
-  recette: Recette[] = []
+//   recette: Recette[] = []
 
-  ngOnInit(){
-    return this.getNotValide()
-  }
+//   ngOnInit(){
+//     return this.getNotValide()
+//   }
 
-  getNotValide(){
-    this.banqueService.getNotValidate().subscribe(
-      response => {
-        this.recette = response
-      }
-    )
-  }
+//   getNotValide(){
+//     this.banqueService.getNotValidate().subscribe(
+//       response => {
+//         this.recette = response
+//       }
+//     )
+//   }
 
-  validation = false;
-  selectedRow;
+//   validation = false;
+//   selectedRow;
   
-  valueToValide : NewRecette = {
-    date: null,
-  client: "",
-  description: "",
-  montant: 0,
-  statu: "",
-  admin : null,
-  isValidate: false
-  }
-  admin;
+//   valueToValide : NewRecette = {
+//     date: null,
+//   client: "",
+//   description: "",
+//   montant: 0,
+//   statu: "",
+//   admin : null,
+//   isValidate: false,
+//   numero_paiement: 0
+//   }
+//   admin;
 
-  onSelectedRow(recette: any){
-    this.validation = true;
-    this.selectedRow = recette;
-    this.valueToValide.date = new Date(this.selectedRow.date);
-    this.valueToValide.client = this.selectedRow.client;
-    this.valueToValide.description = this.selectedRow.description;
-    this.valueToValide.montant = Number(this.selectedRow.montant);
-    this.valueToValide.statu = this.selectedRow.statu;
-    this.admin = this.selectedRow.admin.nom + ' ' + this.selectedRow.admin.prenom;
-  }
+//   onSelectedRow(recette: any){
+//     this.validation = true;
+//     this.selectedRow = recette;
+//     this.valueToValide.date = new Date(this.selectedRow.date);
+//     this.valueToValide.client = this.selectedRow.client;
+//     this.valueToValide.description = this.selectedRow.description;
+//     this.valueToValide.montant = Number(this.selectedRow.montant);
+//     this.valueToValide.statu = this.selectedRow.statu;
+//     this.admin = this.selectedRow.admin.nom + ' ' + this.selectedRow.admin.prenom;
+//   }
 
-  confirm = false
-  onValide(){
-    this.valueToValide.admin = Number(this.selectedRow.admin.id);
-    this.valueToValide.isValidate = true;
-    console.log("lasa any ny update")
-    return this.banqueService.updateValidation(Number(this.selectedRow.id), this.valueToValide).subscribe(
-      response => {
-        this.validation = false;
-        this.confirm = false;
-        this.getNotValide();
-        this.getSolde()
-      }
-    )
-  }
+//   confirm = false
+//   numero_paiement : Number;
+//   onValide(){
+//     this.valueToValide.admin = Number(this.selectedRow.admin.id);
+//     this.valueToValide.numero_paiement = this.numero_paiement;
+//     this.valueToValide.isValidate = true;
+//     console.log(this.numero_paiement)
+//     return this.banqueService.updateValidation(Number(this.selectedRow.id), this.valueToValide).subscribe(
+//       response => {
+//         this.validation = false;
+//         this.confirm = false;
+//         this.getNotValide();
+//         this.getSolde()
+//       }
+//     )
+//   }
 
-  soldeEnBanque: Solde = {
-    nom : "Banque",
-    somme : 0
-};
+//   soldeEnBanque: Solde = {
+//     nom : "Banque",
+//     somme : 0
+// };
 
-getSolde(){
-    return this.banqueService.getSolde().subscribe(
-        response => {
-            this.soldeEnBanque.somme = Number(response.somme);
-            this.updateSolde()
-        }
-    )
-}
+// getSolde(){
+//     return this.banqueService.getSolde().subscribe(
+//         response => {
+//             this.soldeEnBanque.somme = Number(response.somme);
+//             this.updateSolde()
+//         }
+//     )
+// }
 
-updateSolde(){
-  console.log(this.valueToValide.montant)
-    this.soldeEnBanque.somme = this.soldeEnBanque.somme + this.valueToValide.montant;
-    return this.banqueService.updateSolde(this.soldeEnBanque.nom, this.soldeEnBanque).subscribe(
-        response => {
-            console.log("niova ny solde")
-        }
-    )
-}
+// updateSolde(){
+//   console.log(this.valueToValide.montant)
+//     this.soldeEnBanque.somme = this.soldeEnBanque.somme + this.valueToValide.montant;
+//     return this.banqueService.updateSolde(this.soldeEnBanque.nom, this.soldeEnBanque).subscribe(
+//         response => {
+//             console.log("niova ny solde")
+//         }
+//     )
+// }
 }

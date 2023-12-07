@@ -9,21 +9,21 @@ import { Solde } from '../../solde';
 })
 export class CaisseService {
 
-  constructor(private http: HttpClient) { }
+  // constructor(private http: HttpClient) { }
 
-  getNotValidate(){
-    return this.http.get<Recette[]>('http://localhost:3000/recette/statu/caisse/false')
-  }
+  // getNotValidate(){
+  //   return this.http.get<Recette[]>('http://localhost:3000/recette/statu/caisse/false')
+  // }
 
-  updateValidation(id: number, newRecette: NewRecette){
-    return this.http.patch<NewRecette>('http://localhost:3000/recette/'+id, newRecette);
-  }
+  // updateValidation(id: number, newRecette: NewRecette){
+  //   return this.http.patch<NewRecette>('http://localhost:3000/recette/'+id, newRecette);
+  // }
 
-  getSolde(){
-    return this.http.get<Solde>('http://localhost:3000/solde/caisse');
-  }
+  // getSolde(){
+  //   return this.http.get<Solde>('http://localhost:3000/solde/caisse');
+  // }
 
-  updateSolde(nom: string, newSolde : Solde){
-    return this.http.patch<Solde>('http://localhost:3000/solde/' +nom, newSolde)
-  }
+  // updateSolde(nom: string, newSolde : Solde){
+  //   return this.http.patch<Solde>('http://localhost:3000/solde/' +nom, newSolde)
+  // }
 }

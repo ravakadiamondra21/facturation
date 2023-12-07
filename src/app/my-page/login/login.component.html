@@ -11,10 +11,8 @@
                 <input formControlName='email' type="text" autocomplete="off" pInputText placeholder="Email">
                 <input  formControlName='pwd' type="password" autocomplete="off" pInputText placeholder="Password"> <br>
                 <small>{{wrongLogin}}</small>
-                <button pButton pRipple label="LOGIN" type="button" (click)='getAdmin() ; verifyLogin()' [routerLink]='routerLink'></button>
+                <button pButton pRipple label="LOGIN" type="button" (click)='verifyLogin()' [routerLink]='routerLink'></button>
             </div>  
-
-            <p>A problem? <a href="#">Click here</a> and let us help you.</p>
             <div>
                 <router-outlet></router-outlet>
             </div>
