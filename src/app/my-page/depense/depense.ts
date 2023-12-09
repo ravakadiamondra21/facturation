@@ -11,7 +11,5 @@ export interface Depense{
     TVA: number;
     statu: string;
     admin: number;
-    isValidate: boolean;
-    ref_lettrage: string;
 }
 

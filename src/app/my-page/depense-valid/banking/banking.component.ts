@@ -11,6 +11,8 @@ import { RecetteService } from "../../recette/recette.service";
 import { Recette } from "../../recette/recette";
 import { ColorPicker } from "primeng/colorpicker";
 import { NewRecette } from "../../recette/newRecette";
+import { RelationDepense } from "./relation_depense";
+import { RelationRecette } from "./relation_recette";
 
 @Component({
     selector: "app-banking",
@@ -49,7 +51,6 @@ export class BankingComponent implements OnInit {
 
                 for (let i = 1; i < data.length; i++) {
                     let one_banking: NewBanking = {
-                        ref_lettrage: "",
                         chemin: "",
                         credit: 0,
                         date_operation: null,
@@ -103,9 +104,9 @@ export class BankingComponent implements OnInit {
         this.openMatching();
         console.log(this.date);
         if (this.debit == 0 && this.credit != 0) {
-            this.selectDepenseForMatching(this.selectedRow.date_operation);
+            this.selectDepenseForMatching(this.datePipe.transform(this.selectedRow.date_operation, 'yyyy-MM-dd'));
         } else {
-            this.selectRecetteForMatching(this.selectedRow.date_operation);
+            this.selectRecetteForMatching(this.datePipe.transform(this.selectedRow.date_operation, 'yyyy-MM-dd'));
         }
     }
 
@@ -115,14 +116,15 @@ export class BankingComponent implements OnInit {
     depense: any[] = [];
     recette: Recette[] = [];
 
-    selectDepenseForMatching(date: Date) {
+    selectDepenseForMatching(date: string) {
+
         return this.depenseService.getByDate(date).subscribe((response) => {
             this.depense = response;
             console.log(this.depense);
         });
     }
 
-    selectRecetteForMatching(date: Date) {
+    selectRecetteForMatching(date: string) {
         return this.recetteService.getByDate(date).subscribe((response) => {
             this.depense = response;
             console.log(this.depense);
@@ -131,37 +133,19 @@ export class BankingComponent implements OnInit {
 
     selectRecetteForM;
 
-    valueToMatch: NewDepense = {
-        date_operation: null,
-        date_facture: null,
-        type: "",
-        fournisseur: "",
-        description: "",
-        montant_HT: 0,
-        statu: "",
-        admin: 0,
-        isValidate: false,
-        TVA: 0,
-        circuit: "",
-        numero_facture: 0,
-        ref_lettrage: "",
+    valueToMatch: RelationDepense = {
+        banque: 0,
+        depense: 0,
+        ref_lettrage: ""
     };
 
-    newRecette: NewRecette = {
-        date_operation: null,
-        date_facture: null,
-        client: "",
-        description: "",
-        montant_HT: 0,
-        statu: "",
-        admin: null,
-        TVA: 0,
-        numero_facture: 0,
-        ref_lettrage: "",
+    newRecette: RelationRecette = {
+        banque: 0,
+        recette: 0,
+        ref_lettrage: ""
     };
 
     one_banking: NewBanking = {
-        ref_lettrage: "",
         chemin: "",
         credit: 0,
         date_operation: null,
@@ -189,18 +173,23 @@ export class BankingComponent implements OnInit {
 
     callMatchDepense() {
         let banque;
-        this.bankingService.countByRef("B").subscribe((response) => {
-            let nb = Number(response);
-            let NB = Number(nb + 1);
-            banque = "B" + NB;
+        this.depenseService.countByRef("B").subscribe((response) => {
+            let nbD = Number(response);
+            this.recetteService.countByRef("B").subscribe(
+                response => {
+                    let nbR = Number(response);
+                    let nb = nbD + nbR
+                    let NB = Number(nb + 1);
+                    banque = "B" + NB;
 
-            console.log(this.isSelected);
-
-            if (this.isSelected.length == 0) {
-                this.dialog = true;
-            } else {
-                this.matchDepense(banque);
-            }
+                    if (this.isSelected.length == 0) {
+                        this.dialog = true;
+                    } else {
+                        this.matchDepense(banque);
+                    }
+                }
+            )
+           
         });
         // this.visibleSidebar = false;
         this.findNotMatched()
@@ -209,38 +198,13 @@ export class BankingComponent implements OnInit {
     matchDepense(banque: string) {
         this.isSelected.forEach((item) => {
             if (item.statu == "banque") {
-                this.valueToMatch.date_facture = new Date(item.date_facture);
-                this.valueToMatch.date_operation = new Date(
-                    item.date_operation
-                );
-                this.valueToMatch.type = item.type;
-                this.valueToMatch.fournisseur = item.fournisseur;
-                this.valueToMatch.description = item.description;
-                this.valueToMatch.statu = item.statu;
-                this.valueToMatch.montant_HT = Number(item.montant_HT);
-                this.valueToMatch.TVA = Number(item.TVA);
-                this.valueToMatch.numero_facture = Number(item.numero_facture);
-                this.valueToMatch.circuit = item.circuit;
-                this.valueToMatch.isValidate = false;
+
+                this.valueToMatch.banque = this.selectedRow.id_banque
+                this.valueToMatch.depense = item.id_depense
                 this.valueToMatch.ref_lettrage = banque;
-                this.valueToMatch.admin = item.admin;
 
-                this.one_banking.date_operation = new Date(
-                    this.selectedRow.date_operation
-                );
-                this.one_banking.libelle = this.selectedRow.libelle;
-                this.one_banking.debit = Number(this.selectedRow.debit);
-                this.one_banking.credit = Number(this.selectedRow.credit);
-                this.one_banking.solde = Number(this.selectedRow.solde);
-                this.one_banking.chemin = item.statu;
-                this.one_banking.ref_lettrage = banque;
-
-                this.depenseService
-                    .updateDepense(Number(item.id), this.valueToMatch)
-                    .subscribe();
-                this.bankingService
-                    .updateBanque(Number(this.selectedRow.id), this.one_banking)
-                    .subscribe();
+                this.bankingService.saveRelationDepense(this.valueToMatch).subscribe()
+                
             }
         });
         this.visibleSidebar = false;
@@ -250,118 +214,94 @@ export class BankingComponent implements OnInit {
         let caisse;
         let banque;
 
-        this.bankingService.countByRef("C").subscribe((response) => {
-            let nb = Number(response);
-            let NB = Number(nb + 1);
-            caisse = "C" + NB;
-            console.log(caisse);
+        this.depenseService.countByRef("C").subscribe((response) => {
+            let nbC_depense = Number(response);
+            this.recetteService.countByRef("C").subscribe(
+                response => {
+                    let nbC_recette = Number(response)
+                    let NBC = nbC_depense + nbC_recette
+                    let nbC = NBC + 1
+                    caisse = "C" + nbC
 
-            this.bankingService.countByRef("B").subscribe((response) => {
-                let nb = Number(response);
-                let NB = Number(nb + 1);
+                    this.depenseService.countByRef("B").subscribe((response) => {
+                        let nbB_depense = Number(response);
+                        this.recetteService.countByRef("B").subscribe(
+                            response => {
+                                let nbB_recette = Number(response)
+                                let NBB = nbB_depense + nbB_recette
+                                let nbB = NBB + 1
 
-                banque = "B" + NB;
+                                banque = "B" + nbB
 
-                this.matchRecette(caisse, banque);
-            });
-        });
+                                this.matchRecette(caisse, banque)
+                            }
+                        )
+                    }
+                    )
+                }
+            )
+        }
 
-        
+        )
         this.findNotMatched()
     }
 
     matchRecette(caisse: string, banque: string) {
         this.isSelected.forEach((item) => {
             if (item.statu == "caisse") {
-                console.log(caisse);
-                this.newRecette.date_facture = new Date(item.date_facture);
-                this.newRecette.date_operation = new Date(item.date_operation);
-                this.newRecette.TVA = Number(item.TVA);
-                this.newRecette.client = item.client;
-                this.newRecette.description = item.description;
-                this.newRecette.montant_HT = Number(item.montant_HT);
-                this.newRecette.admin = item.admin;
-                this.newRecette.numero_facture = Number(item.numero_facture);
-                this.newRecette.statu = item.statu;
-                this.newRecette.ref_lettrage = caisse;
-
-                this.one_banking.date_operation = new Date(
-                    this.selectedRow.date_operation
-                );
-                this.one_banking.libelle = this.selectedRow.libelle;
-                this.one_banking.debit = Number(this.selectedRow.debit);
-                this.one_banking.credit = Number(this.selectedRow.credit);
-                this.one_banking.solde = Number(this.selectedRow.solde);
-                this.one_banking.chemin = item.statu;
-                this.one_banking.ref_lettrage = caisse;
-
-                this.recetteService
-                    .updateRecette(item.id, this.newRecette)
-                    .subscribe();
-                this.bankingService
-                    .updateBanque(Number(this.selectedRow.id), this.one_banking)
-                    .subscribe();
+                this.newRecette.banque = this.selectedRow.id_banque
+                this.newRecette.recette = item.id_recette
+                this.newRecette.ref_lettrage = caisse
+                this.recetteService.saveRelationRecette(this.newRecette).subscribe();
+                console.log("ity zai caisse recette")
+                
             } else if (item.statu == "banque") {
-                this.newRecette.date_facture = new Date(item.date_facture);
-                this.newRecette.date_operation = new Date(item.date_operation);
-                this.newRecette.TVA = Number(item.TVA);
-                this.newRecette.client = item.client;
-                this.newRecette.description = item.description;
-                this.newRecette.montant_HT = Number(item.montant_HT);
-                this.newRecette.admin = item.admin;
-                this.newRecette.numero_facture = Number(item.numero_facture);
-                this.newRecette.statu = item.statu;
-                this.newRecette.ref_lettrage = banque;
-
-                this.one_banking.date_operation = new Date(
-                    this.selectedRow.date_operation
-                );
-                this.one_banking.libelle = this.selectedRow.libelle;
-                this.one_banking.debit = Number(this.selectedRow.debit);
-                this.one_banking.credit = Number(this.selectedRow.credit);
-                this.one_banking.solde = Number(this.selectedRow.solde);
-                this.one_banking.chemin = item.statu;
-                this.one_banking.ref_lettrage = banque;
-
-                this.recetteService
-                    .updateRecette(item.id, this.newRecette)
-                    .subscribe();
-                this.bankingService
-                    .updateBanque(Number(this.selectedRow.id), this.one_banking)
-                    .subscribe();
+                this.newRecette.banque = this.selectedRow.id_banque
+                this.newRecette.recette = item.id_recette
+                this.newRecette.ref_lettrage = banque
+                this.recetteService.saveRelationRecette(this.newRecette).subscribe();
+                console.log("ity zao banque recette")
+                    
             }
         });
         this.visibleSidebar = false;
+    }
+
+    approv : NewRecette = {
+        TVA:0,
+        admin: 0,
+        client: "",
+        date_facture: null,
+        date_operation: null,
+        description: "",
+        montant_HT:0,
+        numero_facture: 0,
+        statu: "caisse"
     }
 
     insertCaisse(caisse) {
         let admin = localStorage.getItem("admin");
         let adminObject = JSON.parse(admin);
 
-        this.newRecette.date_operation = new Date(
+        this.approv.date_operation = new Date(
             this.selectedRow.date_operation
         );
-        this.newRecette.description = this.selectedRow.libelle;
-        this.newRecette.ref_lettrage = caisse;
-        this.newRecette.montant_HT = this.selectedRow.credit;
-        this.newRecette.admin = Number(adminObject.id);
-        this.newRecette.statu = "caisse";
+        this.approv.description = this.selectedRow.libelle;
+        this.approv.montant_HT = this.selectedRow.credit;
+        this.approv.admin = Number(adminObject.id);
+        this.approv.statu = "caisse";
 
-        this.one_banking.date_operation = new Date(
-            this.selectedRow.date_operation
-        );
-        this.one_banking.libelle = this.selectedRow.libelle;
-        this.one_banking.debit = Number(this.selectedRow.debit);
-        this.one_banking.credit = Number(this.selectedRow.credit);
-        this.one_banking.solde = Number(this.selectedRow.solde);
-        this.one_banking.chemin = "caisse";
-        this.one_banking.ref_lettrage = caisse;
+        this.newRecette.banque = this.selectedRow.id_banque
+        this.newRecette.ref_lettrage = caisse
 
-        this.recetteService.postRecette(this.newRecette).subscribe();
-        this.bankingService.updateBanque(
-            Number(this.selectedRow.id),
-            this.one_banking
-        ).subscribe();
+        this.recetteService.postRecette(this.approv).subscribe()
+        this.recetteService.getLastId().subscribe(
+            response => {
+                this.newRecette.recette = Number(response)
+                this.recetteService.saveRelationRecette(this.newRecette).subscribe()
+            }
+        )
+
     }
 
     newDepense: NewDepense = {
@@ -373,14 +313,12 @@ export class BankingComponent implements OnInit {
         montant_HT: 0,
         statu: "",
         admin: 0,
-        isValidate: false,
         TVA: 0,
         circuit: "",
-        numero_facture: 0,
-        ref_lettrage: "",
+        numero_facture: 0
     };
 
-    insertBanque(caisse) {
+    insertBanque() {
         let admin = localStorage.getItem("admin");
         let adminObject = JSON.parse(admin);
 
@@ -391,20 +329,27 @@ export class BankingComponent implements OnInit {
         this.newDepense.description = this.selectedRow.libelle;
         this.newDepense.montant_HT = Number(this.selectedRow.credit);
         this.newDepense.statu = "banque";
-        this.newDepense.ref_lettrage = caisse;
+
 
         this.depenseService.postDepense(this.newDepense).subscribe();
     }
 
     yesClick() {
+        let caisse;
         if (this.dialog === true) {
-            this.bankingService.countByRef("C").subscribe((response) => {
-                let nb = Number(response);
-                let NB = Number(nb + 1);
-                let caisse = "C" + NB;
+            this.depenseService.countByRef("C").subscribe((response) => {
+                let nbD = Number(response);
 
-                this.insertCaisse(caisse);
-                this.insertBanque(caisse);
+               this.recetteService.countByRef("C").subscribe(
+                   response => {
+                    let nbR = Number(response)
+                    
+                    let nb = nbD + nbR + 1
+                    caisse = "C" + nb
+                    this.insertBanque();
+                    this.insertCaisse(caisse)
+                   }
+               )
                 this.dialog = false;
             });
         }

@@ -7,6 +7,5 @@ export interface NewRecette{
     montant_HT: number;
     TVA: number;
     admin: number;
-    ref_lettrage: string;
     numero_facture: number;
 }

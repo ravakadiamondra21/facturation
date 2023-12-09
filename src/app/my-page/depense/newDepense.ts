@@ -10,6 +10,4 @@ export interface NewDepense{
     TVA: number;
     statu: string;
     admin: number;
-    isValidate: boolean;
-    ref_lettrage: string;
 }

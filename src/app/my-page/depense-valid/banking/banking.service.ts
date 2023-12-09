@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Banking } from './banking';
 import { NewBanking } from './newBanking';
+import { RelationDepense } from './relation_depense';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,9 @@ export class BankingService {
     return this.http.patch<NewBanking>('http://localhost:3000/banque/'+id, banque);
   }
 
-  countByRef(ref_lettrage) : Observable<Number>{
-    return this.http.get<Number>('http://localhost:3000/banque/count/'+ref_lettrage);
+  saveRelationDepense(data: RelationDepense) : Observable<RelationDepense>{
+    return this.http.post<RelationDepense>('http://localhost:3000/relation-depense', data)
   }
+
+
 }

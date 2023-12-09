@@ -106,11 +106,9 @@ newDepense: NewDepense = {
     montant_HT: 0,
     statu: "",
     admin: 0,
-    isValidate: false,
     TVA: 0,
     circuit: '',
     numero_facture: 0,
-    ref_lettrage: ''
 };
 postDepense(){
   this.id = null
@@ -127,7 +125,7 @@ postDepense(){
   this.newDepense.TVA = Number(this.depenseForm.get('TVA').value);
   this.newDepense.statu = this.depenseForm.get('statu').value;
   this.newDepense.admin = Number(objectValueStorage.id);
-  this.newDepense.isValidate = false;
+
 
   this.depenseService.postDepense(this.newDepense)
   .subscribe(response =>{
@@ -143,7 +141,7 @@ selectedRow;
 idToDelete : number;
 onRowSelected(depense: any){
   this.selectedRow = depense;
-  this.idToDelete = Number(this.selectedRow.id)
+  this.idToDelete = Number(this.selectedRow.id_depense)
   this.isEnable = true;
   
 }
@@ -176,16 +174,16 @@ getByDate(event){
   let value = this.searchForm.get('search').value;
 
   if(value == 'date facture'){
-    this.depenseService.searchFacture(new Date(valueToSearch)).subscribe(
+    this.depenseService.searchFacture(valueToSearch).subscribe(
       response => {
         this.depense = response;
-        console.log("facture")
+        console.log(this.depense)
         
       }
     )
   }
   else if(value == 'date opération'){
-    this.depenseService.searchOperation(new Date(valueToSearch)).subscribe(
+    this.depenseService.searchOperation(valueToSearch).subscribe(
       response => {
         this.depense = response;
         console.log("opération")
@@ -212,7 +210,8 @@ openEdit(depense: any){
 
   this.addNewD = true;
   this.selectedRow = depense;
-  this.id = this.selectedRow.id;
+  this.id = this.selectedRow.id_depense;
+  console.log(this.id)
   const Vdate_operation =new Date(this.selectedRow.date_operation);
   const Vdate_facture =new Date(this.selectedRow.date_facture);
   const Vtype = this.selectedRow.type;

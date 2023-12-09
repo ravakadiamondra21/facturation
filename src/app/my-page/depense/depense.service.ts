@@ -24,7 +24,7 @@ export class DepenseService {
     return this.http.delete('http://localhost:3000/depense/'+id);
   }
 
-  getByDate(date: Date){
+  getByDate(date: string){
     return this.http.get<Depense[]>('http://localhost:3000/depense/dateOperation/'+date+'/banque/à definir');
   }
 
@@ -32,9 +32,9 @@ export class DepenseService {
     return this.http.patch<NewDepense>('http://localhost:3000/depense/'+id, depense)
   }
 
-  countMatched(ref_lettrage) : Observable<Number>{
-    return this.http.get<Number>('http://localhost:3000/depense/count/'+ref_lettrage)
-  }
+  // countMatched(ref_lettrage) : Observable<Number>{
+  //   return this.http.get<Number>('http://localhost:3000/depense/count/'+ref_lettrage)
+  // }
 
   searchFacture(date: Date){
     return this.http.get<Depense[]>('http://localhost:3000/depense/dateFacture/'+date)
@@ -46,5 +46,13 @@ export class DepenseService {
 
   searchCircuit(circuit: string){
     return this.http.get<Depense[]>('http://localhost:3000/depense/circuit/'+circuit)
+  }
+
+  // findMatched(){
+  //   return this.http.get<Number[]>('http://localhost:3000/relation-depense');
+  // }
+
+  countByRef(ref_lettrage) : Observable<Number>{
+    return this.http.get<Number>('http://localhost:3000/relation-depense/count/'+ref_lettrage);
   }
 }

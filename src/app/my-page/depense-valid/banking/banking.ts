@@ -1,6 +1,5 @@
 export interface Banking{
-    id: number;
-    ref_lettrage: string;
+    id_banque: number;
     date_operation: Date;
     libelle: string;
     debit: number;

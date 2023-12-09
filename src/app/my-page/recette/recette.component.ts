@@ -75,8 +75,7 @@ newRecette: NewRecette = {
   statu: "",
   admin : null,
   TVA: 0,
-  numero_facture: 0,
-  ref_lettrage: ""
+  numero_facture: 0
 }
 
 searchForm = new FormGroup({
@@ -137,7 +136,7 @@ idToDelete;
 isEnable = false;
 onSelectedRow(recette: any){
   this.selectedRow = recette;
-  this.idToDelete = Number(this.selectedRow.id);
+  this.idToDelete = Number(this.selectedRow.id_recette);
   this.isEnable = true;
   console.log(this.selectedRow)
 }
@@ -169,7 +168,7 @@ getByDate(date){
   let value = this.searchForm.get('search').value;
   
   if(value == 'date facture'){
-    this.recetteService.getFacture(new Date(valueToSearch)).subscribe(
+    this.recetteService.getFacture(valueToSearch).subscribe(
       response => {
         this.recette = response;
         console.log("date facture")
@@ -178,7 +177,7 @@ getByDate(date){
     )
   }
   else if(value == 'date opération'){
-    this.recetteService.getOperation(new Date(valueToSearch)).subscribe(
+    this.recetteService.getOperation(valueToSearch).subscribe(
       response => {
         this.recette = response;
         console.log("date operation")
@@ -192,7 +191,7 @@ openEdit(recette: any){
 
   this.onSelectedRow(recette)
   this.selectedRow = recette;
-  this.id = this.selectedRow.id;
+  this.id = this.selectedRow.id_recette;
   const Vdate_facture = new Date(this.selectedRow.date_facture)
   const Vdate_operation = new Date(this.selectedRow.date_operation)
   const Vclient = this.selectedRow.client;
