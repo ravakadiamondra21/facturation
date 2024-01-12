@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import * as XLSX from "xlsx";
-import { Depense } from "../../depense/depense";
 import { DepenseService } from "../../depense/depense.service";
 import { Banking } from "./banking";
 import { BankingService } from "./banking.service";
@@ -9,10 +8,14 @@ import { NewBanking } from "./newBanking";
 import { NewDepense } from "../../depense/newDepense";
 import { RecetteService } from "../../recette/recette.service";
 import { Recette } from "../../recette/recette";
-import { ColorPicker } from "primeng/colorpicker";
 import { NewRecette } from "../../recette/newRecette";
 import { RelationDepense } from "./relation_depense";
 import { RelationRecette } from "./relation_recette";
+import { FormControl, FormControlName, FormGroup } from "@angular/forms";
+
+interface Search{
+    value: string;
+}
 
 @Component({
     selector: "app-banking",
@@ -20,12 +23,25 @@ import { RelationRecette } from "./relation_recette";
     styleUrls: ["./banking.component.scss"],
 })
 export class BankingComponent implements OnInit {
+    valueToSearch : Search[];
+    selectedValue: Search;
     constructor(
         private bankingService: BankingService,
         private depenseService: DepenseService,
         private recetteService: RecetteService,
         private datePipe: DatePipe
-    ) {}
+    ) {
+        this.valueToSearch = [
+            {value: 'date opération'},
+            {value: 'libellé'}
+        ]
+    }
+
+    searchForm = new FormGroup({
+        value : new FormControl("")
+    })
+
+    routerLink;
 
     ngOnInit() {
         return this.findNotMatched();
@@ -51,7 +67,7 @@ export class BankingComponent implements OnInit {
 
                 for (let i = 1; i < data.length; i++) {
                     let one_banking: NewBanking = {
-                        chemin: "",
+                        
                         credit: 0,
                         date_operation: null,
                         debit: 0,
@@ -68,12 +84,16 @@ export class BankingComponent implements OnInit {
                     banque.push(one_banking);
                 }
 
-                this.bankingService.saveBanking(banque).subscribe();
+                this.bankingService.saveBanking(banque).subscribe(
+                    response => {
+                        this.findNotMatched();
+                    }
+                );
             };
 
             reader.readAsBinaryString(target.files[0]);
         }
-        this.findNotMatched();
+        
     }
 
     banking: Banking[] = [];
@@ -124,6 +144,7 @@ export class BankingComponent implements OnInit {
         });
     }
 
+    montant;
     selectRecetteForMatching(date: string) {
         return this.recetteService.getByDate(date).subscribe((response) => {
             this.depense = response;
@@ -146,7 +167,6 @@ export class BankingComponent implements OnInit {
     };
 
     one_banking: NewBanking = {
-        chemin: "",
         credit: 0,
         date_operation: null,
         debit: 0,
@@ -204,10 +224,13 @@ export class BankingComponent implements OnInit {
                 this.valueToMatch.ref_lettrage = banque;
 
                 this.bankingService.saveRelationDepense(this.valueToMatch).subscribe()
+                this.routerLink = '/main/banque'
+                console.log("match depense")
                 
             }
         });
         this.visibleSidebar = false;
+        
     }
 
     callMatchRecette() {
@@ -246,6 +269,7 @@ export class BankingComponent implements OnInit {
         this.findNotMatched()
     }
 
+
     matchRecette(caisse: string, banque: string) {
         this.isSelected.forEach((item) => {
             if (item.statu == "caisse") {
@@ -265,6 +289,8 @@ export class BankingComponent implements OnInit {
             }
         });
         this.visibleSidebar = false;
+        this.routerLink = '/main/banque'
+        console.log("match recette")
     }
 
     approv : NewRecette = {
@@ -299,6 +325,8 @@ export class BankingComponent implements OnInit {
             response => {
                 this.newRecette.recette = Number(response)
                 this.recetteService.saveRelationRecette(this.newRecette).subscribe()
+                this.routerLink = '/main/banque'
+                console.log("insert caisse")
             }
         )
 
@@ -348,6 +376,7 @@ export class BankingComponent implements OnInit {
                     caisse = "C" + nb
                     this.insertBanque();
                     this.insertCaisse(caisse)
+                    
                    }
                )
                 this.dialog = false;
@@ -355,5 +384,34 @@ export class BankingComponent implements OnInit {
         }
         this.visibleSidebar = false;
         this.findNotMatched()
+        console.log("yes")
+        this.routerLink = '/main/banque'
+        console.log("yes valid")
+    }
+
+    getSearchValue(event){
+        return event.target.value;
+      }
+    
+      search(event){
+        var valueToSearch = this.getSearchValue(event)
+        let value = this.searchForm.get('value').value;
+        console.log(value)
+        if(value == 'date opération'){
+            this.bankingService.searchDateOperation(valueToSearch).subscribe(
+                response => {
+                    this.banking = response
+                    
+                }
+            )
+        }
+        else if(value == "libellé"){
+            this.bankingService.searchLibelle(valueToSearch).subscribe(
+                response => {
+                    this.banking = response
+                    console.log(value)
+                }
+            )
+        }
     }
 }

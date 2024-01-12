@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DashboardService } from "./dashboard.service";
 import * as moment from 'moment';
-import { DepenseComponent } from "../depense/depense.component";
-import { Subject } from "rxjs";
+import { DatePipe } from "@angular/common";
 
 @Component({
     selector: "app-dashboard",
@@ -21,7 +20,7 @@ export class DashboardComponent implements OnInit {
     recette_daily : Number[] = []
     constructor(
         private dashboardServie: DashboardService,
-        
+        private datePipe : DatePipe
     ) {
     }
 
@@ -30,22 +29,32 @@ export class DashboardComponent implements OnInit {
     ordersOptions: any;
 
     ngOnInit() {
+        this.showValue()
         this.ordersChart = {
             labels: [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
+                this.datePipe.transform(this.mois_9, 'MMMM'),
+                this.datePipe.transform(this.mois_8, 'MMMM'),
+                this.datePipe.transform(this.mois_7, 'MMMM'),
+                this.datePipe.transform(this.mois_6, 'MMMM'),
+                this.datePipe.transform(this.mois_5, 'MMMM'),
+                this.datePipe.transform(this.mois_4, 'MMMM'),
+                this.datePipe.transform(this.mois_3, 'MMMM'),
+                this.datePipe.transform(this.mois_2, 'MMMM'),
+                this.datePipe.transform(this.mois_1, 'MMMM')
             ],
             datasets: [
                 {
-                    label: "Revenue",
-                    data: [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                    label: "Recette",
+                    data: [ this.recetteByMonth[8],
+                            this.recetteByMonth[7], 
+                            this.recetteByMonth[6],
+                            this.recetteByMonth[5], 
+                            this.recetteByMonth[4],
+                            this.recetteByMonth[3], 
+                            this.recetteByMonth[2], 
+                            this.recetteByMonth[1], 
+                            this.recetteByMonth[0]
+                ],
                     borderColor: ["#f1b263"],
                     backgroundColor: ["rgba(241, 178, 99, 0.1)"],
                     borderWidth: 2,
@@ -54,8 +63,17 @@ export class DashboardComponent implements OnInit {
                     tension: 0.4,
                 },
                 {
-                    label: "Cost",
-                    data: [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                    label: "Dépense",
+                    data: [ this.depenseByMonth[8],
+                            this.depenseByMonth[7],
+                            this.depenseByMonth[6],
+                            this.depenseByMonth[5],
+                            this.depenseByMonth[4],
+                            this.depenseByMonth[3],
+                            this.depenseByMonth[2],
+                            this.depenseByMonth[1],
+                            this.depenseByMonth[0]
+                ],
                     borderColor: ["#2f8ee5"],
                     backgroundColor: ["rgba(47, 142, 229, 0.05)"],
                     borderWidth: 2,
@@ -69,9 +87,9 @@ export class DashboardComponent implements OnInit {
 
         this.addNbFacture();
         //this.Facture_saisie_daily();
-        //this.getCountRecette()
+       
         
-        
+       
     }
 
     countFacture() {
@@ -104,8 +122,13 @@ export class DashboardComponent implements OnInit {
     
     nbFacture: Number;
     
-    affiche_facture : Number[] = [];
+    depenseByDate : number[];
+    recetteByDate : number[];
+    factureByDate : number[];
+    bankingByDate : number[];
 
+    recetteByMonth : number[];
+    depenseByMonth : number[];
     
     date_1 = moment(new Date()).subtract(1, 'days').format("yyyy-MM-DD");
     date_2 = moment(new Date()).subtract(2, 'days').format("yyyy-MM-DD");
@@ -114,25 +137,125 @@ export class DashboardComponent implements OnInit {
     date_5 = moment(new Date()).subtract(5, 'days').format("yyyy-MM-DD");
     date_6 = moment(new Date()).subtract(6, 'days').format("yyyy-MM-DD");
 
+    mois_1= moment(new Date()).subtract(0, 'month').format("yyyy-MM");
+    mois_2= moment(new Date()).subtract(1, 'month').format("yyyy-MM");
+    mois_3= moment(new Date()).subtract(2, 'month').format("yyyy-MM");
+    mois_4= moment(new Date()).subtract(3, 'month').format("yyyy-MM");
+    mois_5= moment(new Date()).subtract(4, 'month').format("yyyy-MM");
+    mois_6= moment(new Date()).subtract(5, 'month').format("yyyy-MM");
+    mois_7= moment(new Date()).subtract(6, 'month').format("yyyy-MM");
+    mois_8= moment(new Date()).subtract(7, 'month').format("yyyy-MM");
+    mois_9= moment(new Date()).subtract(8, 'month').format("yyyy-MM");
+
+    mois = [this.mois_1, this.mois_2, this.mois_3, this.mois_4, this.mois_5, this.mois_6, this.mois_7, this.mois_8, this.mois_9]
 
     date = [this.date_1, this.date_2, this.date_3, this.date_4, this.date_5, this.date_6]
-    // getCountRecette(date){
-    //     this.dashboardServie.countRecette(date).subscribe(
-    //         response => {
-    //             let set = JSON.stringify(response)
-    //             localStorage.setItem("recette1", set)
-    //         }
-    //     )
-    // }
+    countRecette;
+    countDepense;
+    countBanking;
+    getCountRecette(){
+        this.dashboardServie.countRecette().subscribe(
+            response => {
+                // let set = JSON.stringify(response)
+                // localStorage.setItem("recette1", set)
+                this.countRecette = Number(response)
+            }
+        )
+    }
 
-    // getCountDepense(date){
-    //     this.dashboardServie.countDepense(date).subscribe(
-    //         response => {
-    //             let set = JSON.stringify(response);
-    //             localStorage.setItem("depense1", set)
-    //         }
-    //     )
-    // }
+    getCountDepense(){
+        this.dashboardServie.countDepense().subscribe(
+            response => {
+                // let set = JSON.stringify(response);
+                // localStorage.setItem("depense1", set)
+                this.countDepense = Number(response)
+            }
+        )
+    }
+
+    showValue(){
+        this.getCountRecette();
+        this.getCountDepense();
+        this.getCountBanking();
+        this.countDepenseByDate();
+        this.countRecetteByDate();
+        this.countBankingByDate();
+        this.countDepenseByMonth();
+        this.countRecetteByMonth()
+    }
+
+    getCountBanking(){
+        this.dashboardServie.countBanking().subscribe(
+            response => {
+                this.countBanking = response;
+            }
+        )
+    }
+
+    countDepenseByDate(){
+        this.depenseByDate = []
+        for(let i=0; i< this.date.length; i++){
+            this.dashboardServie.countDepenseByDate(this.date[i]).subscribe(
+                response => {
+                    this.depenseByDate.push(Number(response))
+                }
+            )
+        }
+        
+    }
+
+    countRecetteByDate(){
+        this.recetteByDate = []
+        for(let i=0; i<this.date.length; i++){
+            this.dashboardServie.countRecetteByDate(this.date[i]).subscribe(
+                response => {
+                    this.recetteByDate.push(Number(response))
+                }
+            )
+        }
+        console.log(this.depenseByDate)
+        
+    }
+
+    countBankingByDate(){
+        this.bankingByDate = []
+        for(let i=0; i<this.date.length; i++){
+            this.dashboardServie.countBankingByDate(this.date[i]).subscribe(
+                response => {
+                    let nb = Object.keys(response).length
+                    this.bankingByDate.push(nb)
+                    console.log(this.bankingByDate[i])
+                }
+            )
+        }
+    }
+
+    countRecetteByMonth(){
+        this.recetteByMonth = [];
+        for(let i=0; i<this.mois.length; i++){
+            this.dashboardServie.countRecetteByMonth(this.mois[i]).subscribe(
+                response => {
+                    let nb = Object.keys(response).length
+                    this.recetteByMonth.push(nb)
+                }
+            )
+        }
+    }
+
+    countDepenseByMonth(){
+        this.depenseByMonth = [];
+        for(let i=0; i<this.mois.length; i++){
+            this.dashboardServie.countDepenseByMonth(this.mois[i]).subscribe(
+                response => {
+                    let nb = Object.keys(response).length
+                    this.depenseByMonth.push(nb)
+                    console.log(this.depenseByMonth[i])
+                    console.log(this.mois[i])
+                }
+            )
+        }
+    }
+
     // getRecetteByDate(date){
     //     let recette
     //     let recette1
@@ -184,15 +307,6 @@ export class DashboardComponent implements OnInit {
     //     console.log(this.date)
     // }
 
-
-
-    
-    routerLink: string;
-    logout() {
-        localStorage.removeItem("admin");
-        this.routerLink = "/mylogin";
-        console.log(localStorage.getItem("admin"));
-    }
 
    
 }

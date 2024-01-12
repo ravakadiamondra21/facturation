@@ -18,6 +18,7 @@ import { DatePipe } from '@angular/common';
     ButtonModule,
     DatePipe
   ],
+  providers: [DatePipe]
   
 })
 export class DashboardModule { }

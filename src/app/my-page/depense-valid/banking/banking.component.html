@@ -3,18 +3,21 @@
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
+            <form style="display: flex; justify-content: flex-end;" [formGroup]='searchForm'>
+                <p-dropdown [options]= "valueToSearch" [(ngModel)]="selectedValue"  optionValue="value" optionLabel="value" formControlName='value' ></p-dropdown> 
+            </form>
             <p-fileUpload  mode="basic" (input)="onFileChange($event)" multiple="false" maxFileSize="1000000" >
                 Choose
             </p-fileUpload>
 
             <p-table #dt [value]="banking"  selectionMode="single" >
-                <!-- <p-fileUpload mode="basic" accept="image/*"   class="mr-2 inline-block" (input)="onFileChange($event)" multiple="false"></p-fileUpload> -->
+                
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Importation depius la banque</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text"  placeholder="Recherche..."  class="w-full sm:w-auto"/>
+                            <input pInputText type="text"  placeholder="Recherche..."  class="w-full sm:w-auto" (keyup.enter)='search($event)'/>
                         </span>
                     </div>
                 </ng-template>
@@ -75,7 +78,7 @@
         <p><b>Date d'opération</b> {{date | date: 'yyyy-MM-dd'}}</p>
         <p><b>Libellé de l'opération</b> {{libelle}}</p>
         <p><b>Montant </b> {{credit == 0 ? debit : credit  }}</p>
-        <button (click)="debit == 0 ? callMatchDepense() : callMatchRecette()" style="margin-left: 40%;" pButton pRipple type="button" label="Envoyer" class="p-button-success mr-2 mb-2"></button> 
+        <button [routerLink]='routerLink' (click)="debit == 0 ? callMatchDepense() : callMatchRecette()" style="margin-left: 40%;" pButton pRipple type="button" label="Envoyer" class="p-button-success mr-2 mb-2"></button> 
 
         <p-dataView [value]="depense">
             <ng-template let-depense pTemplate="listItem" >
@@ -110,7 +113,7 @@
         </div>
         <ng-template pTemplate="footer">
             <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="dialog = false"></button>
-            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="yesClick()"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="yesClick()" [routerLink]='routerLink'></button>
         </ng-template>
     </p-dialog>
 

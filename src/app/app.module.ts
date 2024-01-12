@@ -143,6 +143,7 @@ import {AppBreadcrumbService} from './app.breadcrumb.service';
 import { LoginModule } from './my-page/login/login.module';
 import { DashboardModule } from './my-page/dashboard/dashboard.module';
 import { BanqueRoutingModule } from './my-page/validation-depense/banque/banque-routing.module';
+import { LogoutComponent } from './my-page/logout/logout.component';
 
 
 
@@ -282,6 +283,7 @@ import { BanqueRoutingModule } from './my-page/validation-depense/banque/banque-
         AppAccessdeniedComponent,
         BlocksComponent,
         BlockViewer,
+        LogoutComponent,
         
 
         //////////////////////////////////////////////////////////////////////////////////////////////////

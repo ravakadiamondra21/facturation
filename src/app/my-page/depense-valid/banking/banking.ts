@@ -5,5 +5,4 @@ export interface Banking{
     debit: number;
     credit: number;
     solde: number;
-    chemin: string;
 }

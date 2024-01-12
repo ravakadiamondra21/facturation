@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarModule } from 'primeng/sidebar';
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
-
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { DialogModule } from 'primeng/dialog';
     ReactiveFormsModule,
     SidebarModule,
     DataViewModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
   ],
   providers: [DatePipe]
 })

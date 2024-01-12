@@ -1,12 +1,13 @@
-<h2>Depense payé</h2>
+<h2>Les payés</h2>
 
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
+            <button pButton pRipple label="Download" icon="pi pi-upload" class="p-button-help" (click)="exportDepense()"></button>
             <p-table #dt [value]="depense" selectionMode="single" >
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Liste des factures payées à la banque</h5>
+                        <h5 class="m-0">Liste des factures depense payées</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text"  placeholder="Recherche..."  class="w-full sm:w-auto"/>
@@ -18,16 +19,12 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th>ID <p-sortIcon field="code"></p-sortIcon></th>
-                        <th >Date <p-sortIcon field="name"></p-sortIcon></th>
                         
-                        <th>Type <p-sortIcon field="price"></p-sortIcon></th>
-                        <th>Fournisseur <p-sortIcon field="category"></p-sortIcon></th>
-                        <th>Designation <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th >Date d'opération<p-sortIcon field="name"></p-sortIcon></th>
+                        <th>Description <p-sortIcon field="rating"></p-sortIcon></th>
                         <th>Montant <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Chemin <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Validation <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-                        <th>Saisisseur <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th>Refferance lettrage <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th>Opération bancaire <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -38,34 +35,81 @@
                             
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            <!--<span class="p-column-title">Date</span>-->
-                            {{depense.id}} 
+                            {{depense.depense.date_operation | date: 'yyyy-MM-dd'}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{depense.date | date: 'dd/MM/yyyy'}}
+                            {{depense.depense.description}}
                         </td>
                         <td style="width:14%; min-width:10rem;" >
-                            {{depense.type}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
-                            {{depense.fournisseur}}
+                            {{depense.depense.montant_HT + depense.depense.TVA}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            {{depense.description}}
+                            {{depense.ref_lettrage}}
                         </td>
-                        <td style="width:14%; min-width:10rem;" >
-                            {{depense.montant}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
-                            {{depense.statu}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
-                            {{depense.isValidate}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;" >
-                            {{depense.admin.nom}} {{depense.admin.prenom}}
+                        <td style="width:14%; min-width:10rem;">
+                            {{depense.banque.id_banque}}
                         </td>
                         
                     </tr>
                 </ng-template>
             </p-table>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-table #dt [value]="recette" selectionMode="single" >
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Liste des factures recette payées</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"  placeholder="Recherche..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        
+                        <th >Date d'opération<p-sortIcon field="name"></p-sortIcon></th>
+                        <th>Description <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th>Montant <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th>Refferance lettrage <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th>Opération bancaire <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-recette>
+                    <tr [class.selected]="depense === selectedRow">
+                        <td style="width:14%; min-width:10rem;">
+                            <p-tableCheckbox ></p-tableCheckbox >
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.recette.date_operation | date: 'yyyy-MM-dd'}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.recette.description}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;" >
+                            {{recette.recette.montant_HT + recette.recette.TVA}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            {{recette.ref_lettrage}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            {{recette.recette.id_banque}}
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+

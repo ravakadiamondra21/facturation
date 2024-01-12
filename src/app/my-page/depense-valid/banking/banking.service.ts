@@ -29,5 +29,11 @@ export class BankingService {
     return this.http.post<RelationDepense>('http://localhost:3000/relation-depense', data)
   }
 
+  searchDateOperation(date: Date){
+    return this.http.get<Banking[]>('http://localhost:3000/banque/date_operation/'+date)
+  }
 
+  searchLibelle(libelle: string){
+    return this.http.get<Banking[]>('http://localhost:3000/banque/libelle/'+libelle)
+  }
 }

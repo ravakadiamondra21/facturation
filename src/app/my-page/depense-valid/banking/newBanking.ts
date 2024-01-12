@@ -4,5 +4,5 @@ export class NewBanking{
     debit: number;
     credit: number;
     solde: number;
-    chemin: string;
+
 }

@@ -15,15 +15,15 @@ export class BanqueComponent implements OnInit {
 
     validation = false;
     ngOnInit() {
-         this.getNotValidate();
+         //this.getNotValidate();
          
     }
 
-    getNotValidate() {
-        this.banqueService.getNotValidate().subscribe((response) => {
-            this.depense = response;
-        });
-    }
+    // getNotValidate() {
+    //     this.banqueService.getNotValidate().subscribe((response) => {
+    //         this.depense = response;
+    //     });
+    // }
 
     // toValide: Depense;
     // selectedRow;

@@ -24,11 +24,35 @@ export class DashboardService {
     return this.httpClient.get('http://localhost:3000/recette/date/'+ date)
   }
 
-  countRecette(date){
-    return this.httpClient.get('http://localhost:3000/recette/count/'+ date)
+  countRecette(){
+    return this.httpClient.get('http://localhost:3000/recette/count')
   }
 
-  // countDepense(date){
-  //   return this.httpClient.get('http://localhost:3000/depense/count/'+date)
-  // }
+  countDepense(){
+    return this.httpClient.get('http://localhost:3000/depense/count')
+  }
+
+  countBanking(){
+    return this.httpClient.get('http://localhost:3000/banque/count')
+  }
+
+  countDepenseByDate(date_facture){
+    return this.httpClient.get('http://localhost:3000/depense/countByDate/'+date_facture)
+  }
+
+  countRecetteByDate(date_facture){
+    return this.httpClient.get('http://localhost:3000/recette/countByDate/'+date_facture)
+  }
+
+  countBankingByDate(date_operation){
+    return this.httpClient.get('http://localhost:3000/banque/countByDate/'+ date_operation)
+  }
+
+  countRecetteByMonth(date_facture){
+    return this.httpClient.get('http://localhost:3000/recette/countByMonth/'+ date_facture)
+  }
+
+  countDepenseByMonth(date_facture){
+    return this.httpClient.get('http://localhost:3000/depense/countByMonth/' +date_facture)
+  }
 }

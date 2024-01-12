@@ -31,40 +31,42 @@ import {AppInvoiceComponent} from './pages/app.invoice.component';
 import {AppHelpComponent} from './pages/app.help.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
 import { CaisseModule } from './my-page/validation-recette/caisse/caisse.module';
+import { DashboardComponent } from './my-page/dashboard/dashboard.component';
+import { LoginComponent } from './my-page/login/login.component';
 
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
-                path: '', component: AppMainComponent,
+                path: 'main', component: AppMainComponent,
                 children: [
-                    {path: '', component: DashboardDemoComponent},
-                    {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
-                    {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
-                    {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
-                    {path: 'uikit/input', component: InputDemoComponent},
-                    {path: 'uikit/button', component: ButtonDemoComponent},
-                    {path: 'uikit/table', component: TableDemoComponent},
-                    {path: 'uikit/list', component: ListDemoComponent},
-                    {path: 'uikit/tree', component: TreeDemoComponent},
-                    {path: 'uikit/panel', component: PanelsDemoComponent},
-                    {path: 'uikit/overlay', component: OverlaysDemoComponent},
-                    {path: 'uikit/menu', loadChildren: () => import('./demo/view/menus/menus.module').then(m => m.MenusModule)},
-                    {path: 'uikit/media', component: MediaDemoComponent},
-                    {path: 'uikit/message', component: MessagesDemoComponent},
-                    {path: 'uikit/misc', component: MiscDemoComponent},
-                    {path: 'uikit/charts', component: ChartsDemoComponent},
-                    {path: 'uikit/file', component: FileDemoComponent},
-                    {path: 'utilities/icons', component: IconsComponent},
-                    {path: 'pages/crud', component: AppCrudComponent},
-                    {path: 'pages/calendar', component: AppCalendarComponent},
-                    {path: 'pages/timeline', component: AppTimelineDemoComponent},
-                    {path: 'pages/invoice', component: AppInvoiceComponent},
-                    {path: 'pages/help', component: AppHelpComponent},
-                    {path: 'pages/empty', component: EmptyDemoComponent},
-                    {path: 'documentation', component: DocumentationComponent},
-                    {path: 'blocks', component: BlocksComponent},
+                    // {path: '', component: DashboardDemoComponent},
+                    // {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
+                    // {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
+                    // {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
+                    // {path: 'uikit/input', component: InputDemoComponent},
+                    // {path: 'uikit/button', component: ButtonDemoComponent},
+                    // {path: 'uikit/table', component: TableDemoComponent},
+                    // {path: 'uikit/list', component: ListDemoComponent},
+                    // {path: 'uikit/tree', component: TreeDemoComponent},
+                    // {path: 'uikit/panel', component: PanelsDemoComponent},
+                    // {path: 'uikit/overlay', component: OverlaysDemoComponent},
+                    // {path: 'uikit/menu', loadChildren: () => import('./demo/view/menus/menus.module').then(m => m.MenusModule)},
+                    // {path: 'uikit/media', component: MediaDemoComponent},
+                    // {path: 'uikit/message', component: MessagesDemoComponent},
+                    // {path: 'uikit/misc', component: MiscDemoComponent},
+                    // {path: 'uikit/charts', component: ChartsDemoComponent},
+                    // {path: 'uikit/file', component: FileDemoComponent},
+                    //  {path: 'utilities/icons', component: IconsComponent},
+                    // {path: 'pages/crud', component: AppCrudComponent},
+                    // {path: 'pages/calendar', component: AppCalendarComponent},
+                    // {path: 'pages/timeline', component: AppTimelineDemoComponent},
+                    // {path: 'pages/invoice', component: AppInvoiceComponent},
+                    // {path: 'pages/help', component: AppHelpComponent},
+                    // {path: 'pages/empty', component: EmptyDemoComponent},
+                    // {path: 'documentation', component: DocumentationComponent},
+                    // {path: 'blocks', component: BlocksComponent},
                     {
                         path: 'mydashboard',
                         loadChildren: () => import('./my-page/dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -102,7 +104,7 @@ import { CaisseModule } from './my-page/validation-recette/caisse/caisse.module'
                         loadChildren: () => import('./my-page/validation-recette/autre/autre.module').then(m => m.AutreModule)
                     },
                     {
-                        path:'depense-valid/banque',
+                        path:'banque',
                         loadChildren: () => import('./my-page/depense-valid/banque/banque.module').then(m => m.BanqueModule)
                     },
                     {
@@ -120,12 +122,16 @@ import { CaisseModule } from './my-page/validation-recette/caisse/caisse.module'
                     {
                         path: 'depense-banking',
                         loadChildren: () => import('./my-page/depense-valid/banking/banking.module').then(m => m.BankingModule)
+                    },
+                    {
+                        path:'',
+                        loadChildren: () => import('./my-page/logout/logout.module').then(m => m.LogoutModule)
                     }
                    
                 ]
             },
             {
-                path:'mylogin',
+                path:'',
                 loadChildren: ()=>import('./my-page/login/login.module').then(m => m.LoginModule)
             },
             {

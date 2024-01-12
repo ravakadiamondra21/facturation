@@ -11,10 +11,15 @@ export class BanqueService {
   constructor(private http: HttpClient) { }
 
   getDepense(){
-    return this.http.get<Depense[]>('http://localhost:3000/depense/matched')
+    return this.http.get<Depense[]>('http://localhost:3000/relation-depense')
   }
 
   getRecette(){
-    return this.http.get<Recette[]>('http://localhost:3000/recette/matched')
+    return this.http.get<Recette[]>('http://localhost:3000/relation-recette/matched')
+
   }
+
+  // getSomeDepense(){
+  //   return this.http.get('http://localhost:3000/relation-depense/file')
+  // }
 }

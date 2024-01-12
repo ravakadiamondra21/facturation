@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit{
   );
 
   ngOnInit(){
-    
+    localStorage.removeItem('admin')
+    console.log(localStorage.getItem("admin"))
   }
 
   login : Login;
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit{
 
     if(result === null){
       this.wrongLogin= "Erreur de login"
-      this.routerLink = '/mylogin'
+      this.routerLink = ''
       this.loginForm.setValue({
         email : "",
         pwd: ""
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit{
     }
 
     else if(result.mail == mail && result.mdp == pwd){
-      this.routerLink = '/mydashboard'
+      this.routerLink = '/main/mydashboard'
       this.loginForm.setValue({
         email : "",
         pwd: ""
@@ -70,7 +71,7 @@ export class LoginComponent implements OnInit{
 
     else{
       this.wrongLogin = "mail ou mot de passe invalide"
-      this.routerLink = '/mylogin'
+      this.routerLink = ''
       this.loginForm.setValue({
         email : "",
         pwd: ""
